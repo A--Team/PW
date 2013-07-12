@@ -1,0 +1,233 @@
+-- phpMyAdmin SQL Dump
+-- version 3.3.9
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generato il: 12 lug, 2013 at 05:50 
+-- Versione MySQL: 5.5.8
+-- Versione PHP: 5.3.5
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `tourdb`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `attrazioni`
+--
+
+CREATE TABLE IF NOT EXISTS `attrazioni` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fascia` varchar(50) NOT NULL,
+  `prezzo` float NOT NULL,
+  `tipo` varchar(50) NOT NULL,
+  `id_destinazione` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_destinazione` (`id_destinazione`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dump dei dati per la tabella `attrazioni`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `commento`
+--
+
+CREATE TABLE IF NOT EXISTS `commento` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `testo` longtext NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dump dei dati per la tabella `commento`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `destinazione`
+--
+
+CREATE TABLE IF NOT EXISTS `destinazione` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `continente` enum('africa','asia','europa','nord america','sud america','oceania','antartide') NOT NULL,
+  `citta` varchar(50) NOT NULL,
+  `tipo` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dump dei dati per la tabella `destinazione`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `pacchetto`
+--
+
+CREATE TABLE IF NOT EXISTS `pacchetto` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `persone` varchar(5) NOT NULL,
+  `durata` varchar(5) NOT NULL,
+  `data_partenza` date NOT NULL,
+  `id_utente` varchar(50) NOT NULL,
+  `id_pernottamento` int(11) NOT NULL,
+  `id_attrazioni` int(11) NOT NULL,
+  `id_trasporto` int(11) NOT NULL,
+  `id_destinazione` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_utente` (`id_utente`),
+  KEY `id_pernottamento` (`id_pernottamento`),
+  KEY `id_attrazioni` (`id_attrazioni`),
+  KEY `id_trasporto` (`id_trasporto`),
+  KEY `id_destinazione` (`id_destinazione`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dump dei dati per la tabella `pacchetto`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `pernottamento`
+--
+
+CREATE TABLE IF NOT EXISTS `pernottamento` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fascia` varchar(50) NOT NULL,
+  `prezzo` float NOT NULL,
+  `tipo` varchar(50) NOT NULL,
+  `id_destinazione` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_destinazione` (`id_destinazione`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dump dei dati per la tabella `pernottamento`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `prenotazione`
+--
+
+CREATE TABLE IF NOT EXISTS `prenotazione` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_utente` varchar(50) NOT NULL,
+  `id_destinazione` int(11) NOT NULL,
+  `id_commento` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_utente` (`id_utente`),
+  KEY `id_destinazione` (`id_destinazione`),
+  KEY `id_commento` (`id_commento`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dump dei dati per la tabella `prenotazione`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `trasporto`
+--
+
+CREATE TABLE IF NOT EXISTS `trasporto` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fascia` varchar(50) NOT NULL,
+  `prezzo` float NOT NULL,
+  `tipo` varchar(50) NOT NULL,
+  `id_destinazione` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_destinazione` (`id_destinazione`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dump dei dati per la tabella `trasporto`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `utente`
+--
+
+CREATE TABLE IF NOT EXISTS `utente` (
+  `cf` varchar(50) NOT NULL,
+  `nome` varchar(50) NOT NULL,
+  `cognome` varchar(50) NOT NULL,
+  `mail` varchar(50) NOT NULL,
+  `indirizzo` varchar(50) NOT NULL,
+  `tel` varchar(50) NOT NULL,
+  `user` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  PRIMARY KEY (`cf`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `utente`
+--
+
+
+--
+-- Limiti per le tabelle scaricate
+--
+
+--
+-- Limiti per la tabella `attrazioni`
+--
+ALTER TABLE `attrazioni`
+  ADD CONSTRAINT `attrazioni_ibfk_1` FOREIGN KEY (`id_destinazione`) REFERENCES `destinazione` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limiti per la tabella `pacchetto`
+--
+ALTER TABLE `pacchetto`
+  ADD CONSTRAINT `pacchetto_ibfk_5` FOREIGN KEY (`id_destinazione`) REFERENCES `destinazione` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `pacchetto_ibfk_1` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`cf`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `pacchetto_ibfk_2` FOREIGN KEY (`id_pernottamento`) REFERENCES `pernottamento` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `pacchetto_ibfk_3` FOREIGN KEY (`id_attrazioni`) REFERENCES `attrazioni` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `pacchetto_ibfk_4` FOREIGN KEY (`id_trasporto`) REFERENCES `trasporto` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limiti per la tabella `pernottamento`
+--
+ALTER TABLE `pernottamento`
+  ADD CONSTRAINT `pernottamento_ibfk_1` FOREIGN KEY (`id_destinazione`) REFERENCES `destinazione` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limiti per la tabella `prenotazione`
+--
+ALTER TABLE `prenotazione`
+  ADD CONSTRAINT `prenotazione_ibfk_3` FOREIGN KEY (`id_commento`) REFERENCES `commento` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `prenotazione_ibfk_1` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`cf`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `prenotazione_ibfk_2` FOREIGN KEY (`id_destinazione`) REFERENCES `destinazione` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limiti per la tabella `trasporto`
+--
+ALTER TABLE `trasporto`
+  ADD CONSTRAINT `trasporto_ibfk_1` FOREIGN KEY (`id_destinazione`) REFERENCES `destinazione` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
