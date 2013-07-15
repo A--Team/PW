@@ -1,9 +1,20 @@
+@font-face{
+    font-family: "Century Gothic";
+    src: url(century_gothic.ttf),
+    	 url(century_gothic.eot), /*IE*/
+    	 format("truetype");
+}
+
 html,body{
+	font-family: "Century Gothic", verdana, sans-serif;
+	font-size: 15px;
 	height: 100%;
 	margin: 0; 
 	padding: 0;
 }
 body{
+	font-family: "Century Gothic", verdana, sans-serif; 
+	font-size: 15px;
 	background-color: #9ab9ff;
 	text-align:center;
 }
@@ -28,9 +39,13 @@ body{
 	background-color: #8cff5a;
 }
 #login{
+	font-size: 12px;
 	float:right;
 	width:240px;
 	height:150px;
+}
+#login h3{
+	margin-bottom: 2px;
 }
 #content_container{
 	width: 990px;
@@ -43,13 +58,13 @@ body{
 	float: right;
 	width: 750px;
 	min-height:350px;
-        background-color:#b9f8ff;
+    background: url("cont_background.png") repeat-y right;
 }
 #navigation{
 	float: left;
 	width:240px;
 	min-height:350px;
-	background-color:#ff3434;
+	background: url("nav_background.png") repeat-y;
 }
 #footer{
 	background-color:#ea5800;
@@ -57,6 +72,9 @@ body{
 	margin: 0 auto;
 	text-align: center;
   	height: 80px;
+}
+.td_left{
+	text-align: left;
 }
 
 
