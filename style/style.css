@@ -38,6 +38,25 @@ body{
 	height:150px;
 	background: url("images/header.png");
 }
+#logo a{
+	text-decoration: none;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+#menu{
+	float:right;
+	padding-top:125px;
+	padding-right: 5px;
+}
+.btn_menu{
+	width: 90px;
+	height: 25px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background-color: #210C8F;	
+}
 #login{
 	font-size: 12px;
 	color: #FFFFFF;
@@ -78,5 +97,6 @@ body{
 .td_left{
 	text-align: left;
 }
+
 
 
