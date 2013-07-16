@@ -5,8 +5,8 @@
     include_once 'database.php';
 	
 	//recupero username e password inseriti nella form
-	$username = $_POST['username'];
-    $password = $_POST['password'];
+	$username = nl2br(htmlentities($_POST['username']));
+    $password = nl2br(htmlentities($_POST['password']));
 	//calcolo hash SHA256 della password inserita
     $hashPsw = hash('sha256', $password);
 	

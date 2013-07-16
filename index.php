@@ -11,7 +11,7 @@
     <div id="header_container">
 	<div id="logo">
 			<span id="menu">
-				<a href="#"><span class="btn_menu">Home</span></a>
+				<a href="index.php"><span class="btn_menu">Home</span></a>
 				<a href="#"><span class="btn_menu">Catalogo</span></a>
 				<a href="#"><span class="btn_menu">Pippo</span></a>
 				<a href="#"><span class="btn_menu">Pluto</span></a>

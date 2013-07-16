@@ -20,7 +20,7 @@
 			<td colspan="2"><input type="submit" value="Entra"></td>
 		</tr>
 		<tr>
-			<td colspan="2">Non sei registrato? <a href="">Clicca qui!</a></td>
+			<td colspan="2">Non sei registrato? <a href="signup_form.php">Clicca qui!</a></td>
 		</tr>
 	</table>
 </form>  
