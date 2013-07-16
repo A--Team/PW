@@ -18,23 +18,26 @@
 			</span>			
 	</div>
 	<div id="login">
-	  <table>
-	  	<tr>
-	  		<td colspan="2"><h3>Login:</h3></td>
-	  	</tr>
-	  	<tr>
-	  		<td class="td_left">Username:</td><td><input type="text" name="username"></td>
-	  	</tr>
-	  	<tr>
-	  		<td class="td_left">Password:</td><td><input type="password" name="password"></td>
-	  	</tr>
-	  	<tr>
-	  		<td colspan="2"><input type="submit" value="Entra"></td>
-	  	</tr>
-	  	<tr>
-	  		<td colspan="2">Non sei registrato? <a href="">Clicca qui!</a></td>
-	  	</tr>
-	  </table>
+		<?php
+			session_start();
+			//carico script contenente i parametri di configurazione
+			include_once 'config.php';
+			//controllo esistenza della sessione
+			if(isset($_SESSION[$session_name])){
+				//attivo la sessione
+				$_SESSION[$session_name] = true;
+				echo "<br><br><h2>Benvenuto " . $_SESSION['username'] . "!</h2><br>";
+				echo "<form method='POST' action='logout.php'>
+						<input type='submit' value='logout'>
+					  </form>";
+			}
+			else{
+				if(isset($_GET["bad_cred"]))
+					include 'login_form.php';
+				else
+					include 'login_form.php';
+			}
+		?>
 	</div>
 	</div>
       <div id="content_container">
