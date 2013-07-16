@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.9
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generato il: 12 lug, 2013 at 05:50 
--- Versione MySQL: 5.5.8
--- Versione PHP: 5.3.5
+-- Host: 127.0.0.1
+-- Generato il: Lug 16, 2013 alle 18:14
+-- Versione del server: 5.5.27
+-- Versione PHP: 5.4.7
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -35,11 +36,6 @@ CREATE TABLE IF NOT EXISTS `attrazioni` (
   KEY `id_destinazione` (`id_destinazione`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dump dei dati per la tabella `attrazioni`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -52,11 +48,6 @@ CREATE TABLE IF NOT EXISTS `commento` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dump dei dati per la tabella `commento`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -65,16 +56,11 @@ CREATE TABLE IF NOT EXISTS `commento` (
 
 CREATE TABLE IF NOT EXISTS `destinazione` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `continente` enum('africa','asia','europa','nord america','sud america','oceania','antartide') NOT NULL,
+  `continente` varchar(50) NOT NULL,
   `citta` varchar(50) NOT NULL,
   `tipo` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dump dei dati per la tabella `destinazione`
---
-
 
 -- --------------------------------------------------------
 
@@ -100,11 +86,6 @@ CREATE TABLE IF NOT EXISTS `pacchetto` (
   KEY `id_destinazione` (`id_destinazione`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dump dei dati per la tabella `pacchetto`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -120,11 +101,6 @@ CREATE TABLE IF NOT EXISTS `pernottamento` (
   PRIMARY KEY (`id`),
   KEY `id_destinazione` (`id_destinazione`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dump dei dati per la tabella `pernottamento`
---
-
 
 -- --------------------------------------------------------
 
@@ -143,11 +119,6 @@ CREATE TABLE IF NOT EXISTS `prenotazione` (
   KEY `id_commento` (`id_commento`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dump dei dati per la tabella `prenotazione`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -164,11 +135,6 @@ CREATE TABLE IF NOT EXISTS `trasporto` (
   KEY `id_destinazione` (`id_destinazione`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dump dei dati per la tabella `trasporto`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -183,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `utente` (
   `indirizzo` varchar(50) NOT NULL,
   `tel` varchar(50) NOT NULL,
   `user` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(500) NOT NULL,
   PRIMARY KEY (`cf`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -191,6 +157,10 @@ CREATE TABLE IF NOT EXISTS `utente` (
 -- Dump dei dati per la tabella `utente`
 --
 
+INSERT INTO `utente` (`cf`, `nome`, `cognome`, `mail`, `indirizzo`, `tel`, `user`, `password`) VALUES
+('DRVJHN45L23F205T', 'John', 'Drive', 'john.drive@jdcompany.com', 'Via Montenapoleone, Milano', '023478963', 'johndrive', '22e8fe2e720de91ac08adc53e6ef10ea9cf9a72aa08035e2bfd05e9f69b79b57'),
+('RSSMRO73E24B157P', 'Mario', 'Rossi', 'mariorossi@rossis.com', 'via dei rossi', '0246876535', 'mario', '30cc6dd8ef8458e679e13ae3bf3f634cace9810e2eea03bb6487904595f41056'),
+('VRDLGI15F12C754Q', 'Luigi', 'Verdi', 'luigi@verdi.com', 'via verdi', '0156541640', 'luigi', 'aeca01371581fda90e31862e10405c4948567d1f74cd92aeac5fe8cd29b6ea96');
 
 --
 -- Limiti per le tabelle scaricate
@@ -231,3 +201,7 @@ ALTER TABLE `prenotazione`
 --
 ALTER TABLE `trasporto`
   ADD CONSTRAINT `trasporto_ibfk_1` FOREIGN KEY (`id_destinazione`) REFERENCES `destinazione` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
