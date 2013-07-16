@@ -22,6 +22,7 @@
 	 $conn = database::dbConnect();
 	//Eseguo la query
 	 database::qInsertInto($conn,$sql);
+	 mysql_close();
 	 
 	//Ricarico la pagina
 	header("Refresh: 0;url=signup_form.php?registered=1");
