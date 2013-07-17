@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generato il: Lug 16, 2013 alle 18:14
+-- Generato il: Lug 17, 2013 alle 17:26
 -- Versione del server: 5.5.27
 -- Versione PHP: 5.4.7
 
@@ -28,7 +28,6 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `attrazioni` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fascia` varchar(50) NOT NULL,
   `prezzo` float NOT NULL,
   `tipo` varchar(50) NOT NULL,
   `id_destinazione` int(11) NOT NULL,
@@ -44,8 +43,13 @@ CREATE TABLE IF NOT EXISTS `attrazioni` (
 
 CREATE TABLE IF NOT EXISTS `commento` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_utente` varchar(50) NOT NULL,
+  `id_destinazione` int(11) NOT NULL,
+  `rating` int(11) NOT NULL,
   `testo` longtext NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `id_utente` (`id_utente`),
+  KEY `id_destinazione` (`id_destinazione`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -59,6 +63,7 @@ CREATE TABLE IF NOT EXISTS `destinazione` (
   `continente` varchar(50) NOT NULL,
   `citta` varchar(50) NOT NULL,
   `tipo` varchar(50) NOT NULL,
+  `foto` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -78,6 +83,7 @@ CREATE TABLE IF NOT EXISTS `pacchetto` (
   `id_attrazioni` int(11) NOT NULL,
   `id_trasporto` int(11) NOT NULL,
   `id_destinazione` int(11) NOT NULL,
+  `prenotato` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `id_utente` (`id_utente`),
   KEY `id_pernottamento` (`id_pernottamento`),
@@ -94,7 +100,6 @@ CREATE TABLE IF NOT EXISTS `pacchetto` (
 
 CREATE TABLE IF NOT EXISTS `pernottamento` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fascia` varchar(50) NOT NULL,
   `prezzo` float NOT NULL,
   `tipo` varchar(50) NOT NULL,
   `id_destinazione` int(11) NOT NULL,
@@ -105,19 +110,15 @@ CREATE TABLE IF NOT EXISTS `pernottamento` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `prenotazione`
+-- Struttura della tabella `rel_attrazioni`
 --
 
-CREATE TABLE IF NOT EXISTS `prenotazione` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_utente` varchar(50) NOT NULL,
-  `id_destinazione` int(11) NOT NULL,
-  `id_commento` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_utente` (`id_utente`),
-  KEY `id_destinazione` (`id_destinazione`),
-  KEY `id_commento` (`id_commento`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+CREATE TABLE IF NOT EXISTS `rel_attrazioni` (
+  `id_pacchetto` int(11) NOT NULL,
+  `id_attrazione` int(11) NOT NULL,
+  KEY `id_pacchetto` (`id_pacchetto`),
+  KEY `id_attrazione` (`id_attrazione`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -127,7 +128,6 @@ CREATE TABLE IF NOT EXISTS `prenotazione` (
 
 CREATE TABLE IF NOT EXISTS `trasporto` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fascia` varchar(50) NOT NULL,
   `prezzo` float NOT NULL,
   `tipo` varchar(50) NOT NULL,
   `id_destinazione` int(11) NOT NULL,
@@ -158,6 +158,7 @@ CREATE TABLE IF NOT EXISTS `utente` (
 --
 
 INSERT INTO `utente` (`cf`, `nome`, `cognome`, `mail`, `indirizzo`, `tel`, `user`, `password`) VALUES
+('AAAAAAAAAAAAAAAA', 'Agenzia', 'Agenzia', 'agenzia@agenzia.com', '', '', 'agenzia', 'c38f879fbf14e4cec57deb7a92efbb65f3d2631ba0a2a9bc44cb445b4c7a55b1'),
 ('DRVJHN45L23F205T', 'John', 'Drive', 'john.drive@jdcompany.com', 'Via Montenapoleone, Milano', '023478963', 'johndrive', '22e8fe2e720de91ac08adc53e6ef10ea9cf9a72aa08035e2bfd05e9f69b79b57'),
 ('RSSMRO73E24B157P', 'Mario', 'Rossi', 'mariorossi@rossis.com', 'via dei rossi', '0246876535', 'mario', '30cc6dd8ef8458e679e13ae3bf3f634cace9810e2eea03bb6487904595f41056'),
 ('VRDLGI15F12C754Q', 'Luigi', 'Verdi', 'luigi@verdi.com', 'via verdi', '0156541640', 'luigi', 'aeca01371581fda90e31862e10405c4948567d1f74cd92aeac5fe8cd29b6ea96');
@@ -170,17 +171,23 @@ INSERT INTO `utente` (`cf`, `nome`, `cognome`, `mail`, `indirizzo`, `tel`, `user
 -- Limiti per la tabella `attrazioni`
 --
 ALTER TABLE `attrazioni`
-  ADD CONSTRAINT `attrazioni_ibfk_1` FOREIGN KEY (`id_destinazione`) REFERENCES `destinazione` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `attrazioni_ibfk_1` FOREIGN KEY (`id_destinazione`) REFERENCES `destinazione` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limiti per la tabella `commento`
+--
+ALTER TABLE `commento`
+  ADD CONSTRAINT `commento_ibfk_1` FOREIGN KEY (`id_destinazione`) REFERENCES `destinazione` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `commento_ibfk_2` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`cf`);
 
 --
 -- Limiti per la tabella `pacchetto`
 --
 ALTER TABLE `pacchetto`
-  ADD CONSTRAINT `pacchetto_ibfk_5` FOREIGN KEY (`id_destinazione`) REFERENCES `destinazione` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `pacchetto_ibfk_1` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`cf`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `pacchetto_ibfk_2` FOREIGN KEY (`id_pernottamento`) REFERENCES `pernottamento` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `pacchetto_ibfk_3` FOREIGN KEY (`id_attrazioni`) REFERENCES `attrazioni` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `pacchetto_ibfk_4` FOREIGN KEY (`id_trasporto`) REFERENCES `trasporto` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `pacchetto_ibfk_4` FOREIGN KEY (`id_trasporto`) REFERENCES `trasporto` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `pacchetto_ibfk_5` FOREIGN KEY (`id_destinazione`) REFERENCES `destinazione` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Limiti per la tabella `pernottamento`
@@ -189,12 +196,11 @@ ALTER TABLE `pernottamento`
   ADD CONSTRAINT `pernottamento_ibfk_1` FOREIGN KEY (`id_destinazione`) REFERENCES `destinazione` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limiti per la tabella `prenotazione`
+-- Limiti per la tabella `rel_attrazioni`
 --
-ALTER TABLE `prenotazione`
-  ADD CONSTRAINT `prenotazione_ibfk_3` FOREIGN KEY (`id_commento`) REFERENCES `commento` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `prenotazione_ibfk_1` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`cf`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `prenotazione_ibfk_2` FOREIGN KEY (`id_destinazione`) REFERENCES `destinazione` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `rel_attrazioni`
+  ADD CONSTRAINT `rel_attrazioni_ibfk_1` FOREIGN KEY (`id_pacchetto`) REFERENCES `pacchetto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `rel_attrazioni_ibfk_2` FOREIGN KEY (`id_attrazione`) REFERENCES `attrazioni` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `trasporto`
