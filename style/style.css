@@ -69,23 +69,24 @@ body{
 	margin-bottom: 2px;
 }
 #content_container{
+	overflow:hidden;
 	width: 990px;
-	overflow: auto;
-	min-height:350px;
-	overflow: auto;
 	margin: 0 auto;
+	min-height:350px;
 }
 #content{
 	float: right;
 	width: 750px;
-	min-height:350px;
-    background: url("images/cont_background.png") repeat-y;
+	background: url("images/cont_background.png") repeat-y;
+	padding-bottom: 10000px;
+	margin-bottom: -10000px;
 }
 #navigation{
 	float: left;
 	width:240px;
-	min-height:350px;
 	background: url("images/nav_background.png") repeat-y;
+	padding-bottom: 10000px;
+	margin-bottom: -10000px;
 }
 #footer{
 	background-color:#ea5800;
@@ -93,6 +94,7 @@ body{
 	margin: 0 auto;
 	text-align: center;
   	height: 40px;
+	clear:both;
 }
 .td_left{
 	text-align: left;
