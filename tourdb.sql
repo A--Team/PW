@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generato il: Lug 17, 2013 alle 17:26
+-- Generato il: Lug 17, 2013 alle 17:35
 -- Versione del server: 5.5.27
 -- Versione PHP: 5.4.7
 
@@ -80,14 +80,12 @@ CREATE TABLE IF NOT EXISTS `pacchetto` (
   `data_partenza` date NOT NULL,
   `id_utente` varchar(50) NOT NULL,
   `id_pernottamento` int(11) NOT NULL,
-  `id_attrazioni` int(11) NOT NULL,
   `id_trasporto` int(11) NOT NULL,
   `id_destinazione` int(11) NOT NULL,
   `prenotato` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `id_utente` (`id_utente`),
   KEY `id_pernottamento` (`id_pernottamento`),
-  KEY `id_attrazioni` (`id_attrazioni`),
   KEY `id_trasporto` (`id_trasporto`),
   KEY `id_destinazione` (`id_destinazione`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
