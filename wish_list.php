@@ -61,6 +61,7 @@
 			$sql = "SELECT * FROM `pacchetto` WHERE `id_utente` = \"$id_user\" AND `prenotato` = FALSE";
 			$result = database::qSelect($conn, $sql);    		
     		while($record = mysql_fetch_array($result)){
+    			$id_pacchetto = $record['id'];
     			$num_persone = $record['persone'];
 				$num_notti = $record['durata'];
 				$data_partenza = $record['data_partenza'];
@@ -88,23 +89,26 @@
 				$citta = $record_dest['citta'];
 				$tipo_destinazione = $record_dest['tipo'];
 				$foto = $record_dest['foto'];
+				//Recupero i dettagli delle attrazioni
+				$sql = "SELECT * FROM `rel_attrazioni` WHERE `id_pacchetto` = \"$id_pacchetto\"";
+				$result_list_attr = database::qSelect($conn, $sql);
+				$tipo_attr = array();
+				$prezzo_attr = array();
+				while($record_list_attr = mysql_fetch_array($result_list_attr)){
+					$id_attr = $record_list_attr['id_attrazione'];
+					$sql_attr = "SELECT * FROM `attrazioni` WHERE `id` = \"$id_attr\"";
+					$result_attr = database::qSelect($conn, $sql_attr);
+					$record_attr = mysql_fetch_array($result_attr);
+					$tipo_attr[] = $record_attr['tipo'];
+					$prezzo_attr[] = $record_attr['prezzo'];					
+				}
 				
 				//Calcolo il costo totale
 				$costo = $prezzo_pernottamento*$num_notti*$num_persone + $prezzo_trasporto*$num_persone;
-				/*
-				echo "num persone: $num_persone<br>";
-				echo "notti: $num_notti<br>";
-				echo "partenza: $data_partenza<br>";
-				echo "tipo per: $tipo_pernottamento<br>";
-				echo "prezzo per: $prezzo_pernottamento<br>";
-				echo "tipo tras: $tipo_trasporto<br>";
-				echo "prezzo tras: $prezzo_trasporto<br>";
-				echo "continente: $continente<br>";
-				echo "citta: $citta<br>";
-				echo "tipo dest: $tipo_destinazione<br>";
-				echo "<img src = ./style/images/dest/$foto>";
-				echo "<br><br>";
-				*/
+				foreach($prezzo_attr as $p){
+					$costo = $costo + $p;
+				}
+				
 				$html = "
 					<div class='div_viaggio'>
 						<p class='dest_viaggio'>
