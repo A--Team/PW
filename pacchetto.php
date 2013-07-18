@@ -1,7 +1,7 @@
 <?php
     class pacchetto{
     	
-		var $cf_utente, $num_persone, $num_notti, $data, $id_pernottamento, $id_attrazioni, $id_trasporto, $id_destinazione;
+		var $id, $cf_utente, $num_persone, $num_notti, $data, $id_pernottamento, $attrazioni, $id_trasporto, $id_destinazione, $prenotato;
     	
 		/*
 		 * Costruttore dell'oggetto pacchetto
@@ -13,7 +13,7 @@
 		 
 		/*
 		 * Metodi SET per gli attributi di pacchetto
-		 */
+		 */		 
 		 function setCF($cf){
 		 	$this->cf_utente = nl2br(htmlentities($cf));
 			return true;
@@ -34,8 +34,8 @@
 		 	$this->id_pernottamento = nl2br(htmlentities($id));
 			return true;
 		 }
-		 function setAttrazioni($id){
-		 	$this->id_attrazioni = nl2br(htmlentities($id));
+		 function addAttrazioni($id){
+		 	$this->attrazioni[] = nl2br(htmlentities($id));
 			return true;
 		 }
 		 function setTrasporto($id){
@@ -46,10 +46,16 @@
 		 	$this->id_destinazione = nl2br(htmlentities($id));
 			return true;
 		 }
+		 function setPrenotato($bool){
+		 	$this->prenotato = nl2br(htmlentities($bool));
+		 }
 		 
 		/*
 		 * Metodi GET per gli attributi di pacchetto
 		 */
+		 function getID(){
+		 	return $this->id;
+		 }
 		 function getCF(){
 		 	return $this->cf_utente;
 		 }
@@ -66,13 +72,16 @@
 		 	return $this->id_pernottamento;
 		 }
 		 function getAttrazioni(){
-		 	return $this->id_attrazioni;
+		 	return $this->attrazioni;
 		 }
 		 function getTrasporto(){
 		 	return $this->id_trasporto;
 		 }
 		 function getDestinazione(){
 		 	return $this->id_trasporto;
+		 }
+		 function getPrenotato(){
+		 	return $this->prenotato;
 		 }
 		 
 		/*
@@ -84,10 +93,22 @@
 			//Creo la connessione al database
 			$conn = database::dbConnect();
 			//Preparo la query di inserimento
-			$sql = "INSERT INTO `tourdb`.`pacchetto` (`persone`, `durata`, `data_partenza`, `id_utente`, `id_pernottamento`, `id_attrazioni`, `id_trasporto`, `id_destinazione`) VALUES 
-	 		('$this->num_persone', '$this->num_notti', '$this->data', '$this->cf_utente', '$this->id_pernottamento', '$this->id_attrazioni', '$this->id_trasporto', '$this->id_destinazione');";
+			$sql = "INSERT INTO `tourdb`.`pacchetto` (`persone`, `durata`, `data_partenza`, `id_utente`, `id_pernottamento`, `id_attrazioni`, `id_trasporto`, `id_destinazione`, `prenotato`) VALUES 
+	 		('$this->num_persone', '$this->num_notti', '$this->data', '$this->cf_utente', '$this->id_pernottamento', '$this->id_attrazioni', '$this->id_trasporto', '$this->id_destinazione','$this->prenotato');";
 			//Eseguo la query
 			database::qInsertInto($conn,$sql);
+			
+			//Salvo l'elenco delle attrazioni selezionate
+			//Creo la connessione al database
+			$conn = database::dbConnect();
+			//Preparo la query di inserimento
+			$att = $this->getAttrazioni();
+			for ($i=0; $i<$att.length ; $i++) { 
+				$sql = "INSERT INTO `rel_attrazioni`(`id_pacchetto`, `id_attrazione`) VALUES (" . $this->getID() . "," . $att[i] .")";
+				//Eseguo la query
+				database::qInsertInto($conn,$sql);
+			}
+			mysql_close();
 			
 			return true;
 		 }
@@ -107,10 +128,21 @@
 			$this->setNumPersone($record['persone']);
 			$this->setDurata($record['durata']);
 			$this->setDataPartenza($record['data_partenza']);
-			$this->setPernottamento($record['id_pernottamento']);
-			$this->setAttrazioni($record['id_attrazioni']);
+			$this->setPernottamento($record['id_pernottamento']);			
 			$this->setTrasporto($record['id_trasporto']);
 			$this->setDestinazione($record['id_destinazione']);
+			$this->setPrenotato($record['prenotato']);
+			
+			//Popolo il pacchetto con l'elenco delle attrazioni selezionate
+			//Creo la connessione al database
+			$conn = database::dbConnect();
+			//Preparo la query di selezione
+			$sql = "SELECT `id_attrazione` FROM `rel_attrazioni` WHERE `id_pacchetto` = '$id'";
+			$result = database::qSelect($conn, $sql);                      
+            while ($record = mysql_fetch_array($result)) {
+                $this->addAttrazioni($record['id_attrazione']);
+            }            
+			mysql_close();
 			
 			return true;
 		 }
