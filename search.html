@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="style/style.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="search.js"></script>
   </head>
   <body>
@@ -27,9 +28,6 @@
 		<br>
 		<br>
 		<br>
-		<br>
-		<br>
-		<br>
 	</div>
       	<div id="navigation">
 	  	<br>
@@ -39,7 +37,9 @@
 	  	<tr>
 	  	<td>Continente:</td>
 		<td>
-		  <select id="continent">
+		  <select id="continent" onchange='update_cities()'>
+		    <option value="" disabled selected>Seleziona continente</option>
+		    <option value="africa">Africa</option>
 		    <option value="america">America</option>
 		    <option value="asia">Asia</option>
 		    <option value="europa">Europa</option>
@@ -50,9 +50,7 @@
 	  	<tr>
 	  	<td>Città:</td>
 	  	<td>
-		  <select id="city">
-		    <option value="roma">Roma</option>
-		    <option value="tokyo">Tokyo</option>
+		  <select id="city" disabled>
 		  </select>
 		</td>
 	  	</tr>
@@ -60,8 +58,9 @@
 	  	<td>Tipologia:</td>
 	  	<td>
 		  <select id="type">
-		    <option value="arte">Arte</option>
-		    <option value="oriente">Oriente</option>
+		    <option value="culturale">Culturale</option>
+		    <option value="relax">Relax</option>
+		    <option value="divertimento">Divertimento</option>
 		  </select>
 		</td>
 		</tr>
@@ -88,8 +87,8 @@
 		</tr>
 		</table>
 		<br>
-		<br>
 		<button type="button" onclick='search()'>Cerca</button>
+		<div id="err_content"></div>
 	</div>
       </div> 
       <div id="footer">
