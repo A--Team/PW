@@ -1,4 +1,5 @@
 <?php
+  //Riceve in ingresso tramite 'post' i parametri di ricerca e restituisce i pacchetti che sodddisfano i parametri come ID (del pacchetto). 
   include_once 'database.php';
   $continent=$_POST['continent'];
   $city=$_POST['city'];

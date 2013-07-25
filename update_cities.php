@@ -1,4 +1,5 @@
 <?php
+  //script che restituisce tutte le città di una dato continente
   include_once 'database.php';
   $continent=$_POST['continent'];
   
@@ -8,4 +9,5 @@
   while($el=mysql_fetch_array($risposta)){
     echo "<option value=".$el["citta"].">".$el["citta"]."</option>";
   }
+  mysql_close($conn);
 ?>

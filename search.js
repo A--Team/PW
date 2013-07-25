@@ -1,3 +1,4 @@
+//funzione per aggiornare il campo select delle città quando l'utente seleziona un continente. Usa ajax.
 function update_cities(){
   var continent=document.getElementById("continent").value;
   if (window.XMLHttpRequest)
@@ -17,6 +18,7 @@ function update_cities(){
   xmlhttp.send("continent="+continent);
 }
 
+//funzione chiamata quando l'utente clicca sul bottone cerca. Richiama la pagina search.php passando i parametri di ricerca tramite post e aggiorna(asincronicamente) 'div_content' con gli ID dei pacchetti trovati.
 function search()
 {
   var xmlhttp;
