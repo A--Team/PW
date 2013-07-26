@@ -68,6 +68,14 @@
             //valore di ritorno in caso di corretto funzionamento
             return 0;
         }
+		
+		/*
+			chiusura connessione database
+		*/
+		public static function dbClose()
+		{
+			mysql_close();
+		}
         
     }
 ?>

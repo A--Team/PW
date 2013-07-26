@@ -1,10 +1,17 @@
+<?php
+	session_start();
+	include_once 'config.php';
+	if(!isset($_SESSION[$session_name]))
+		header("Refresh: 0;url=badlogin.php");  
+?>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
     <title>Agenzia Viaggi</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="description" content="">
-    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <link rel="stylesheet" type="text/css" href="./style/style.css">
   </head>
   <body>
     <div id="container">
@@ -19,46 +26,36 @@
 	</div>
 	<div id="login">
 		<?php
-			session_start();
-			//carico script contenente i parametri di configurazione
-			include_once 'config.php';
-			//controllo esistenza della sessione
-			if(isset($_SESSION[$session_name])){
-				//attivo la sessione
-				//$_SESSION[$session_name] = true;
 				echo "<br><br><h2>Benvenuto " . $_SESSION['username'] . "!</h2><br>";
-				echo "<form method='POST' action='logout.php'>
-						<input type='submit' value='logout'>
-					  </form>";
-			}
-			else
-			{
-					include 'login_form.php';
-			}
 		?>
+        <form method='POST' action='logout.php'>
+					<input type='submit' value='logout'>
+		 </form>
 	</div>
 	</div>
       <div id="content_container">
 	<div id="content">
 		<?php
-			//carico script contenente i parametri di configurazione
-			include_once 'config.php';
-			//carico script di interfaccia al database
-		    include_once 'database.php';
-			//Creo la connessione al database
-			$conn = database::dbConnect();
+			include_once 'database.php';
+			$conn=database::dbConnect();
 			
-			//Recupero l'id dell'utente corrente
-			$user = $_SESSION['username'];
-			$sql = "SELECT `cf` FROM `utente` WHERE `user` = \"$user\"";
-			$result = database::qSelect($conn, $sql);
-    		$record = mysql_fetch_array($result);
-    		$id_user = $record['cf'];
+			$user=$_SESSION['username'];
+			/*
+				Recupero gli id di tutte le destinazioni di ogni pacchetto appartenente al cliente. Identifico quale è
+				il tipo di vacenza scelto più volte
+			*/
+			$query="SELECT tipo,count(tipo) AS quantita FROM destinazione WHERE id IN 
+						(SELECT id_destinazione FROM pacchetto WHERE id_utente='".$user."') 
+						GROUP BY tipo ORDER BY quantita DESC";
+			$result=database::qSelect($conn,$query);
+			$record=mysql_fetch_array($result);
+			$tipo_mirato=$record["tipo"];
+			//Scelgo i pacchetti prefatti dall'agenzia che abbiano come tipo il tipo più usato dal cliente
+			$query="SELECT * FROM pacchetto WHERE id_utente='agenzia' AND id_destinazione IN 
+						(SELECT id FROM destinazione WHERE tipo='".$tipo_mirato."')";
+			$result=database::qSelect($conn,$query);
 			
-			//Recupero i pacchetti dell'utente corrente non ancora prenotati
-			$sql = "SELECT * FROM `pacchetto` WHERE `id_utente` = \"$id_user\" AND `prenotato` = FALSE";
-			$result = database::qSelect($conn, $sql);    		
-    		while($record = mysql_fetch_array($result)){
+			while($record = mysql_fetch_array($result)){
     			$id_pacchetto = $record['id'];
     			$num_persone = $record['persone'];
 				$num_notti = $record['durata'];
@@ -68,19 +65,19 @@
 				$id_destinazione = $record['id_destinazione'];
 				
 				//Recupero i dettagli del pernottamento
-				$sql = "SELECT * FROM `pernottamento` WHERE `id` = \"$id_pernottamento\"";
+				$sql = "SELECT * FROM pernottamento WHERE id = '".$id_pernottamento."'";
 				$result_per = database::qSelect($conn, $sql);
     			$record_per = mysql_fetch_array($result_per);
 				$tipo_pernottamento = $record_per['tipo'];
 				$prezzo_pernottamento = $record_per['prezzo'];
 				//Recupero i dettagli del trasporto
-				$sql = "SELECT * FROM `trasporto` WHERE `id` = \"$id_trasporto\"";
+				$sql = "SELECT * FROM trasporto WHERE id = '".$id_trasporto."'";
 				$result_tras = database::qSelect($conn, $sql);
     			$record_tras = mysql_fetch_array($result_tras);
 				$tipo_trasporto = $record_tras['tipo'];
 				$prezzo_trasporto = $record_tras['prezzo'];
 				//Recupero i dettagli della destinazione
-				$sql = "SELECT * FROM `destinazione` WHERE `id` = \"$id_destinazione\"";
+				$sql = "SELECT * FROM destinazione WHERE id = '".$id_destinazione."'";
 				$result_dest = database::qSelect($conn, $sql);
     			$record_dest = mysql_fetch_array($result_dest);
 				$continente = $record_dest['continente'];
@@ -88,13 +85,13 @@
 				$tipo_destinazione = $record_dest['tipo'];
 				$foto = $record_dest['foto'];
 				//Recupero i dettagli delle attrazioni
-				$sql = "SELECT * FROM `rel_attrazioni` WHERE `id_pacchetto` = \"$id_pacchetto\"";
+				$sql = "SELECT * FROM rel_attrazioni WHERE id_pacchetto = '".$id_pacchetto."'";
 				$result_list_attr = database::qSelect($conn, $sql);
 				$tipo_attr = array();
 				$prezzo_attr = array();
 				while($record_list_attr = mysql_fetch_array($result_list_attr)){
 					$id_attr = $record_list_attr['id_attrazione'];
-					$sql_attr = "SELECT * FROM `attrazioni` WHERE `id` = \"$id_attr\"";
+					$sql_attr = "SELECT * FROM attrazioni WHERE id = '".$id_attr."'";
 					$result_attr = database::qSelect($conn, $sql_attr);
 					$record_attr = mysql_fetch_array($result_attr);
 					$tipo_attr[] = $record_attr['tipo'];
@@ -126,11 +123,17 @@
 				echo $html;				
     		}			
 			database::dbClose();
+						
 		?>
+
 	</div>
 	<div id="navigation">
-	  	<div>colonna laterale</div>
-	</div>
+    			<br>
+				<div class="btn_navigation"><a href="#">Le mie prenotazioni</a></div>
+				<div class="btn_navigation"><a href="#">I miei desideri</a></div>
+                <div class="btn_navigation"><a href="#">I miei viaggi</a></div>
+                <div class="btn_navigation"><a href="#">Profilo</a></div>		
+  	</div>
       </div> 
       <div id="footer">
 		<div>footer</div>

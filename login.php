@@ -9,7 +9,6 @@
     $password = nl2br(htmlentities($_POST['password']));
 	//calcolo hash SHA256 della password inserita
     $hashPsw = hash('sha256', $password);
-	
 	//creo una connessione al database
     $conn = database::dbConnect();
     //recupero la password
@@ -27,9 +26,9 @@
         $_SESSION['password'] = $_POST['password'];
         //attivo la sessione
         $_SESSION[$session_name] = true;		
-        header("Refresh: 0;url=index.php");                      
+        header("Refresh: 0;url=homepersonale.php");                      
     }
     else{
-        header("Refresh: 0;url=index.php?bad_cred=1");        
+        header("Refresh: 0;url=badlogin.php");        
     }
 ?>

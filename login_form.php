@@ -1,14 +1,7 @@
 <form method="POST" action="login.php">
 	<table>
 		<tr>
-			<?php
-				if(isset($_GET["bad_cred"])){
-					echo "<td colspan='2'><h3>Credenziali errate!</h3></td>";
-				}
-				else {
-					echo "<td colspan='2'><h3>Login:</h3></td>";
-				}		
-			?>	
+			<td colspan='2'><h3>Login:</h3></td>	
 		</tr>
 		<tr>
 			<td class="td_left">Username:</td><td><input type="text" name="username"></td>

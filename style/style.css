@@ -88,6 +88,21 @@ body{
 	padding-bottom: 10000px;
 	margin-bottom: -10000px;
 }
+#navigation a{
+	text-decoration:none;
+	color:#210C8F;
+	font-size:18px;
+	font-weight:bold;
+}
+
+.btn_navigation
+{
+	padding-left:30px;
+	padding-top:15px;
+}
+
+
+
 #footer{
 	background-color:#ea5800;
 	width: 990px;

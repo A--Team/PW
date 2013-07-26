@@ -18,29 +18,15 @@
 			</span>			
 	</div>
 	<div id="login">
-		<?php
-			session_start();
-			//carico script contenente i parametri di configurazione
-			include_once 'config.php';
-			//controllo esistenza della sessione
-			if(isset($_SESSION[$session_name])){
-				//attivo la sessione
-				//$_SESSION[$session_name] = true;
-				echo "<br><br><h2>Benvenuto " . $_SESSION['username'] . "!</h2><br>";
-				echo "<form method='POST' action='logout.php'>
-						<input type='submit' value='logout'>
-					  </form>";
-			}
-			else
-			{
-					include 'login_form.php';
-			}
-		?>
 	</div>
 	</div>
       <div id="content_container">
 	<div id="content">
-		<div>contenuti</div>
+		<h2>Le credenziali non sono esatte</h2>
+        <p>Ricontrollare nome utente e password</p>
+        <?php
+			include 'login_form.php'
+		?>
 	</div>
 	<div id="navigation">
 	  	<div>colonna laterale</div>
