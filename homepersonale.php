@@ -132,7 +132,7 @@
 				<div class="btn_navigation"><a href="#">Le mie prenotazioni</a></div>
 				<div class="btn_navigation"><a href="#">I miei desideri</a></div>
                 <div class="btn_navigation"><a href="#">I miei viaggi</a></div>
-                <div class="btn_navigation"><a href="#">Profilo</a></div>		
+                <div class="btn_navigation"><a href="gestioneprofilo.php">Profilo</a></div>		
   	</div>
       </div> 
       <div id="footer">
