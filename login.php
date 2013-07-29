@@ -23,7 +23,7 @@
     	session_start();
         //inserisco username e password come variabili di sessione
         $_SESSION['username'] = $_POST['username'];
-        $_SESSION['password'] = $_POST['password'];
+        $_SESSION['password'] = $dbPsw;
         //attivo la sessione
         $_SESSION[$session_name] = true;		
         header("Refresh: 0;url=homepersonale.php");                      

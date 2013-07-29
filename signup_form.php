@@ -26,16 +26,14 @@
 			//controllo esistenza della sessione
 			if(isset($_SESSION[$session_name])){
 				//attivo la sessione
-				$_SESSION[$session_name] = true;
+				//$_SESSION[$session_name] = true;
 				echo "<br><br><h2>Benvenuto " . $_SESSION['username'] . "!</h2><br>";
 				echo "<form method='POST' action='logout.php'>
 						<input type='submit' value='logout'>
 					  </form>";
 			}
-			else{
-				if(isset($_GET["bad_cred"]))
-					include 'login_form.php';
-				else
+			else
+			{
 					include 'login_form.php';
 			}
 		?>
@@ -48,7 +46,12 @@
 				echo "<p><h2>Registrazione effettuata con successo!</h2></p>
 					  <a href='index.php'>Torna alla Home</a>";
 			}
-			else{
+			else
+			{
+				if(isset($_GET['errore']))
+				{
+					echo "<h4>Il nome utente inserito esiste già</h4>";
+				}
 		?>
 		<form method="POST" name="reg_form" action="signup.php">
 			<table>

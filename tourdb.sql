@@ -1,21 +1,11 @@
 -- phpMyAdmin SQL Dump
-<<<<<<< HEAD
--- version 3.4.10.1deb1
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generato il: Lug 23, 2013 alle 16:20
--- Versione del server: 5.5.31
--- Versione PHP: 5.3.10-1ubuntu3.7
-=======
 -- version 4.0.4
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generato il: Lug 26, 2013 alle 14:29
+-- Generato il: Lug 29, 2013 alle 16:00
 -- Versione del server: 5.5.32
 -- Versione PHP: 5.4.16
->>>>>>> home personale
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -27,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `agviaggi`
+-- Database: `tourdb`
 --
 CREATE DATABASE IF NOT EXISTS `tourdb` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `tourdb`;
@@ -130,19 +120,11 @@ CREATE TABLE IF NOT EXISTS `pacchetto` (
 --
 
 INSERT INTO `pacchetto` (`id`, `persone`, `durata`, `data_partenza`, `id_utente`, `id_pernottamento`, `id_trasporto`, `id_destinazione`, `prenotato`) VALUES
-<<<<<<< HEAD
-(2, '2', '3', '2013-07-17', '0', 1, 1, 1, 0),
-(3, '3', '6', '2013-08-28', '0', 1, 1, 2, 0),
-(4, '2', '6', '2013-10-10', '0', 3, 5, 2, 0),
-(5, '2', '4', '2013-12-18', '0', 6, 8, 4, 0),
-(7, '6', '4', '2013-09-18', '0', 5, 9, 3, 0);
-=======
 (2, '2', '3', '2013-07-17', 'agenzia', 1, 1, 1, 0),
 (3, '3', '6', '2013-08-28', 'agenzia', 1, 1, 2, 0),
 (4, '2', '6', '2013-10-10', 'agenzia', 3, 5, 2, 0),
 (5, '2', '4', '2013-12-18', 'agenzia', 6, 8, 4, 0),
 (7, '6', '4', '2013-09-18', 'agenzia', 5, 9, 3, 0);
->>>>>>> home personale
 
 -- --------------------------------------------------------
 
@@ -236,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `utente` (
 --
 
 INSERT INTO `utente` (`cf`, `nome`, `cognome`, `mail`, `indirizzo`, `tel`, `user`, `password`) VALUES
-('0', 'Agenzia', 'Agenzia', 'agenzia@agenzia.com', '', '', 'agenzia', 'c38f879fbf14e4cec57deb7a92efbb65f3d2631ba0a2a9bc44cb445b4c7a55b1'),
+('0', 'Agenzia', 'Agenzia', 'agenzia@agenzia.com', 'd', '3', 'agenzia', 'c38f879fbf14e4cec57deb7a92efbb65f3d2631ba0a2a9bc44cb445b4c7a55b1'),
 ('DRVJHN45L23F205T', 'John', 'Drive', 'john.drive@jdcompany.com', 'Via Montenapoleone, Milano', '023478963', 'johndrive', '22e8fe2e720de91ac08adc53e6ef10ea9cf9a72aa08035e2bfd05e9f69b79b57'),
 ('VRDLGI15F12C754Q', 'Luigi', 'Verdi', 'luigi@verdi.com', 'via verdi', '0156541640', 'luigi', 'aeca01371581fda90e31862e10405c4948567d1f74cd92aeac5fe8cd29b6ea96'),
 ('RSSMRO73E24B157P', 'Mario', 'Rossi', 'mariorossi@rossis.com', 'via dei rossi', '0246876535', 'mario', '30cc6dd8ef8458e679e13ae3bf3f634cace9810e2eea03bb6487904595f41056');
@@ -255,14 +237,14 @@ ALTER TABLE `attrazioni`
 -- Limiti per la tabella `commento`
 --
 ALTER TABLE `commento`
-  ADD CONSTRAINT `commento_ibfk_1` FOREIGN KEY (`id_destinazione`) REFERENCES `destinazione` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `commento_ibfk_2` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`user`);
+  ADD CONSTRAINT `commento_ibfk_2` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`user`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `commento_ibfk_1` FOREIGN KEY (`id_destinazione`) REFERENCES `destinazione` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `pacchetto`
 --
 ALTER TABLE `pacchetto`
-  ADD CONSTRAINT `pacchetto_ibfk_1` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`user`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `pacchetto_ibfk_1` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`user`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `pacchetto_ibfk_2` FOREIGN KEY (`id_pernottamento`) REFERENCES `pernottamento` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `pacchetto_ibfk_4` FOREIGN KEY (`id_trasporto`) REFERENCES `trasporto` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `pacchetto_ibfk_5` FOREIGN KEY (`id_destinazione`) REFERENCES `destinazione` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
