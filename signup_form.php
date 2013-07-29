@@ -86,7 +86,7 @@
 					<td class="td_left">Conferma Password:</td><td><input type="password" name="conf_password" size="50"></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="button" value="Registrati" onclick="check_reg()"></td>
+					<td colspan="2"><input type="button" value="Registrati" onclick="check_reg('r')"></td>
 				</tr>
 			</table>
 		</form>

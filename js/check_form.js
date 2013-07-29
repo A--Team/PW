@@ -16,7 +16,7 @@ function check_reg(tipo)
 	var conf_password = document.reg_form.conf_password.value;
 		
 	//Verifico che non ci siano campi vuoti	
-	if(tipo==2)
+	if(tipo == "r")
 	{
 		var campi = new Array(cf,nome,cognome,mail,indirizzo,tel,username,password,conf_password);
 		
@@ -44,7 +44,7 @@ function check_reg(tipo)
 		}
 	}
 	
-	if(tipo==1)
+	if(tipo == "m")
 	{
 		var campi = new Array(cf,nome,cognome,mail,indirizzo,tel,username);
 		

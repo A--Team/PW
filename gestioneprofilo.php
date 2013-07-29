@@ -103,7 +103,7 @@
 						<tr><td>Nuova password</td><td><input type='password' name='password'></td></tr>
 						<tr><td>Reinserici password</td><td><input type='password' name='conf_password'></td></tr>
 						</table>
-						<input type='button' value='modifica' onclick='check_reg(1)'>
+						<input type='button' value='modifica' onclick='check_reg(\"m\")'>
 					</form>
 					</div>";
 				echo $html;
