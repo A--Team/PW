@@ -130,4 +130,45 @@ h3{
 	text-align: left;
 }
 
+.div_viaggio{
+	width:280px; 
+	height:330px;
+	color:#FFFFFF; 
+	background-color:#210C8F; 
+	text-align:justify; 
+	padding:10px; 
+	border:3px solid #3939FF;
+	float:left;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	margin-left: 30px;
+}
+.div_viaggio h3{
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.carat_viaggio{
+	text-decoration:underline;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.costo_viaggio{	
+	display:inline-block;
+	margin-top: 10px;	
+	font-weight:bold;
+	font-size: 18px;
+}
+.div_foto_viaggio{
+	border:3px solid #3939FF; 
+	width:200px;	
+	height:150px;
+	margin:0 auto;
+}
+.dest_viaggio{
+	text-align: center;
+	font-size: 18px;
+	font-style: italic;
+	font-weight: bold;
+	margin:0 auto;
+}
 
