@@ -27,10 +27,10 @@
 	</div>
 	<div id="login">
 		<?php
-				echo "<br><br><h2>Benvenuto " . $_SESSION['username'] . "!</h2><br>";
+				echo "<br><br><h2>Benvenuto<a href='homepersonale.php'> " . $_SESSION['username'] . "!</a></h2><br>";
 		?>
         <form method='POST' action='logout.php'>
-					<input type='submit' value='logout'>
+                    <input type='submit' value='logout'>
 		 </form>
 	</div>
 	</div>
@@ -112,7 +112,7 @@
 	</div>
 	<div id="navigation">
     			<br>
-				<div class="btn_navigation"><a href="#">Le mie prenotazioni</a></div>
+                <div class="btn_navigation"><a href="#">Le mie prenotazioni</a></div>
 				<div class="btn_navigation"><a href="#">I miei desideri</a></div>
                 <div class="btn_navigation"><a href="#">I miei viaggi</a></div>
                 <div class="btn_navigation"><a href="gestioneprofilo.php">Profilo</a></div>		
