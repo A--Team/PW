@@ -40,7 +40,11 @@
 	</div>
       <div id="content_container">
 	<div id="content">
-		<div>contenuti</div>
+		<?php
+			include 'pacchetto.php';
+			$pacchetti=new pacchetto('home');
+			$pacchetti->stampa();
+		?>
 	</div>
 	<div id="navigation">
 	  	<div>colonna laterale</div>

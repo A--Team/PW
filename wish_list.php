@@ -44,22 +44,22 @@
 		?>
 	</div>
 	</div>
-      <div id="content_container">
-	<div id="content">
-		<?php
-			include 'pacchetto.php';
-			$pacchetti=new pacchetto('wish');
-			$pacchetti->stampa();
-		?>
-	</div>
-	<div id="navigation">
-	  	<div>colonna laterale</div>
-	</div>
-      </div> 
-      <div id="footer">
+    <div id="content_container">
+		<div id="content">
+			<?php
+				include 'pacchetto.php';
+				$pacchetti=new pacchetto('wish');
+				$pacchetti->stampa();
+			?>
+		</div>
+		<div id="navigation">
+		  	<div>colonna laterale</div>
+		</div>
+  	</div> 
+	  <div id="footer">
 		<div>footer</div>
-      </div>
-    </div>
+	  </div>
+  </div>
   </body>
 </html>
  
