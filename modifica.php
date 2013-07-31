@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	include_once 'config.php';
-	if(!isset($_SESSION[$session_name]))
+	if(!isset($_SESSION[$session_name])|| $_SESSION['username']!='agenzia')
 		header("Refresh: 0;url=badlogin.php");  
 ?>
 
@@ -47,10 +47,13 @@
 				database::qUpdate($conn,$query);
 				$query="DELETE FROM rel_attrazioni	WHERE id_pacchetto='".$id_pacchetto."'";
 				database::qDelete($conn,$query);
-				foreach($attrazioni as $idattr)
+				if(isset($attrazioni))
 				{
-					$query="INSERT INTO rel_attrazioni (id_attrazione,id_pacchetto) VALUE ('".$idattr."','".$id_pacchetto."')";
-					database::qInsertInto($conn,$query); 
+					foreach($attrazioni as $idattr)
+					{
+						$query="INSERT INTO rel_attrazioni (id_attrazione,id_pacchetto) VALUE ('".$idattr."','".$id_pacchetto."')";
+						database::qInsertInto($conn,$query); 
+					}
 				}
 				echo "<h3>Modifiche apportate con successo</h3>";
 				
