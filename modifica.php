@@ -38,29 +38,91 @@
 		<?php
 			include 'database.php';
 			$conn=database::dbConnect();
-			$id_pacchetto=$_GET['id_pacchetto'];
-			$query="SELECT * FROM pacchetto WHERE id='$id_pacchetto'";
+			if(isset($_POST['id_pacchetto']))
+			{
+				extract($_POST);
+				$query="UPDATE pacchetto SET persone='".$persone."',durata='".$durata."',
+				data_partenza='".$data."',id_trasporto='".$trasporto."',id_pernottamento='".$pernottamento."'
+				WHERE id='".$id_pacchetto."'";
+				database::qUpdate($conn,$query);
+				$query="DELETE FROM rel_attrazioni	WHERE id_pacchetto='".$id_pacchetto."'";
+				database::qDelete($conn,$query);
+				foreach($attrazioni as $idattr)
+				{
+					$query="INSERT INTO rel_attrazioni (id_attrazione,id_pacchetto) VALUE ('".$idattr."','".$id_pacchetto."')";
+					database::qInsertInto($conn,$query); 
+				}
+				echo "<h3>Modifiche apportate con successo</h3>";
+				
+		}
+		
+		
+		
+		
+			if(isset($_GET['id_pacchetto']))
+				$id_pacchetto=$_GET['id_pacchetto'];
+			
+			$query="SELECT * FROM pacchetto WHERE id='".$id_pacchetto."'";
 			
 			$result=database::qSelect($conn,$query);
 			$pacchetto=mysql_fetch_array($result);
 			$query="SELECT * FROM pernottamento WHERE id_destinazione='".$pacchetto['id_destinazione']."'";
 			$pernottamenti=database::qSelect($conn,$query);
+			$id_pernottamento_pacchetto=$pacchetto['id_pernottamento'];
+			$query="SELECT * FROM trasporto WHERE id_destinazione='".$pacchetto['id_destinazione']."'";
+			$trasporti=database::qSelect($conn,$query);
+			$id_trasporto_pacchetto=$pacchetto['id_trasporto'];
+			$query="SELECT * FROM attrazioni WHERE id_destinazione='".$pacchetto['id_destinazione']."'";
+			$attrazioni=database::qSelect($conn,$query);
+			$query="SELECT id_attrazione FROM rel_attrazioni WHERE id_pacchetto='".$id_pacchetto."'";
+			$attrazioni_pacchetto=database::qSelect($conn,$query);
+			$id_attrazioni_pacchetto= array();
+			while($id=mysql_fetch_array($attrazioni_pacchetto))
+			{
+				$id_attrazioni_pacchetto[]=$id['id_attrazione'];
+			}
 			$html="
-				<form>
+				<form method='post' action='modifica.php'>
 					<table>	
 						<tr><td>Numero persone</td><td><input type='text' name='persone' value='".$pacchetto['persone']."'></td></tr>
 						<tr><td>Durata viaggio</td><td><input type='text' name='durata' value='".$pacchetto['durata']."'></td></tr>
-						<tr><td>Data partenza</td><td><input type='text' name='data' value='".$pacchetto['data_partenza']."'></td></tr>
-					</table>
-				</form>
-			";
+						<tr><td>Data partenza</td><td><input type='text' name='data' value='".$pacchetto['data_partenza']."'></td></tr>";
+			$html=$html."<tr><td colspan='2'>Pernottamenti possibili</td></tr>";			
+			while($pernottamento=mysql_fetch_array($pernottamenti))
+			{
+				$radio="<tr><td><input type='radio' name='pernottamento' value='".$pernottamento['id']."'";
+				if($pernottamento['id']==$id_pernottamento_pacchetto)
+					$radio=$radio."checked";
+				$radio=$radio."></td><td>".$pernottamento['tipo']." a ".$pernottamento['prezzo']." euro</td></tr>";
+				$html=$html.$radio;
+			}
+			$html=$html."<tr><td colspan='2'>Trasporti possibili</td></tr>";			
+			while($trasporto=mysql_fetch_array($trasporti))
+			{
+				$radio="<tr><td><input type='radio' name='trasporto' value='".$trasporto['id']."'";
+				if($trasporto['id']==$id_trasporto_pacchetto)
+					$radio=$radio."checked";
+				$radio=$radio."></td><td>".$trasporto['tipo']." a ".$trasporto['prezzo']." euro</td></tr>";
+				$html=$html.$radio;
+			}
+			$html=$html."<tr><td colspan='2'>Attrazioni possibili</td></tr>";			
+			while($attrazione=mysql_fetch_array($attrazioni))
+			{
+				$checkbox="<tr><td><input type='checkbox' name='attrazioni[]' value='".$attrazione['id']."'";
+				if(in_array($attrazione['id'],$id_attrazioni_pacchetto))
+					$checkbox=$checkbox."checked";
+				$checkbox=$checkbox."></td><td>".$attrazione['tipo']." a ".$attrazione['prezzo']." euro</td></tr>";
+				$html=$html.$checkbox;
+			}
+			
+			$html=$html."</table><input type='hidden' name='id_pacchetto' value='".$id_pacchetto."'><input type='submit' value='modifica'> </form>";
 			echo $html;
 			
 			 
 		?>
 
 	</div>
-
+	
 	<div id="navigation">
     			<br>
 				<div class="btn_navigation"><a href="#">Aggiungi</a></div>

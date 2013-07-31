@@ -20,9 +20,6 @@ body{
 	text-align:center;
 }
 
-h3{
-	color: #ECF0F1; /*#210C8F;*/
-}
 
 #container{
 	width: 990px;
@@ -99,6 +96,11 @@ h3{
 	padding-left:160px;
 	padding-top:40px;
 }
+
+#content h3{
+	color: #4766B5; 
+}
+
 
 #navigation{
 	float: left;

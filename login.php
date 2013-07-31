@@ -26,12 +26,12 @@
         $_SESSION['password'] = $dbPsw;
         //attivo la sessione
         $_SESSION[$session_name] = true;
-		/*if($_SESSION['username']=='agenzia')
+		if($_SESSION['username']=='agenzia')
 		{
 			header("Refresh: 0;url=agenzia.php");
 			return;	
 		}
-*/		header("Refresh: 0;url=homepersonale.php");
+		header("Refresh: 0;url=homepersonale.php");
     }
     else{
         header("Refresh: 0;url=badlogin.php");        
