@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generato il: Lug 29, 2013 alle 16:00
+-- Generato il: Lug 31, 2013 alle 10:49
 -- Versione del server: 5.5.32
 -- Versione PHP: 5.4.16
 
@@ -86,11 +86,11 @@ CREATE TABLE IF NOT EXISTS `destinazione` (
 --
 
 INSERT INTO `destinazione` (`id`, `continente`, `citta`, `tipo`, `foto`) VALUES
-(1, 'europa', 'roma', 'culturale', ''),
-(2, 'asia', 'tokyo', 'culturale', ''),
-(3, 'america', 'miami', 'divertimento', ''),
-(4, 'oceania', 'sidney', 'relax', ''),
-(5, 'europa', 'parigi', 'divertimento', '');
+(1, 'europa', 'roma', 'culturale', 'roma.jpg'),
+(2, 'asia', 'tokyo', 'culturale', 'tokyo.jpg'),
+(3, 'america', 'miami', 'divertimento', 'miami.jpg'),
+(4, 'oceania', 'sydney', 'relax', 'sydney.jpg'),
+(5, 'europa', 'parigi', 'divertimento', 'parigi.jpg');
 
 -- --------------------------------------------------------
 
@@ -165,6 +165,15 @@ CREATE TABLE IF NOT EXISTS `rel_attrazioni` (
   KEY `id_pacchetto` (`id_pacchetto`),
   KEY `id_attrazione` (`id_attrazione`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `rel_attrazioni`
+--
+
+INSERT INTO `rel_attrazioni` (`id_pacchetto`, `id_attrazione`) VALUES
+(2, 1),
+(3, 3),
+(3, 6);
 
 -- --------------------------------------------------------
 
