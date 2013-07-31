@@ -36,28 +36,10 @@
       <div id="content_container">
 	<div id="content">
 		<?php
-			include_once 'database.php';
+
 			include 'pacchetto.php';
-			$conn=database::dbConnect();
-			
-			$user=$_SESSION['username'];
-			
-			$query="SELECT pacchetto.*,pernottamento.prezzo AS prezzo_pernottamento,trasporto.prezzo AS prezzo_trasporto,
-						pernottamento.tipo AS tipo_pernottamento,trasporto.tipo AS tipo_trasporto, destinazione.citta,
-						destinazione.foto
-						 FROM pacchetto,pernottamento,trasporto,destinazione WHERE pacchetto.id_utente='agenzia' AND 
-								pernottamento.id=pacchetto.id_pernottamento AND trasporto.id=pacchetto.id_trasporto
-								AND destinazione.id=pacchetto.id_destinazione";
-			$result=database::qSelect($conn,$query);
-			while($record = mysql_fetch_array($result))
-			{
-    			$query="SELECT prezzo FROM attrazioni WHERE id IN (SELECT id_attrazione FROM rel_attrazioni 
-						WHERE id_pacchetto='".$record['id']."')";
-				$attrazioni=database::qSelect($conn,$query);
-				$elemento=new pacchetto($record,$attrazioni);
-				$elemento->stampa();
-    		}			
-			database::dbClose();
+			$pacchetti=new pacchetto('tutti');
+			$pacchetti->stampa();
 						
 		?>
 
