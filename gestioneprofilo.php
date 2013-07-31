@@ -71,14 +71,6 @@
 					database::qUpdate($conn,$query);
 					
 					echo "<h3> Le modifiche sono state apportate con successo!</h3>";
-					/*
-					$nome=nl2br(htmlentities($_POST['nome']));
-					$cognome=nl2br(htmlentities($_POST['cognome']));
-					$cf=nl2br(htmlentities($_POST['cf']));
-					$mail=nl2br(htmlentities($_POST['mail']));
-					$indirizzo=nl2br(htmlentities($_POST['indirizzo']));
-					$tel=nl2br(htmlentities($_POST['tel']));
-					*/
 				}
 			}
 				$user=$_SESSION['username'];

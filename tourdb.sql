@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.2.2
+-- version 4.0.4
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generato il: Lug 30, 2013 alle 12:38
--- Versione del server: 5.5.27
--- Versione PHP: 5.4.7
+-- Generato il: Lug 29, 2013 alle 16:00
+-- Versione del server: 5.5.32
+-- Versione PHP: 5.4.16
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `tourdb`
 --
+CREATE DATABASE IF NOT EXISTS `tourdb` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `tourdb`;
 
 -- --------------------------------------------------------
 
@@ -84,11 +86,11 @@ CREATE TABLE IF NOT EXISTS `destinazione` (
 --
 
 INSERT INTO `destinazione` (`id`, `continente`, `citta`, `tipo`, `foto`) VALUES
-(1, 'europa', 'roma', 'culturale', 'roma.jpg'),
-(2, 'asia', 'tokyo', 'culturale', 'tokyo.jpg'),
-(3, 'america', 'miami', 'divertimento', 'miami.jpg'),
-(4, 'oceania', 'sydney', 'relax', 'sydney.jpg'),
-(5, 'europa', 'parigi', 'divertimento', 'parigi.jpg');
+(1, 'europa', 'roma', 'culturale', ''),
+(2, 'asia', 'tokyo', 'culturale', ''),
+(3, 'america', 'miami', 'divertimento', ''),
+(4, 'oceania', 'sidney', 'relax', ''),
+(5, 'europa', 'parigi', 'divertimento', '');
 
 -- --------------------------------------------------------
 

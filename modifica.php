@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	include_once 'config.php';
-	if(!isset($_SESSION[$session_name])|| $_SESSION['username']!='agenzia')
+	if(!isset($_SESSION[$session_name]))
 		header("Refresh: 0;url=badlogin.php");  
 ?>
 
@@ -26,7 +26,7 @@
 	</div>
 	<div id="login">
 		<?php
-				echo "<br><br><h2>Benvenuto " . $_SESSION['username'] . "!</h2><br>";
+				echo "<br><br><h2>Benvenuto<a href='agenzia.php'> " . $_SESSION['username'] . "!</a></h2><br>";
 		?>
         <form method='POST' action='logout.php'>
 					<input type='submit' value='logout'>
@@ -36,29 +36,27 @@
       <div id="content_container">
 	<div id="content">
 		<?php
-			include_once 'database.php';
-			include 'pacchetto.php';
+			include 'database.php';
 			$conn=database::dbConnect();
+			$id_pacchetto=$_GET['id_pacchetto'];
+			$query="SELECT * FROM pacchetto WHERE id='$id_pacchetto'";
 			
-			$user=$_SESSION['username'];
-			
-			$query="SELECT pacchetto.*,pernottamento.prezzo AS prezzo_pernottamento,trasporto.prezzo AS prezzo_trasporto,
-						pernottamento.tipo AS tipo_pernottamento,trasporto.tipo AS tipo_trasporto, destinazione.citta,
-						destinazione.foto
-						 FROM pacchetto,pernottamento,trasporto,destinazione WHERE pacchetto.id_utente='agenzia' AND 
-								pernottamento.id=pacchetto.id_pernottamento AND trasporto.id=pacchetto.id_trasporto
-								AND destinazione.id=pacchetto.id_destinazione";
 			$result=database::qSelect($conn,$query);
-			while($record = mysql_fetch_array($result))
-			{
-    			$query="SELECT prezzo FROM attrazioni WHERE id IN (SELECT id_attrazione FROM rel_attrazioni 
-						WHERE id_pacchetto='".$record['id']."')";
-				$attrazioni=database::qSelect($conn,$query);
-				$elemento=new pacchetto($record,$attrazioni);
-				$elemento->stampa();
-    		}			
-			database::dbClose();
-						
+			$pacchetto=mysql_fetch_array($result);
+			$query="SELECT * FROM pernottamento WHERE id_destinazione='".$pacchetto['id_destinazione']."'";
+			$pernottamenti=database::qSelect($conn,$query);
+			$html="
+				<form>
+					<table>	
+						<tr><td>Numero persone</td><td><input type='text' name='persone' value='".$pacchetto['persone']."'></td></tr>
+						<tr><td>Durata viaggio</td><td><input type='text' name='durata' value='".$pacchetto['durata']."'></td></tr>
+						<tr><td>Data partenza</td><td><input type='text' name='data' value='".$pacchetto['data_partenza']."'></td></tr>
+					</table>
+				</form>
+			";
+			echo $html;
+			
+			 
 		?>
 
 	</div>
