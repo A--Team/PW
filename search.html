@@ -7,6 +7,15 @@
     <link rel="stylesheet" type="text/css" href="style/style.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="search.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script>
+    $(function() {
+      $("#datepicker1").datepicker({ dateFormat: 'yy-mm-dd' }).val();
+      $("#datepicker2").datepicker({ dateFormat: 'yy-mm-dd' }).val();
+    });
+    </script>
   </head>
   <body>
     <div id="container">
@@ -78,6 +87,7 @@
 		<td>N. persone:</td>
 		<td>
 		  <select id="npersons">
+		  <option value="1">1</option>
 		  <option value="2">2</option>
 		  <option value="3">3</option>
 		  <option value="4">4</option>
@@ -86,7 +96,25 @@
 		</td>
 		</tr>
 		</table>
-		<br>
+		<h5>Quando vuoi viaggiare?</h5>
+		<table>
+		<tr>
+		  <td>
+		    Dal:
+		  </td>
+		  <td>
+		    <input type="text" id="datepicker1" name="data_partenza" class="date_input"/>
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    Al:
+		  </td>
+		  <td>
+		    <input type="text" id="datepicker2" name="data_arrivo" class="date_input"/>
+		  </td>
+		</tr>
+		</table>
 		<button type="button" onclick='search()'>Cerca</button>
 		<div id="err_content"></div>
 	</div>

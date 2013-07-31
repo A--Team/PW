@@ -179,4 +179,12 @@ h3{
 	font-weight: bold;
 	margin:0 auto;
 }
+.date_input{
+	text-align: center;
+	background-image: url("images/calendar.png");
+	background-position: right center;
+	background-repeat: no-repeat;
+	padding-right: 18px;
+	width: 98px;
+}
 

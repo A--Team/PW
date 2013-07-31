@@ -6,17 +6,21 @@
   $type=$_POST['type'];
   $duration=$_POST['duration'];
   $npersons=$_POST['npersons'];
-  
-  $conn = database::dbConnect();  
+  $data_partenza=$_POST['data_partenza'];
+  $data_arrivo=$_POST['data_arrivo'];
+   
+  $conn = database::dbConnect();
   if($duration==2)
-    $sql="SELECT * FROM pacchetto WHERE id_utente='agenzia' AND persone='".$npersons."' AND durata<='3'";
+    $sql="SELECT * FROM pacchetto WHERE id_utente='agenzia' AND persone='".$npersons."' AND durata<='3' AND data_partenza>=DATE('".$data_partenza."') AND DATE(DATE_ADD(data_partenza, INTERVAL durata DAY))<=DATE('".$data_arrivo."')";
   else if($duration==3)
-    $sql="SELECT * FROM pacchetto WHERE id_utente='agenzia' AND persone='".$npersons."' AND durata>'3'";
+    $sql="SELECT * FROM pacchetto WHERE id_utente='agenzia' AND persone='".$npersons."' AND durata>'3' AND data_partenza>=DATE('".$data_partenza."') AND DATE(DATE_ADD(data_partenza, INTERVAL durata DAY))<=DATE('".$data_arrivo."')";
   else
-    $sql="SELECT * FROM pacchetto WHERE id_utente='agenzia' AND persone='".$npersons."'";
+    $sql="SELECT * FROM pacchetto WHERE id_utente='agenzia' AND persone='".$npersons."' AND data_partenza>=DATE('".$data_partenza."') AND DATE(DATE_ADD(data_partenza, INTERVAL durata DAY))<=DATE('".$data_arrivo."')";
   $risposta=database::qSelect($conn,$sql);
+  
   $output="";
   while($el=mysql_fetch_array($risposta)){
+      //destinazione
       $sql_dest="SELECT * FROM destinazione WHERE id='".$el["id_destinazione"]."'";
       $risposta_dest=database::qSelect($conn,$sql_dest);
       $dest=mysql_fetch_array($risposta_dest);
@@ -37,7 +41,7 @@
 	  <div class='div_viaggio'>
 		  <p class='dest_viaggio'>".$dest["citta"]."
 			  <div class='div_foto_viaggio'>
-				  <img src=./style/images/dest/".$dest["foto"].">
+				  <img src=./style/images/dest/".$dest["foto"]." width='200px' height='150px'>
 			  </div> 
 		  </p>
 		  <p>
