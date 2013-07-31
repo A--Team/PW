@@ -8,6 +8,7 @@
 html,body{
 	font-family: "Century Gothic", verdana, sans-serif;
 	font-size: 15px;
+	color: #2E4350;
 	height: 100%;
 	margin: 0; 
 	padding: 0;
@@ -15,12 +16,12 @@ html,body{
 body{
 	font-family: "Century Gothic", verdana, sans-serif; 
 	font-size: 15px;
-	background-color: #C0D9EA;
+	background-color: #42B2E3; /*#C0D9EA;*/
 	text-align:center;
 }
 
 h3{
-	color:#210C8F;
+	color: #ECF0F1; /*#210C8F;*/
 }
 
 #container{
@@ -33,7 +34,7 @@ h3{
 	width: 990px;
 	line-height: 1;
 	margin: 0 auto;
-	background: #ffffff;
+	background: #ECF0F1; /*#FFFFFF;*/
   	height: 150px;
 	text-align: center;
 }
@@ -46,7 +47,7 @@ h3{
 #logo a{
 	text-decoration: none;
 	font-weight: bold;
-	color: #FFFFFF;
+	color: #ECF0F1; /*#FFFFFF;*/
 }
 #menu{
 	float:right;
@@ -60,19 +61,26 @@ h3{
 	padding-bottom: 5px;
 	padding-left: 10px;
 	padding-right: 10px;
-	background-color: #210C8F;	
+	background-color: #4766B5; /*#210C8F;*/	
 }
 #login{
 	font-size: 12px;
-	color: #FFFFFF;
+	color: #ECF0F1; /*#FFFFFF;*/
 	float:right;
 	width:240px;
 	height:150px;
-	background: url("images/login.png");
+	/*background: url("images/login.png");*/
+	background-color: #4766B5;
 }
 #login h3{
 	margin-bottom: 2px;
-	color:#FFFFFF;
+	color: #ECF0F1; /*#FFFFFF;*/
+}
+#login a{
+	text-decoration: none;
+	font-weight: bold;
+	font-style: oblique;
+	color: #ECF0F1; /*#FFFFFF;*/
 }
 #content_container{
 	overflow:hidden;
@@ -101,7 +109,7 @@ h3{
 }
 #navigation a{
 	text-decoration:none;
-	color:#210C8F;
+	color: #4766B5; /*#210C8F;*/
 	font-size:18px;
 	font-weight:bold;
 }
@@ -115,7 +123,7 @@ h3{
 
 
 #footer{
-	background-color:#ea5800;
+	background-color: #F55A42; /*#ea5800;*/
 	width: 990px;
 	margin: 0 auto;
 	text-align: center;
@@ -133,11 +141,11 @@ h3{
 .div_viaggio{
 	width:280px; 
 	height:330px;
-	color:#FFFFFF; 
-	background-color:#210C8F; 
+	color: #ECF0F1; /*#FFFFFF;*/ 
+	background-color: #4766B5; /*#210C8F;*/ 
 	text-align:justify; 
 	padding:10px; 
-	border:3px solid #3939FF;
+	border:3px solid #42B2E3; /*#3939FF;*/
 	float:left;
 	margin-top: 15px;
 	margin-bottom: 15px;
@@ -159,7 +167,7 @@ h3{
 	font-size: 18px;
 }
 .div_foto_viaggio{
-	border:3px solid #3939FF; 
+	border:3px solid #42B2E3; /*#3939FF;*/ 
 	width:200px;	
 	height:150px;
 	margin:0 auto;
