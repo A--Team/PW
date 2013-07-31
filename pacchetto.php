@@ -6,11 +6,11 @@
 		mirata=visualizza i pacchetti della pubblicità mirata
 		wish=visualizza i pacchetti della wish_list
 	*/
-
-
-
-    class pacchetto{
-    	
+	//Imposto localizzazione italiana per la visualizzazione delle date
+	setlocale(LC_TIME, 'ita', 'it_IT.utf8');
+	
+    class pacchetto{    	
+		
 		var $pacchetti;
 		/*
 		 * Costruttore dell'oggetto pacchetto
@@ -54,6 +54,26 @@
 					AND trasporto.id=pacchetto.id_trasporto AND destinazione.id=pacchetto.id_destinazione AND pacchetto.prenotato=FALSE";
 					break;
 					}
+				case 'storico':{
+					$query="SELECT pacchetto.*,pernottamento.prezzo AS prezzo_pernottamento,trasporto.prezzo AS prezzo_trasporto,
+					pernottamento.tipo AS tipo_pernottamento,trasporto.tipo AS tipo_trasporto, destinazione.citta,
+					destinazione.foto
+					FROM pacchetto,pernottamento,trasporto,destinazione 
+					WHERE pacchetto.id_utente='".$user."' AND pernottamento.id=pacchetto.id_pernottamento 
+					AND trasporto.id=pacchetto.id_trasporto AND destinazione.id=pacchetto.id_destinazione AND pacchetto.prenotato=TRUE
+					AND pacchetto.data_partenza < NOW()";
+					break;
+					}
+				case 'ordini':{
+					$query="SELECT pacchetto.*,pernottamento.prezzo AS prezzo_pernottamento,trasporto.prezzo AS prezzo_trasporto,
+					pernottamento.tipo AS tipo_pernottamento,trasporto.tipo AS tipo_trasporto, destinazione.citta,
+					destinazione.foto
+					FROM pacchetto,pernottamento,trasporto,destinazione 
+					WHERE pacchetto.id_utente='".$user."' AND pernottamento.id=pacchetto.id_pernottamento 
+					AND trasporto.id=pacchetto.id_trasporto AND destinazione.id=pacchetto.id_destinazione AND pacchetto.prenotato=TRUE
+					AND pacchetto.data_partenza >= NOW()";
+					break;
+					}
 		}
 			$this->pacchetti=database::qSelect($conn,$query);
 			database::dbClose();	
@@ -93,7 +113,7 @@
 								</p>
 								<p>
 								Viaggio di ".$durata." notti per ".$persone." persona/e.<br>
-								<span class='carat_viaggio'>Partenza il:</span> ".$data_partenza.".<br>
+								<span class='carat_viaggio'>Partenza il:</span> ".strftime("%d %B %Y",strtotime($data_partenza)).".<br>
 								<span class='carat_viaggio'>Trasporto:</span>". $tipo_trasporto."<br>
 								<span class='carat_viaggio'>Pernottamento:</span>". $tipo_pernottamento."<br>
 								<span class='costo_viaggio'>A soli:". $costo." €</span>

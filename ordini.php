@@ -25,7 +25,7 @@
 			</span>			
 	</div>
 	<div id="login">
-		<?php
+		<?php			
 			//carico script contenente i parametri di configurazione
 			include_once 'config.php';
 			//controllo esistenza della sessione
@@ -48,7 +48,7 @@
 	<div id="content">
 		<?php
 			include 'pacchetto.php';
-			$pacchetti=new pacchetto('wish');
+			$pacchetti=new pacchetto('ordini');
 			$pacchetti->stampa();
 		?>
 	</div>
