@@ -113,10 +113,10 @@
 								</p>
 								<p>
 								Viaggio di ".$durata." notti per ".$persone." persona/e.<br>
-								<span class='carat_viaggio'>Partenza il:</span> ".strftime("%d %B %Y",strtotime($data_partenza)).".<br>
-								<span class='carat_viaggio'>Trasporto:</span>". $tipo_trasporto."<br>
-								<span class='carat_viaggio'>Pernottamento:</span>". $tipo_pernottamento."<br>
-								<span class='costo_viaggio'>A soli:". $costo." €</span>
+								<span class='carat_viaggio'>Partenza il:</span>&nbsp;".strftime("%d %B %Y",strtotime($data_partenza)).".<br>
+								<span class='carat_viaggio'>Trasporto:</span>&nbsp;". $tipo_trasporto."<br>
+								<span class='carat_viaggio'>Pernottamento:</span>&nbsp;". $tipo_pernottamento."<br>
+								<span class='costo_viaggio'>A soli:&nbsp;". $costo." €</span>
 								</p>
 							</div></a>";
 					echo $html;
