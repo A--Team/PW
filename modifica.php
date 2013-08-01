@@ -12,6 +12,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="./style/style.css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+ 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script>
+	  $(function() {
+    		$( "#datepicker" ).datepicker({dateFormat:'yy-mm-dd'}).val;
+  		});
+  </script>
   </head>
   <body>
     <div id="container">
@@ -42,7 +50,7 @@
 			{
 				extract($_POST);
 				$query="UPDATE pacchetto SET persone='".$persone."',durata='".$durata."',
-				data_partenza='".$data."',id_trasporto='".$trasporto."',id_pernottamento='".$pernottamento."'
+				data_partenza= '".$data."',id_trasporto='".$trasporto."',id_pernottamento='".$pernottamento."'
 				WHERE id='".$id_pacchetto."'";
 				database::qUpdate($conn,$query);
 				$query="DELETE FROM rel_attrazioni	WHERE id_pacchetto='".$id_pacchetto."'";
@@ -89,7 +97,7 @@
 					<table>	
 						<tr><td>Numero persone</td><td><input type='text' name='persone' value='".$pacchetto['persone']."'></td></tr>
 						<tr><td>Durata viaggio</td><td><input type='text' name='durata' value='".$pacchetto['durata']."'></td></tr>
-						<tr><td>Data partenza</td><td><input type='text' name='data' value='".$pacchetto['data_partenza']."'></td></tr>";
+						<tr><td>Data partenza</td><td><input type='text' id='datepicker' name='data' value='".$pacchetto['data_partenza']."'></td></tr>";
 			$html=$html."<tr><td colspan='2'>Pernottamenti possibili</td></tr>";			
 			while($pernottamento=mysql_fetch_array($pernottamenti))
 			{
