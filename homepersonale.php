@@ -44,9 +44,9 @@
 	</div>
 	<div id="navigation">
     			<br>
-				<div class="btn_navigation"><a href="#">Le mie prenotazioni</a></div>
-				<div class="btn_navigation"><a href="#">I miei desideri</a></div>
-                <div class="btn_navigation"><a href="#">I miei viaggi</a></div>
+				<div class="btn_navigation"><a href="ordini.php">Le mie prenotazioni</a></div>
+				<div class="btn_navigation"><a href="wish_list.php">I miei desideri</a></div>
+                <div class="btn_navigation"><a href="storico.php">I miei viaggi</a></div>
                 <div class="btn_navigation"><a href="gestioneprofilo.php">Profilo</a></div>		
   	</div>
       </div> 
