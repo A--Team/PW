@@ -189,4 +189,9 @@ body{
 	padding-right: 18px;
 	width: 98px;
 }
+.duration_field{
+	text-align:center;
+	width: 40px;
+}
+
 

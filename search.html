@@ -11,10 +11,20 @@
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script>
-    $(function() {
+    $(function(){
       $("#datepicker1").datepicker({ dateFormat: 'yy-mm-dd' }).val();
       $("#datepicker2").datepicker({ dateFormat: 'yy-mm-dd' }).val();
     });
+    </script>
+    <script>
+    function minus(){
+      if($('#duration').val()>1)
+	$('#duration').val(parseInt($('#duration').val())-1);
+    }
+    function plus(){
+      if($('#duration').val()<20)
+	$('#duration').val(parseInt($('#duration').val())+1);
+    }
     </script>
   </head>
   <body>
@@ -74,9 +84,9 @@
 		</td>
 		</tr>
 		<tr>
-		<td>Durata massima:</td>
+		<td>Durata max:</td>
 		<td>
-		<input type="text" id="duration">
+		<button type="button" onclick="minus()">-</button><input type="text" id="duration" value="1" class="duration_field" readonly><button type="button" onclick="plus()">+</button>
 		</td>
 		</tr>
 		<tr>
