@@ -48,7 +48,7 @@
 	<div id="content">
 		<?php
 			include 'pacchetto.php';
-			$pacchetti=new pacchetto('ordini');
+			$pacchetti=new pacchetto('ordini',[]);
 			$pacchetti->stampa();
 		?>
 	</div>
