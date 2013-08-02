@@ -69,7 +69,7 @@
 			while($rec_commenti = mysql_fetch_array($res_commenti)){
 				extract($rec_commenti);
 				echo "<br><div>";
-				echo "<span class='tit_commento'>$id_utente - ".strftime("%d %B %Y",strtotime($data))."</span>";					
+				echo "<span class='tit_commento' id='tit_commento'>$id_utente - ".strftime("%d %B %Y",strtotime($data))."</span>";					
 				echo "<div class='rateit' data-rateit-value=$rating data-rateit-ispreset='true' data-rateit-readonly='true'></div><br>";					
 				echo "<div class='corpo_commento'>$testo</div>";
 				//Se sono loggato e il commento è mio, mostro un pulsante per eliminarlo
@@ -94,20 +94,20 @@
 						 		<textarea name='commento' cols=90 rows=5></textarea>
 						 		<input type='hidden' name='voto' value=''>
 						 		<br>
-						 		<input class='btn_commenta' type='button' value='Commenta' onclick=\"check_comment($id_dest)\">
+						 		<input class='btn_commenta' type='button' value='Commenta' onclick=\"check_comment($id_dest,'$user')\">
 						 	</form>
 						  </div><br>";					
 					echo $form;					  
 				 }
 				else{
 					//Se nel POST è presente un commento, lo salvo e lo segnalo all'utente
-					$corpo = nl2br(htmlentities($_POST['commento']));
+				/*	$corpo = nl2br(htmlentities($_POST['commento']));
 					$rating = nl2br(htmlentities($_POST['voto']));					
 					$data = date("Y-m-d");
 					$sql = "INSERT INTO `commento`(`id_utente`, `id_destinazione`, `data`, `rating`, `testo`) VALUES (\"$user\",\"$id_dest\",\"$data\",\"$rating\",\"$corpo\")";
 					database::qInsertInto($conn,$sql);
 					header("Refresh: 0;url=commenti.php?id=$id_dest");
-					
+				*/	
 				}
 			}
 			else
