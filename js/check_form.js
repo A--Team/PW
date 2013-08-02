@@ -2,6 +2,14 @@
  * Script che controlla i dati inseriti nei form, se tipo vale m form di modifica, se tipo vale r form di registrazione
  */
 
+function check_comment(dest){
+	var testo = document.form_commento.commento.value;
+	if(testo == ""){
+		alert("Non puoi inserire commenti vuoti!");
+	}
+	else
+		document.form_commento.submit();
+}
 function check_reg(tipo)
 {
 	//Recupero i valori inseriti nel form

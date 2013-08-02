@@ -189,4 +189,68 @@ body{
 	padding-right: 18px;
 	width: 98px;
 }
+#dest_commento{
+	text-align: center;	
+	font-size: 36px;
+	font-weight: bolder;
+	color: #4766B5;
+	font-style: italic;
+}
+#dest_foto{
+	border:3px solid #42B2E3; /*#3939FF;*/ 
+	width:200px;	
+	height:150px;
+	margin:0 auto;
+	float: left;
+}
+#dest_descrizione{
+	width: 520px;
+	float: right;
+	text-align: justify;
+	font-size: 16px;
+	padding-right: 15px;
+}
+#dest_intestazione{
+	overflow:auto;
+}
+.tit_commento{
+	font-weight: bold;
+	float: left;		
+}
+.corpo_commento{
+	text-align: justify;
+	border:3px solid #42B2E3;
+	margin-right: 15px;
+	padding: 5px;
+	background-color: #ECF0F1;
+}
+#commento form{
+	padding: 0px;	
+}
+#commento textarea{
+	border:3px solid #42B2E3;
+	width: 725px;
+	background-color: #ECF0F1;
+}
+.btn_elimina{
+	width: 60px;
+	height: 23px;
+	padding-top: 1px;
+	padding-bottom: 2px;
+	padding-left: 3px;
+	padding-right: 3px;
+	background-color: #4766B5; /*#210C8F;*/	
+	color: #ECF0F1;
+	float:right;
+	margin-top:5px;
+	margin-right:30px;	
+}
 
+.btn_commenta{
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 3px;
+	padding-right: 3px;
+	background-color: #4766B5; /*#210C8F;*/	
+	color: #ECF0F1;	
+}
