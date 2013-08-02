@@ -15,13 +15,15 @@
 		/*
 		 * Costruttore dell'oggetto pacchetto
 		 */
-		 function pacchetto($tipo_pacchetto){
+
+		 function pacchetto($tipo_pacchetto,$parametri){
 		 	include 'database.php';
 			include 'config.php';
 			
 			$conn=database::dbConnect();
 			if(isset($_SESSION[$session_name]))
 				$user=$_SESSION['username'];
+			extract($parametri);
 			
 			switch($tipo_pacchetto)
 			{
@@ -85,6 +87,19 @@
 					AND trasporto.id=pacchetto.id_trasporto AND destinazione.id=pacchetto.id_destinazione";
 					break;
 					}
+				case 'ricerca':
+					{
+						$query="SELECT pacchetto.*,pernottamento.prezzo AS prezzo_pernottamento,trasporto.prezzo AS prezzo_trasporto,
+					pernottamento.tipo AS tipo_pernottamento,trasporto.tipo AS tipo_trasporto, destinazione.citta,
+					destinazione.foto
+					FROM pacchetto,pernottamento,trasporto,destinazione 
+					WHERE pernottamento.id=pacchetto.id_pernottamento 
+					AND trasporto.id=pacchetto.id_trasporto AND destinazione.id=pacchetto.id_destinazione 
+					AND pacchetto.id IN (SELECT id FROM pacchetto 
+					WHERE id_utente='agenzia' AND persone='".$npersons."' AND durata<='".$duration."' 
+					AND data_partenza BETWEEN DATE('".$data_partenza1."')	AND DATE('".$data_partenza2."'))";
+					break;
+					}				
 		}
 			$this->pacchetti=database::qSelect($conn,$query);
 			database::dbClose();	

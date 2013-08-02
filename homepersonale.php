@@ -37,7 +37,7 @@
 	<div id="content">
 		<?php
 			include 'pacchetto.php';
-			$pacchetti=new pacchetto('mirata');
+			$pacchetti=new pacchetto('mirata',[]);
 			$pacchetti->stampa();			
 		?>
 

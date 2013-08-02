@@ -27,7 +27,9 @@ function search()
   var type=document.getElementById("type").value;
   var duration=document.getElementById("duration").value;
   var npersons=document.getElementById("npersons").value;
-  if(city.length>0){
+  var data_partenza1=document.getElementById("datepicker1").value;
+  var data_partenza2=document.getElementById("datepicker2").value;
+  if(city.length>0 && data_partenza1.length>0 && data_partenza2.length>0){
     if (window.XMLHttpRequest)
       xmlhttp=new XMLHttpRequest();
     else
@@ -42,9 +44,9 @@ function search()
       } 
     xmlhttp.open("POST","search.php",true);
     xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    var post_string="continent="+continent+"&"+"city="+city+"&"+"type="+type+"&"+"duration="+duration+"&"+"npersons="+npersons;
+    var post_string="continent="+continent+"&"+"city="+city+"&"+"type="+type+"&"+"duration="+duration+"&"+"npersons="+npersons+"&"+"data_partenza1="+data_partenza1+"&"+"data_partenza2="+data_partenza2;
     xmlhttp.send(post_string);
   }
   else
-    $("#err_content").html("Attenzione, non hai selezionato la città!");
+    $("#err_content").html("Attenzione, non hai selezionato la città o il range della data di partenza");
 }

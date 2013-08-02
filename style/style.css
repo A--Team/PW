@@ -189,6 +189,7 @@ body{
 	padding-right: 18px;
 	width: 98px;
 }
+<<<<<<< HEAD
 #dest_commento{
 	text-align: center;	
 	font-size: 36px;
@@ -254,3 +255,10 @@ body{
 	background-color: #4766B5; /*#210C8F;*/	
 	color: #ECF0F1;	
 }
+
+.duration_field{
+	text-align:center;
+	width: 40px;
+}
+
+

@@ -11,10 +11,20 @@
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script>
-    $(function() {
+    $(function(){
       $("#datepicker1").datepicker({ dateFormat: 'yy-mm-dd' }).val();
       $("#datepicker2").datepicker({ dateFormat: 'yy-mm-dd' }).val();
     });
+    </script>
+    <script>
+    function minus(){
+      if($('#duration').val()>1)
+	$('#duration').val(parseInt($('#duration').val())-1);
+    }
+    function plus(){
+      if($('#duration').val()<20)
+	$('#duration').val(parseInt($('#duration').val())+1);
+    }
     </script>
   </head>
   <body>
@@ -74,13 +84,9 @@
 		</td>
 		</tr>
 		<tr>
-		<td>Durata:</td>
+		<td>Durata max:</td>
 		<td>
-		<select id="duration">
-		  <option value="1">Non definita</option>
-		  <option value="2">Fino a tre giorni</option>
-		  <option value="3">Più di tre giorni</option>
-		</select>
+		<button type="button" onclick="minus()">-</button><input type="text" id="duration" value="1" class="duration_field" readonly><button type="button" onclick="plus()">+</button>
 		</td>
 		</tr>
 		<tr>
@@ -103,7 +109,7 @@
 		    Dal:
 		  </td>
 		  <td>
-		    <input type="text" id="datepicker1" name="data_partenza" class="date_input"/>
+		    <input type="text" id="datepicker1" name="data_partenza1" class="date_input"/>
 		  </td>
 		</tr>
 		<tr>
@@ -111,7 +117,7 @@
 		    Al:
 		  </td>
 		  <td>
-		    <input type="text" id="datepicker2" name="data_arrivo" class="date_input"/>
+		    <input type="text" id="datepicker2" name="data_partenza2" class="date_input"/>
 		  </td>
 		</tr>
 		</table>

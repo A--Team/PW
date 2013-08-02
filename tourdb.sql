@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generato il: Lug 31, 2013 alle 10:49
+-- Generato il: Ago 01, 2013 alle 11:26
 -- Versione del server: 5.5.32
 -- Versione PHP: 5.4.16
 
@@ -59,6 +59,7 @@ CREATE TABLE IF NOT EXISTS `commento` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_utente` varchar(50) NOT NULL,
   `id_destinazione` int(11) NOT NULL,
+  `data` date NOT NULL,
   `rating` int(11) NOT NULL,
   `testo` longtext NOT NULL,
   PRIMARY KEY (`id`),
@@ -78,6 +79,7 @@ CREATE TABLE IF NOT EXISTS `destinazione` (
   `citta` varchar(50) NOT NULL,
   `tipo` varchar(50) NOT NULL,
   `foto` varchar(100) NOT NULL,
+  `descrizione` longtext NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
@@ -85,12 +87,12 @@ CREATE TABLE IF NOT EXISTS `destinazione` (
 -- Dump dei dati per la tabella `destinazione`
 --
 
-INSERT INTO `destinazione` (`id`, `continente`, `citta`, `tipo`, `foto`) VALUES
-(1, 'europa', 'roma', 'culturale', 'roma.jpg'),
-(2, 'asia', 'tokyo', 'culturale', 'tokyo.jpg'),
-(3, 'america', 'miami', 'divertimento', 'miami.jpg'),
-(4, 'oceania', 'sydney', 'relax', 'sydney.jpg'),
-(5, 'europa', 'parigi', 'divertimento', 'parigi.jpg');
+INSERT INTO `destinazione` (`id`, `continente`, `citta`, `tipo`, `foto`, `descrizione`) VALUES
+(1, 'europa', 'roma', 'culturale', 'roma.jpg', ''),
+(2, 'asia', 'tokyo', 'culturale', 'tokyo.jpg', ''),
+(3, 'america', 'miami', 'divertimento', 'miami.jpg', ''),
+(4, 'oceania', 'sydney', 'relax', 'sydney.jpg', ''),
+(5, 'europa', 'parigi', 'divertimento', 'parigi.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -100,8 +102,8 @@ INSERT INTO `destinazione` (`id`, `continente`, `citta`, `tipo`, `foto`) VALUES
 
 CREATE TABLE IF NOT EXISTS `pacchetto` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `persone` varchar(5) NOT NULL,
-  `durata` varchar(5) NOT NULL,
+  `persone` int(5) NOT NULL,
+  `durata` int(5) NOT NULL,
   `data_partenza` date NOT NULL,
   `id_utente` varchar(50) NOT NULL,
   `id_pernottamento` int(11) NOT NULL,
@@ -120,11 +122,11 @@ CREATE TABLE IF NOT EXISTS `pacchetto` (
 --
 
 INSERT INTO `pacchetto` (`id`, `persone`, `durata`, `data_partenza`, `id_utente`, `id_pernottamento`, `id_trasporto`, `id_destinazione`, `prenotato`) VALUES
-(2, '2', '3', '2013-07-17', 'agenzia', 1, 1, 1, 0),
-(3, '3', '6', '2013-08-28', 'agenzia', 1, 1, 2, 0),
-(4, '2', '6', '2013-10-10', 'agenzia', 3, 5, 2, 0),
-(5, '2', '4', '2013-12-18', 'agenzia', 6, 8, 4, 0),
-(7, '6', '4', '2013-09-18', 'agenzia', 5, 9, 3, 0);
+(2, 2, 3, '2013-07-17', 'agenzia', 1, 1, 1, 0),
+(3, 3, 6, '2013-08-28', 'agenzia', 1, 1, 2, 0),
+(4, 2, 6, '2013-10-10', 'agenzia', 3, 5, 2, 0),
+(5, 2, 4, '2013-12-18', 'agenzia', 6, 8, 4, 0),
+(7, 6, 4, '2013-09-18', 'agenzia', 5, 9, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -160,20 +162,24 @@ INSERT INTO `pernottamento` (`id`, `prezzo`, `tipo`, `id_destinazione`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `rel_attrazioni` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_pacchetto` int(11) NOT NULL,
   `id_attrazione` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `id_pacchetto` (`id_pacchetto`),
-  KEY `id_attrazione` (`id_attrazione`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `id_attrazione` (`id_attrazione`),
+  KEY `id_pacchetto_2` (`id_pacchetto`),
+  KEY `id_attrazione_2` (`id_attrazione`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dump dei dati per la tabella `rel_attrazioni`
 --
 
-INSERT INTO `rel_attrazioni` (`id_pacchetto`, `id_attrazione`) VALUES
-(2, 1),
-(3, 3),
-(3, 6);
+INSERT INTO `rel_attrazioni` (`id`, `id_pacchetto`, `id_attrazione`) VALUES
+(1, 2, 1),
+(16, 4, 3),
+(17, 4, 6);
 
 -- --------------------------------------------------------
 
@@ -246,8 +252,8 @@ ALTER TABLE `attrazioni`
 -- Limiti per la tabella `commento`
 --
 ALTER TABLE `commento`
-  ADD CONSTRAINT `commento_ibfk_2` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`user`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `commento_ibfk_1` FOREIGN KEY (`id_destinazione`) REFERENCES `destinazione` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `commento_ibfk_1` FOREIGN KEY (`id_destinazione`) REFERENCES `destinazione` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `commento_ibfk_2` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`user`) ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `pacchetto`
@@ -268,8 +274,8 @@ ALTER TABLE `pernottamento`
 -- Limiti per la tabella `rel_attrazioni`
 --
 ALTER TABLE `rel_attrazioni`
-  ADD CONSTRAINT `rel_attrazioni_ibfk_1` FOREIGN KEY (`id_pacchetto`) REFERENCES `pacchetto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `rel_attrazioni_ibfk_2` FOREIGN KEY (`id_attrazione`) REFERENCES `attrazioni` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `rel_attrazioni_ibfk_2` FOREIGN KEY (`id_attrazione`) REFERENCES `attrazioni` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `rel_attrazioni_ibfk_1` FOREIGN KEY (`id_pacchetto`) REFERENCES `pacchetto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `trasporto`
