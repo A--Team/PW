@@ -126,7 +126,7 @@
 				$html=$html.$checkbox;
 			}
 			
-			$html=$html."</table><input type='hidden' name='id_pacchetto' value='".$id_pacchetto."'><input type='submit' value='modifica'> </form>";
+			$html=$html."</table><input type='hidden' name='id_pacchetto' value='".$id_pacchetto."'><input class='btn_login' type='submit' value='modifica'> </form>";
 			echo $html;
 			
 			 
