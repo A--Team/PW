@@ -256,6 +256,7 @@ body{
 	margin-top:5px;
 	margin-right:30px;	
 	border: 3px solid transparent;
+	cursor: pointer;
 }
 .btn_elimina:hover{
 	border:3px solid #42B2E3;
@@ -270,11 +271,6 @@ body{
 .btn_elimina:active{
 	background-color: #4766B5;
 	color: #ECF0F1;	
-	-webkit-transition: background-color 0.2s, border 0.2s;  color 0.2s;/* Saf3.2+, Chrome */
-	-moz-transition: background-color 0.2s, border 0.2s; color 0.2s;  /* FF4+ */
-	-ms-transition: background-color 0.2s, border 0.2s; color 0.2s; /* IE10 */
-	-o-transition: background-color 0.2s, border 0.2s; color 0.2s; /* Opera 10.5+ */
-	transition: background-color 0.2s, border 0.2s; color 0.2s;
 }
 .btn_commenta{
 	padding-top: 2px;
@@ -284,6 +280,7 @@ body{
 	background-color: #4766B5; /*#210C8F;*/	
 	border: 3px solid transparent;
 	color: #ECF0F1;	
+	cursor: pointer;
 }
 .btn_commenta:hover{
 	border:3px solid #42B2E3;
@@ -312,6 +309,7 @@ body{
 	background-color: #ECF0F1; /*#210C8F;*/	
 	border: 3px solid transparent;
 	color: #4766B5;	
+	cursor: pointer;
 }
 .btn_login:hover{
 	border:3px solid #42B2E3;
