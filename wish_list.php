@@ -32,7 +32,7 @@
 			if(isset($_SESSION[$session_name])){
 				//attivo la sessione
 				//$_SESSION[$session_name] = true;
-				echo "<br><br><h2>Benvenuto " . $_SESSION['username'] . "!</h2><br>";
+				echo "<br><br><h2>Benvenuto<a href='homepersonale.php'> " . $_SESSION['username'] . "!</a></h2><br>";
 				echo "<form method='POST' action='logout.php'>
 						<input type='submit' value='logout' class='btn_login'>
 					  </form>";
