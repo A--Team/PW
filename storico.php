@@ -17,11 +17,11 @@
     <div id="container">
     <div id="header_container">
 	<div id="logo">
-			<span id="menu">
-				<a href="index.php"><span class="btn_menu">Home</span></a>
-				<a href="#"><span class="btn_menu">Catalogo</span></a>
-				<a href="#"><span class="btn_menu">Pippo</span></a>
-				<a href="#"><span class="btn_menu">Pluto</span></a>
+			<span class="ribbon">
+				<a href="index.php"><span>Home</span></a>
+				<a href="#"><span>Catalogo</span></a>
+				<a href="#"><span>Pippo</span></a>
+				<a href="#"><span>Pluto</span></a>
 			</span>			
 	</div>
 	<div id="login">
@@ -34,7 +34,7 @@
 				//$_SESSION[$session_name] = true;
 				echo "<br><br><h2>Benvenuto " . $_SESSION['username'] . "!</h2><br>";
 				echo "<form method='POST' action='logout.php'>
-						<input type='submit' value='logout'>
+						<input type='submit' value='logout' class='btn_login'>
 					  </form>";
 			}
 			else
