@@ -41,6 +41,7 @@
 	<div id="login">
 		<?php
 			session_start();
+<<<<<<< HEAD
 			//carico script contenente i parametri di configurazione
 			include_once 'config.php';
 			//controllo esistenza della sessione
@@ -53,6 +54,9 @@
 			else{
 				include 'login_form.php';
 			}
+=======
+			include 'login_form.php';
+>>>>>>> login
 		?>
 	</div>
 	</div>
