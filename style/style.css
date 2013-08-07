@@ -8,9 +8,8 @@
  */
 @font-face{
     font-family: "Century Gothic";
-    src: url(century_gothic.ttf),
-    	 url(century_gothic.eot), /*IE*/
-    	 format("truetype");
+    src: url('century_gothic.ttf'),
+    	 url('century_gothic.eot');
 }
 
 html,body{
@@ -27,8 +26,6 @@ body{
 	background-color: #42B2E3; /*#C0D9EA;*/
 	text-align:center;
 }
-
-
 #container{
 	width: 990px;
 	margin: 0 auto;
@@ -69,7 +66,6 @@ body{
 	padding-right: 10px;
 	background-color: #4766B5; /*#210C8F;*/	 
 }
-
 #login{
 	font-size: 12px;
 	color: #ECF0F1; /*#FFFFFF;*/
@@ -106,12 +102,9 @@ body{
 	padding-left:160px;
 	padding-top:40px;
 }
-
 #content h3{
 	color: #4766B5; 
 }
-
-
 #navigation{
 	float: left;
 	width:240px;
@@ -125,15 +118,11 @@ body{
 	font-size:18px;
 	font-weight:bold;
 }
-
 .btn_navigation
 {
 	padding-left:30px;
 	padding-top:15px;
 }
-
-
-
 #footer{
 	background-color: #F55A42; /*#ea5800;*/
 	width: 990px;
@@ -146,10 +135,13 @@ body{
 	color:red;
 	font-size:10px;
 }
+#confirm_content{
+	color:green;
+	font-size:10px;
+}
 .td_left{
 	text-align: left;
 }
-
 .div_viaggio{
 	width:280px; 
 	height:330px;
@@ -199,7 +191,6 @@ body{
 	padding-right: 18px;
 	width: 98px;
 }
-
 #dest_commento{
 	text-align: center;	
 	font-size: 36px;
@@ -262,11 +253,11 @@ body{
 	border:3px solid #42B2E3;
 	background-color: #ECF0F1;
 	color: #4766B5;	
-	-webkit-transition: background-color 0.2s, border 0.2s;  color 0.2s;/* Saf3.2+, Chrome */
-	-moz-transition: background-color 0.2s, border 0.2s; color 0.2s;  /* FF4+ */
-	-ms-transition: background-color 0.2s, border 0.2s; color 0.2s; /* IE10 */
-	-o-transition: background-color 0.2s, border 0.2s; color 0.2s; /* Opera 10.5+ */
-	transition: background-color 0.2s, border 0.2s; color 0.2s;
+	-webkit-transition: background-color 0.2s, border 0.2s,  color 0.2s;/* Saf3.2+, Chrome */
+	-moz-transition: background-color 0.2s, border 0.2s, color 0.2s;  /* FF4+ */
+	-ms-transition: background-color 0.2s, border 0.2, color 0.2s; /* IE10 */
+	-o-transition: background-color 0.2s, border 0.2s, color 0.2s; /* Opera 10.5+ */
+	transition: background-color 0.2s, border 0.2s, color 0.2s;
 }
 .btn_elimina:active{
 	background-color: #4766B5;
@@ -286,20 +277,20 @@ body{
 	border:3px solid #42B2E3;
 	background-color: #ECF0F1;
 	color: #4766B5;	
-	-webkit-transition: background-color 0.2s, border 0.2s;  color 0.2s;/* Saf3.2+, Chrome */
-	-moz-transition: background-color 0.2s, border 0.2s; color 0.2s;  /* FF4+ */
-	-ms-transition: background-color 0.2s, border 0.2s; color 0.2s; /* IE10 */
-	-o-transition: background-color 0.2s, border 0.2s; color 0.2s; /* Opera 10.5+ */
-	transition: background-color 0.2s, border 0.2s; color 0.2s;
+	-webkit-transition: background-color 0.2s, border 0.2s,  color 0.2s;/* Saf3.2+, Chrome */
+	-moz-transition: background-color 0.2s, border 0.2s, color 0.2s;  /* FF4+ */
+	-ms-transition: background-color 0.2s, border 0.2, color 0.2s; /* IE10 */
+	-o-transition: background-color 0.2s, border 0.2s, color 0.2s; /* Opera 10.5+ */
+	transition: background-color 0.2s, border 0.2s, color 0.2s;
 }
 .btn_commenta:active{
 	background-color: #4766B5;
 	color: #ECF0F1;	
-	-webkit-transition: background-color 0.2s, border 0.2s;  color 0.2s;/* Saf3.2+, Chrome */
-	-moz-transition: background-color 0.2s, border 0.2s; color 0.2s;  /* FF4+ */
-	-ms-transition: background-color 0.2s, border 0.2s; color 0.2s; /* IE10 */
-	-o-transition: background-color 0.2s, border 0.2s; color 0.2s; /* Opera 10.5+ */
-	transition: background-color 0.2s, border 0.2s; color 0.2s;
+	-webkit-transition: background-color 0.2s, border 0.2s,  color 0.2s;/* Saf3.2+, Chrome */
+	-moz-transition: background-color 0.2s, border 0.2s, color 0.2s;  /* FF4+ */
+	-ms-transition: background-color 0.2s, border 0.2, color 0.2s; /* IE10 */
+	-o-transition: background-color 0.2s, border 0.2s, color 0.2s; /* Opera 10.5+ */
+	transition: background-color 0.2s, border 0.2s, color 0.2s;
 }
 .btn_login{
 	padding-top: 2px;
@@ -315,57 +306,51 @@ body{
 	border:3px solid #42B2E3;
 	background-color: #ECF0F1;
 	color: #4766B5;	
-	-webkit-transition: background-color 0.2s, border 0.2s;  color 0.2s;/* Saf3.2+, Chrome */
-	-moz-transition: background-color 0.2s, border 0.2s; color 0.2s;  /* FF4+ */
-	-ms-transition: background-color 0.2s, border 0.2s; color 0.2s; /* IE10 */
-	-o-transition: background-color 0.2s, border 0.2s; color 0.2s; /* Opera 10.5+ */
-	transition: background-color 0.2s, border 0.2s; color 0.2s;
+	-webkit-transition: background-color 0.2s, border 0.2s,  color 0.2s;/* Saf3.2+, Chrome */
+	-moz-transition: background-color 0.2s, border 0.2s, color 0.2s;  /* FF4+ */
+	-ms-transition: background-color 0.2s, border 0.2, color 0.2s; /* IE10 */
+	-o-transition: background-color 0.2s, border 0.2s, color 0.2s; /* Opera 10.5+ */
+	transition: background-color 0.2s, border 0.2s, color 0.2s;
 }
 .btn_login:active{
 	background-color: #4766B5;
 	color: #ECF0F1;
-	-webkit-transition: background-color 0.2s, border 0.2s;  color 0.2s;/* Saf3.2+, Chrome */
-	-moz-transition: background-color 0.2s, border 0.2s; color 0.2s;  /* FF4+ */
-	-ms-transition: background-color 0.2s, border 0.2s; color 0.2s; /* IE10 */
-	-o-transition: background-color 0.2s, border 0.2s; color 0.2s; /* Opera 10.5+ */
-	transition: background-color 0.2s, border 0.2s; color 0.2s;
+	-webkit-transition: background-color 0.2s, border 0.2s,  color 0.2s;/* Saf3.2+, Chrome */
+	-moz-transition: background-color 0.2s, border 0.2s, color 0.2s;  /* FF4+ */
+	-ms-transition: background-color 0.2s, border 0.2, color 0.2s; /* IE10 */
+	-o-transition: background-color 0.2s, border 0.2s, color 0.2s; /* Opera 10.5+ */
+	transition: background-color 0.2s, border 0.2s, color 0.2s;
 }
 .duration_field{
 	text-align:center;
 	width: 40px;
 }
-
-.ribbon {
+.ribbon{
 	display:inline-block;
 	float:right;
 	padding-top:101px;		
 	border-right:3px solid #42B2E3;
 }
-
-.ribbon:after, .ribbon:before {
+.ribbon:after, .ribbon:before{
 	margin-top:0.5em;
 	content: "";
 	float:left;
 	/*border:1.5em solid #42B2E3;*/
 }
-
-.ribbon:after {
+.ribbon:after{
 	border-right-color:transparent;
 }
-
-.ribbon:before {
+.ribbon:before{
 	border-left-color:transparent;
 }
-
-.ribbon a:link, .ribbon a:visited { 
+.ribbon a:link, .ribbon a:visited{ 
 	color:#4766B5;
 	text-decoration:none;
     float:left;
     height:3.25em;
 	overflow:hidden;	
 }
-
-.ribbon span {
+.ribbon span{
 	background:#ECF0F1;
 	display:inline-block;
 	line-height:3em;
@@ -380,14 +365,12 @@ body{
 	-o-transition: background-color 0.2s, margin-top 0.2s;  /* Opera 10.5+ */
 	transition: background-color 0.2s, margin-top 0.2s;
 }
-
-.ribbon a:hover span {
+.ribbon a:hover span{
 	background:#4766B5;
 	margin-top:0;
 	color: #ECF0F1;
 }
-
-.ribbon span:before {
+.ribbon span:before{
 	content: "";
 	position:absolute;
 	top:3em;
@@ -395,8 +378,7 @@ body{
 	border-right:0.5em solid #9B8651;
 	border-bottom:0.5em solid #ECF0F1;
 }
-
-.ribbon span:after {
+.ribbon span:after{
 	content: "";
 	position:absolute;
 	top:3em;
@@ -404,5 +386,13 @@ body{
 	border-left:0.5em solid #9B8651;
 	border-bottom:0.5em solid #ECF0F1;
 }
-
+.packet_options_select{
+	width:180px;
+}
+.search_space{
+	margin-left:18px;
+}
+.title_space{
+	margin-left:30px;
+}
 
