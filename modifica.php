@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	include_once 'config.php';
-	if(!isset($_SESSION[$session_name])|| $_SESSION['username']!='agenzia')
+	if(!isset($_SESSION[$session_name]))
 		header("Refresh: 0;url=badlogin.php");  
 ?>
 
@@ -34,7 +34,14 @@
 	</div>
 	<div id="login">
 		<?php
-				echo "<br><br><h2>Benvenuto<a href='agenzia.php'> " . $_SESSION['username'] . "!</a></h2><br>";
+				if($_SESSION['username']=='agenzia')
+				{
+				echo "<br><br><h2>Benvenuto<a href='agenzia.php'> agenzia!</a></h2><br>";
+				}
+				else
+				{
+					echo "<br><br><h2>Benvenuto<a href='homepersonale.php'> " . $_SESSION['username'] . "!</a></h2><br>";
+				}
 		?>
         <form method='POST' action='logout.php'>
 					<input type='submit' value='logout' class='btn_login'>
@@ -48,20 +55,45 @@
 			$conn=database::dbConnect();
 			if(isset($_POST['id_pacchetto']))
 			{
+				$user=$_SESSION['username'];
 				extract($_POST);
-				$query="UPDATE pacchetto SET persone='".$persone."',durata='".$durata."',
-				data_partenza= '".$data."',id_trasporto='".$trasporto."',id_pernottamento='".$pernottamento."'
-				WHERE id='".$id_pacchetto."'";
-				database::qUpdate($conn,$query);
-				$query="DELETE FROM rel_attrazioni	WHERE id_pacchetto='".$id_pacchetto."'";
-				database::qDelete($conn,$query);
-				if(isset($attrazioni))
+				if($user=='agenzia')
 				{
-					foreach($attrazioni as $idattr)
+					$query="UPDATE pacchetto SET persone='".$persone."',durata='".$durata."',
+					data_partenza= '".$data."',id_trasporto='".$trasporto."',id_pernottamento='".$pernottamento."'
+					WHERE id='".$id_pacchetto."'";
+					database::qUpdate($conn,$query);
+					$query="DELETE FROM rel_attrazioni	WHERE id_pacchetto='".$id_pacchetto."'";
+					database::qDelete($conn,$query);
+					if(isset($attrazioni))
 					{
-						$query="INSERT INTO rel_attrazioni (id_attrazione,id_pacchetto) VALUE ('".$idattr."','".$id_pacchetto."')";
-						database::qInsertInto($conn,$query); 
+						foreach($attrazioni as $idattr)
+						{
+							$query="INSERT INTO rel_attrazioni (id_attrazione,id_pacchetto) VALUE ('".$idattr."','".$id_pacchetto."')";
+							database::qInsertInto($conn,$query); 
+						}
 					}
+				}
+				else
+				{
+					$query="INSERT INTO pacchetto (persone,durata,data_partenza,id_utente,id_pernottamento,id_trasporto,id_destinazione,prenotato) 
+							VALUE ('".$persone."','".$durata."','".$data."','".$user."',
+							'".$pernottamento."','".$trasporto."','".$id_destinazione."','".$prenotato."')";
+					database::qInsertInto($conn,$query);
+					$query="SELECT MAX(id) AS id FROM pacchetto WHERE id_utente='".$user."'";
+					$result=database::qSelect($conn,$query);
+					$record=mysql_fetch_array($result);
+					$idnuovo=$record['id'];
+					if(isset($attrazioni))
+					{
+						foreach($attrazioni as $idattr)
+						{
+							$query="INSERT INTO rel_attrazioni (id_attrazione,id_pacchetto) VALUE ('".$idattr."','".$idnuovo."')";
+							database::qInsertInto($conn,$query); 
+						}
+					}
+					echo "<h3>Pacchetto personalizzato!</h3>";
+					echo "<a href='homepersonale.php'> Torna alla home</a>";		
 				}
 				echo "<h3>Modifiche apportate con successo</h3>";
 				
@@ -77,13 +109,14 @@
 			
 			$result=database::qSelect($conn,$query);
 			$pacchetto=mysql_fetch_array($result);
-			$query="SELECT * FROM pernottamento WHERE id_destinazione='".$pacchetto['id_destinazione']."'";
+			$id_destinazione=$pacchetto['id_destinazione'];
+			$query="SELECT * FROM pernottamento WHERE id_destinazione='".$id_destinazione."'";
 			$pernottamenti=database::qSelect($conn,$query);
 			$id_pernottamento_pacchetto=$pacchetto['id_pernottamento'];
-			$query="SELECT * FROM trasporto WHERE id_destinazione='".$pacchetto['id_destinazione']."'";
+			$query="SELECT * FROM trasporto WHERE id_destinazione='".$id_destinazione."'";
 			$trasporti=database::qSelect($conn,$query);
 			$id_trasporto_pacchetto=$pacchetto['id_trasporto'];
-			$query="SELECT * FROM attrazioni WHERE id_destinazione='".$pacchetto['id_destinazione']."'";
+			$query="SELECT * FROM attrazioni WHERE id_destinazione='".$id_destinazione."'";
 			$attrazioni=database::qSelect($conn,$query);
 			$query="SELECT id_attrazione FROM rel_attrazioni WHERE id_pacchetto='".$id_pacchetto."'";
 			$attrazioni_pacchetto=database::qSelect($conn,$query);
@@ -125,8 +158,17 @@
 				$checkbox=$checkbox."></td><td>".$attrazione['tipo']." a ".$attrazione['prezzo']." euro</td></tr>";
 				$html=$html.$checkbox;
 			}
+			if($_SESSION['username']!='agenzia')
+			{
+				$html=$html."<tr><td colspan='2'>Vuoi prenotare?</td></tr>";
+				$radio="<tr><td><input type='radio' name='prenotato' value='1'></td><td>Prenota</td></tr>
+							<tr><td><input type='radio' name='prenotato' value='0' checked></td><td>Aggiungi a wishlist</td></tr>";
+				$html=$html.$radio;
+			}
 			
-			$html=$html."</table><input type='hidden' name='id_pacchetto' value='".$id_pacchetto."'><input class='btn_commenta' type='submit' value='modifica'> </form>";
+			$html=$html."</table><input type='hidden' name='id_pacchetto' value='".$id_pacchetto."'>
+								<input type='hidden' name='id_destinazione' value='".$id_destinazione."'>	
+							<input class='btn_commenta' type='submit' value='modifica'> </form>";
 			echo $html;
 			
 			 
