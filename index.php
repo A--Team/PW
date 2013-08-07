@@ -41,22 +41,7 @@
 	<div id="login">
 		<?php
 			session_start();
-<<<<<<< HEAD
-			//carico script contenente i parametri di configurazione
-			include_once 'config.php';
-			//controllo esistenza della sessione
-			if(isset($_SESSION[$session_name])){
-				echo "<br><br><h2>Benvenuto<a href='homepersonale.php'> " . $_SESSION['username'] . "!</a></h2><br>";
-				echo "<form method='POST' action='logout.php'>
-						<input type='submit' value='logout' class='btn_login'>
-					  </form>";
-			}
-			else{
-				include 'login_form.php';
-			}
-=======
 			include 'login_form.php';
->>>>>>> login
 		?>
 	</div>
 	</div>
@@ -64,7 +49,7 @@
 	<div id="content">
 		<?php
 			include 'pacchetto.php';
-			$pacchetti=new pacchetto('home');
+			$pacchetti=new pacchetto('home',[]);
 			$pacchetti->stampa();
 		?>
 	</div>
