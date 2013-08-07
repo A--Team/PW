@@ -21,23 +21,9 @@
 	<div id="login">
 		<?php
 			session_start();
-			//carico script contenente i parametri di configurazione
-			include_once 'config.php';
-			//controllo esistenza della sessione
-			if(isset($_SESSION[$session_name])){
-				//attivo la sessione
-				//$_SESSION[$session_name] = true;
-				echo "<br><br><h2>Benvenuto " . $_SESSION['username'] . "!</h2><br>";
-				echo "<form method='POST' action='logout.php'>
-						<input type='submit' value='logout' class='btn_login'>
-					  </form>";
-			}
-			else
-			{
-					include 'login_form.php';
-			}
+			include 'login_form.php';
 		?>
-	</div>
+    </div>
 	</div>
       <div id="content_container">
 	<div id="content">

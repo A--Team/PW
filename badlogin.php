@@ -25,6 +25,7 @@
 		<h2>Le credenziali non sono esatte</h2>
         <p>Ricontrollare nome utente e password</p>
         <?php
+			session_start();
 			include 'login_form.php'
 		?>
 	</div>

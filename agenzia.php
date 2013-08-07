@@ -26,11 +26,8 @@
 	</div>
 	<div id="login">
 		<?php
-				echo "<br><br><h2>Benvenuto " . $_SESSION['username'] . "!</h2><br>";
+			include 'login_form.php';
 		?>
-        <form method='POST' action='logout.php'>
-					<input type='submit' value='logout' class='btn_login'>
-		 </form>
 	</div>
 	</div>
       <div id="content_container">
