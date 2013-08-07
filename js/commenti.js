@@ -32,28 +32,10 @@ function sendComment(dest,user){
  */
 function sendStateChange(){	
 	if (xmlHttp.readyState==4 && xmlHttp.status==200){
-		alert("Commento inserito con successo!");
-		location.reload();
-		
-		/*
-		var str = glob_user+";"+glob_dest+";"+glob_commento+";"+glob_voto+"--";
-		alert(str);
-		var data="oggi";
-		var output = "<br><div>";
-		output += "<span class='tit_commento'>$user - "+data+"</span>";					
-		output += "<div class='rateit' data-rateit-value=$rating data-rateit-ispreset='true' data-rateit-readonly='true'></div><br>";					
-		output += "<div class='corpo_commento'>$corpo</div>";
-		output += "<input class='btn_elimina' type='button' value='Elimina' onclick='sendDelete(this,"."$id".")'><br></div>";
-		*/
-		
-		
-		/*		
-		var tit_comm = document.getElementById("tit_commento");
-		var div = document.createElement('div');
-		div.innerHTML = xmlHttp.responseText;
-		alert(xmlHttp.responseText);
-		document.getElementById("content").insertBefore(div,tit_comm);
-		*/
+		var div = document.getElementById("new_comments");
+		div.innerHTML = xmlHttp.responseText + div.innerHTML;	
+		var comm = div.firstChild.childNodes[2];
+		$(function() {$("#"+comm.id).rateit();});  					
   	}
 }
 

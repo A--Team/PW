@@ -1,4 +1,9 @@
-<?php
+<?php	
+	header('Content-Type: text/xml');
+	
+	//Imposto localizzazione italiana per la visualizzazione delle date
+	setlocale(LC_TIME, 'ita', 'it_IT.utf8');
+	
 	include_once 'database.php';
 	//Recupero le variabili dal POST
     $dest = nl2br(htmlentities($_POST['id_dest']));
@@ -11,30 +16,22 @@
 	$sql = "INSERT INTO `commento`(`id_utente`, `id_destinazione`, `data`, `rating`, `testo`) VALUES (\"$user\",\"$dest\",\"$data\",\"$voto\",\"$corpo\")";
 	database::qInsertInto($conn,$sql);
 	//Recupero l'id del commento inserito
-	$sql = "SELECT MAX(`id`) FROM `commento`";
+	$sql = "SELECT MAX(`id`) AS `id` FROM `commento`";
 	$result = database::qSelect($conn, $sql);
 	$record = mysql_fetch_array($result);
 	extract($record);
 	database::dbClose();
+		
+	$output = "<div><br>";
+	$output .= "<span class='tit_commento' id='tit_commento'>$user - ".strftime("%d %B %Y",strtotime($data))."</span>";					
+	$output .= "<div class='rateit' id='comment_$id' data-rateit-value=$voto data-rateit-ispreset='true' data-rateit-readonly='true'></div>";
 	
-	$output = "<br><div>";
-	$output .= "<span class='tit_commento'>$user - ".strftime("%d %B %Y",strtotime($data))."</span>";					
-	$output .= "<div class='rateit' data-rateit-value=$rating data-rateit-ispreset='true' data-rateit-readonly='true'></div><br>";					
+	$output .= "<br>";
+	
 	$output .= "<div class='corpo_commento'>$corpo</div>";
-	$output .= "<input class='btn_elimina' type='button' value='Elimina' onclick='sendDelete(this,"."$id".")'><br></div>";
+	$output .= "<input class='btn_elimina' type='button' value='Elimina' onclick='sendDelete(this,$id)'><br><br></div></div>";		
 	
 	echo "$output";
-
 	
-	//Restituisco i parametri alla funzione di callback
-	/*$info = "<root>";
-	$info .= "<dest>"+$dest+"</dest>";
-	$info .= "<user>"+$user+"</user>";
-	$info .= "<corpo>"+$corpo+"</corpo>";
-	$info .= "<voto>"+$voto+"</voto>";
-	$info .= "<data>"+$data+"</data>";
-	$info .= "</root>";
 	
-	return xmlentities($info);
-	*/
 ?>

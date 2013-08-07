@@ -57,10 +57,15 @@
 			$result = database::qSelect($conn, $sql);
 			$record = mysql_fetch_array($result);
 			extract($record);
-			echo "<div id='dest_intestazione'><br><div id='dest_commento'>$citta</div><br>";
+			echo "<div id='dest_intestazione'><br>";
+			echo "<div id='dest_commento'>$citta</div><br>";
 			echo "<div id='dest_foto'><img src=style/images/dest/$foto width=200 height=150></div>";
-			echo "<div id='dest_descrizione'>$descrizione</div></div>";
+			echo "<div id='dest_descrizione'>$descrizione</div>";
+			echo "</div><br>";
 			database::dbClose();
+			
+			//Aggiungo un div vuoto per i commenti inseriti
+			echo "<div id='new_comments'></div>";	
 			
 			//Carico l'elenco dei commenti e lo visualizzo			
 			$conn=database::dbConnect();
@@ -68,24 +73,24 @@
 			$res_commenti = database::qSelect($conn, $sql);
 			while($rec_commenti = mysql_fetch_array($res_commenti)){
 				extract($rec_commenti);
-				echo "<br><div>";
+				echo "<div>";
 				echo "<span class='tit_commento' id='tit_commento'>$id_utente - ".strftime("%d %B %Y",strtotime($data))."</span>";					
 				echo "<div class='rateit' data-rateit-value=$rating data-rateit-ispreset='true' data-rateit-readonly='true'></div><br>";					
 				echo "<div class='corpo_commento'>$testo</div>";
 				//Se sono loggato e il commento è mio, mostro un pulsante per eliminarlo
 				if(isset($_SESSION[$session_name])){
 					if($id_utente == $_SESSION['username']){
-						echo "<input class='btn_elimina' type='button' value='Elimina' onclick='sendDelete(this,"."$id".")'><br></div>";
+						echo "<input class='btn_elimina' type='button' value='Elimina' onclick='sendDelete(this,"."$id".")'><br><br></div>";
 					}
 					else {
-						echo "</div>";
+						echo "<br></div>";
 					}					
 				}
 				else {
 					echo "</div>";
 				}	
 			}			
-						
+					
 			//Se sono loggato, mostro il form per l'inserimento di un commento
 			if(isset($_SESSION[$session_name])){
 				$user=$_SESSION['username'];
