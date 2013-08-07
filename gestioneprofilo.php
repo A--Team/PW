@@ -95,7 +95,7 @@
 						<tr><td>Nuova password</td><td><input type='password' name='password'></td></tr>
 						<tr><td>Reinserici password</td><td><input type='password' name='conf_password'></td></tr>
 						</table>
-						<input class='btn_login' type='button' value='modifica' onclick='check_reg(\"m\")'>
+						<input class='btn_commenta' type='button' value='modifica' onclick='check_reg(\"m\")'>
 					</form>
 					</div>";
 				echo $html;

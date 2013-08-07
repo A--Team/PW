@@ -80,6 +80,9 @@
 					else {
 						echo "</div>";
 					}					
+				}
+				else {
+					echo "</div>";
 				}	
 			}			
 						
@@ -111,7 +114,7 @@
 				}
 			}
 			else
-				echo "Per inserire un commento devi essere loggato.";
+				//echo "Per inserire un commento devi essere loggato.";
 			database::dbClose();
 		?>
 		<script type="text/javascript">
