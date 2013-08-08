@@ -115,7 +115,7 @@
 			  	<tr>
 			  		<td>Continente:</td>
 					<td>
-					  <select id="continent" onchange='update_cities()'>
+					  <select id="continent" class="input" onchange='update_cities()'>
 					    <option value="" disabled selected>Seleziona</option>
 					    <option value="africa">Africa</option>
 					    <option value="america">America</option>
@@ -127,7 +127,7 @@
 				</tr>
 			  	<tr>			  		
 			  		<td>Città:</td>
-			  		<td><select id="city" disabled></select>
+			  		<td><select id="city" class="input" disabled></select>
 					</td>
 			  	</tr>
 		  	</table>

@@ -62,7 +62,7 @@
 	  <tr>
 	  <td>Continente:</td>
 	  <td>
-	    <select id="continent" onchange='aggiorna_citta()'>
+	    <select id="continent" class="input" onchange='aggiorna_citta()'>
 	      <option value="" disabled selected>Seleziona</option>
 	      <option value="africa">Africa</option>
 	      <option value="america">America</option>
@@ -75,14 +75,14 @@
 	  <tr>
 	  <td>Città:</td>
 	  <td>
-	    <select id="city" disabled>
+	    <select id="city" class="input" disabled>
 	    </select>
 	  </td>
 	  </tr>
 	  <tr>
 	  <td>Tipologia:</td>
 	  <td>
-	    <select id="type">
+	    <select id="type" class="input">
 	      <option value="culturale">Culturale</option>
 	      <option value="relax">Relax</option>
 	      <option value="divertimento">Divertimento</option>
@@ -92,13 +92,13 @@
 	  <tr>
 	  <td>Durata max:</td>
 	  <td>
-	  <button type="button" onclick="minus()">-</button><input type="text" id="duration" value="1" class="duration_field" readonly><button type="button" onclick="plus()">+</button>
+	  <button type="button" class="input" style="width:20px; text-align:center;" onclick="minus()">-</button><input type="text" id="duration" class="input" style="width:30px; text-align:center;" value="1" class="duration_field" readonly><button type="button" class="input" style="width:20px; text-align:center;" onclick="plus()">+</button>
 	  </td>
 	  </tr>
 	  <tr>
 	  <td>N. persone:</td>
 	  <td>
-	    <select id="npersons">
+	    <select id="npersons" class="input">
 	    <option value="1">1</option>
 	    <option value="2">2</option>
 	    <option value="3">3</option>
@@ -115,7 +115,7 @@
 	      Dal:
 	    </td>
 	    <td>
-	      <input type="text" id="datepicker1" name="data_partenza1" class="date_input"/>
+	      <input type="text" id="datepicker1" name="data_partenza1" class="date_input input"/>
 	    </td>
 	  </tr>
 	  <tr>
@@ -123,7 +123,7 @@
 	      Al:
 	    </td>
 	    <td>
-	      <input type="text" id="datepicker2" name="data_partenza2" class="date_input"/>
+	      <input type="text" id="datepicker2" name="data_partenza2" class="date_input input"/>
 	    </td>
 	  </tr>
 	  </table>
