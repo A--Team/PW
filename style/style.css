@@ -1,6 +1,6 @@
 /*
  * COLORI:
- * Bianco: #ECF0F1;
+ * Bianco (grigio chiaro): #ECF0F1;
  * Azzurro: #42B2E3;
  * Blu scuro: #4766B5;
  * Verde scuro: #2E4350;
@@ -118,7 +118,7 @@ body{
 #navigation a{
 	text-decoration:none;
 	color: #4766B5; /*#210C8F;*/
-	font-size:18px;
+	font-size:16px;
 	font-weight:bold;
 }
 .btn_navigation
@@ -222,7 +222,7 @@ body{
 	font-weight: bold;
 	float: left;		
 }
-.corpo_commento{
+.vert_menuommento{
 	text-align: justify;
 	border:3px solid #42B2E3;
 	margin-right: 15px;
@@ -328,6 +328,8 @@ body{
 	text-align:center;
 	width: 40px;
 }
+
+/*	MENU ORIZZONTALE */
 .ribbon{
 	display:inline-block;
 	float:right;
@@ -404,4 +406,62 @@ body{
 	border:1px solid #42B2E3;
 	padding-left: 2px;	
 	background-color: #ECF0F1;
+}
+
+/* MENU VERTICALE */
+#vert_menu {
+	width: 200px;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+	
+#vert_menu a {
+	text-decoration: none;
+	height: 24px;
+  	voice-family: "\"}\""; 
+  	voice-family: inherit;  	
+  	margin-bottom: 5px;
+  	padding-top: 5px;
+  	padding-bottom: 5px;
+  	padding-left: 10px;
+  	border:3px solid transparent;
+}
+	
+#vert_menu a:link, #vert_menu a:visited{
+	color: #4766B5;
+	display: block;
+	background-color: #ECF0F1;	
+	
+	-webkit-transition: background-color 0.2s  color 0.2s;/* Saf3.2+, Chrome */
+	-moz-transition: background-color 0.2s, color 0.2s;  /* FF4+ */
+	-ms-transition: background-color 0.2s, color 0.2s; /* IE10 */
+	-o-transition: background-color 0.2s, color 0.2s; /* Opera 10.5+ */
+	transition: background-color 0.2s, color 0.2s;
+}
+	
+#vert_menu a:hover{
+	color: #ECF0F1;
+	display: block;
+	background-color: #4766B5;
+	
+	-webkit-transition: background-color 0.2s  color 0.2s;/* Saf3.2+, Chrome */
+	-moz-transition: background-color 0.2s, color 0.2s;  /* FF4+ */
+	-ms-transition: background-color 0.2s, color 0.2s; /* IE10 */
+	-o-transition: background-color 0.2s, color 0.2s; /* Opera 10.5+ */
+	transition: background-color 0.2s, color 0.2s;
+}
+	
+#vert_menu a:active {
+	color: #ECF0F1;
+	display: block;
+	background-color: #4766B5;
+	
+	-webkit-transition: background-color 0.2s  color 0.2s;/* Saf3.2+, Chrome */
+	-moz-transition: background-color 0.2s, color 0.2s;  /* FF4+ */
+	-ms-transition: background-color 0.2s, color 0.2s; /* IE10 */
+	-o-transition: background-color 0.2s, color 0.2s; /* Opera 10.5+ */
+	transition: background-color 0.2s, color 0.2s;
+}
+#vert_menu #selected{
+	border:3px solid #42B2E3;
 }

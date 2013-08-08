@@ -43,9 +43,11 @@
 	</div>
 
 	<div id="navigation">
-    			<br>
-				<div class="btn_navigation"><a href="#">Aggiungi</a></div>
-				<div class="btn_navigation"><a href="gestioneprofilo.php">Profilo</a></div>		
+		<br>
+		<div id='vert_menu'>
+			<a href='#'><span>Aggiungi pacchetti</span></a>			
+			<a href='gestioneprofilo.php'><span>Il mio profilo</span></a>			
+		</div>	
   	</div>
       </div> 
       <div id="footer">

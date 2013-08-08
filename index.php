@@ -127,7 +127,8 @@
 	    </td>
 	  </tr>
 	  </table>
-	  <button type="button" onclick='search()'>Cerca</button>
+	  <br>
+	  <button type="button" class="btn_commenta" onclick='search()'>Cerca</button>
 	  <div id="err_content"></div></div>
 	</div>
       </div> 

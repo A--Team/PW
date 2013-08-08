@@ -40,10 +40,13 @@
 	</div>
 	<div id="navigation">
 	  	<br>
-		<div class="btn_navigation"><a href="ordini.php">Le mie prenotazioni</a></div>
-		<div class="btn_navigation"><a href="wish_list.php">I miei desideri</a></div>
-        <div class="btn_navigation"><a href="storico.php">I miei viaggi</a></div>
-        <div class="btn_navigation"><a href="gestioneprofilo.php">Profilo</a></div>	
+		<div id='vert_menu'>
+			<a href='homepersonale.php'><span>La mia home</span></a>				
+			<a href='ordini.php'><span>Le mie prenotazioni</span></a>
+			<a href='wish_list.php'><span>I miei desideri</span></a>
+			<a href='storico.php' id="selected"><span>I miei viaggi</span></a>
+			<a href='gestioneprofilo.php'><span>Il mio profilo</span></a>			
+		</div>	  
 	</div>
       </div> 
       <div id="footer">
