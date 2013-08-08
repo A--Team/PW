@@ -1,5 +1,5 @@
 /**
- * @author Matteo
+ * Classe che implementa AJAX per la pagina 'commenti.php'
  */
 
 /*
@@ -10,6 +10,7 @@ var glob_user;
 var glob_dest;
 var glob_commento;
 var glob_voto;
+
 /*
  * Funzione che gestisce l'invio di un commento
  */
@@ -35,7 +36,8 @@ function sendStateChange(){
 		var div = document.getElementById("new_comments");
 		div.innerHTML = xmlHttp.responseText + div.innerHTML;	
 		var comm = div.firstChild.childNodes[2];
-		$(function() {$("#"+comm.id).rateit();});  					
+		$(function() {$("#"+comm.id).rateit();});  	
+		$(comm.parentNode).fadeIn();				
   	}
 }
 
@@ -63,8 +65,36 @@ function deleteStateChange(){
 	if(xmlHttp.readyState == 4 && xmlHttp.status==200){
 		//Elimino il div padre del pulsante
 		var parent_div = btn.parentNode;
-		while(parent_div.hasChildNodes()) {
-    		parent_div.removeChild(parent_div.lastChild);
-		}
+		$(parent_div).fadeOut('slow');		
 	}
+}
+
+/*
+ * Funzione per aggiornare il campo select delle città quando l'utente seleziona un continente
+ */
+function update_cities(){
+  var continent=document.getElementById("continent").value;
+  if (window.XMLHttpRequest)
+    xmlhttp=new XMLHttpRequest();
+  else
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  xmlhttp.onreadystatechange=function()
+    {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+	document.getElementById("city").disabled=false;
+	$("#city").html(xmlhttp.responseText);
+      }
+    } 
+  xmlhttp.open("POST","update_cities.php",true);
+  xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xmlhttp.send("continent="+continent);
+}
+
+/*
+ * Funzione per caricare i commenti relativi alla destinazione selezionata
+ */
+function show_comments(){
+	var citta = document.getElementById("city").value;
+	window.open("commenti.php?citta="+citta,'_self','',false);
 }

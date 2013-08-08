@@ -112,6 +112,9 @@ body{
 	padding-bottom: 10000px;
 	margin-bottom: -10000px;
 }
+#nav_content{
+	margin-left: 15px;
+}
 #navigation a{
 	text-decoration:none;
 	color: #4766B5; /*#210C8F;*/

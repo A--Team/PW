@@ -22,7 +22,7 @@
 	extract($record);
 	database::dbClose();
 		
-	$output = "<div><br>";
+	$output = "<div style='display: none'><br>";
 	$output .= "<span class='tit_commento' id='tit_commento'>$user - ".strftime("%d %B %Y",strtotime($data))."</span>";					
 	$output .= "<div class='rateit' id='comment_$id' data-rateit-value=$voto data-rateit-ispreset='true' data-rateit-readonly='true'></div>";
 	
