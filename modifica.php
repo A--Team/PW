@@ -117,11 +117,11 @@
 			}
 			$html="
 				<form method='post' action='modifica.php'>
-					<table>	
-						<tr><td>Numero persone</td><td><input type='text' name='persone' value='".$pacchetto['persone']."'></td></tr>
-						<tr><td>Durata viaggio</td><td><input type='text' name='durata' value='".$pacchetto['durata']."'></td></tr>
-						<tr><td>Data partenza</td><td><input type='text' id='datepicker' name='data' value='".$pacchetto['data_partenza']."'></td></tr>";
-			$html=$html."<tr><td colspan='2'>Pernottamenti possibili</td></tr>";			
+					<table cellpadding=0 cellspacing=0>	
+						<tr style='height:20px'><td><h4>Numero persone:&nbsp;</h4></td><td><input type='text' class='input' name='persone' value='".$pacchetto['persone']."'></td></tr>
+						<tr style='height:20px'><td><h4>Durata viaggio:</h4></td><td><input type='text' class='input' name='durata' value='".$pacchetto['durata']."'></td></tr>
+						<tr style='height:20px'><td><h4>Data partenza:</h4></td><td><input type='text' class='input' id='datepicker' name='data' value='".$pacchetto['data_partenza']."'></td></tr>";
+			$html=$html."<tr style='height:20px'><tr><td colspan='2'><h4>Pernottamenti possibili:</h4></td></tr></tr>";			
 			while($pernottamento=mysql_fetch_array($pernottamenti))
 			{
 				$radio="<tr><td><input type='radio' name='pernottamento' value='".$pernottamento['id']."'";
@@ -130,7 +130,7 @@
 				$radio=$radio."></td><td>".$pernottamento['tipo']." a ".$pernottamento['prezzo']." euro</td></tr>";
 				$html=$html.$radio;
 			}
-			$html=$html."<tr><td colspan='2'>Trasporti possibili</td></tr>";			
+			$html=$html."<tr style='height:20px'><td colspan='2'><h4>Trasporti possibili:</h4></td></tr>";			
 			while($trasporto=mysql_fetch_array($trasporti))
 			{
 				$radio="<tr><td><input type='radio' name='trasporto' value='".$trasporto['id']."'";
@@ -139,7 +139,7 @@
 				$radio=$radio."></td><td>".$trasporto['tipo']." a ".$trasporto['prezzo']." euro</td></tr>";
 				$html=$html.$radio;
 			}
-			$html=$html."<tr><td colspan='2'>Attrazioni possibili</td></tr>";			
+			$html=$html."<tr style='height:20px'><td colspan='2'><h4>Attrazioni possibili:</h4></td></tr>";			
 			while($attrazione=mysql_fetch_array($attrazioni))
 			{
 				$checkbox="<tr><td><input type='checkbox' name='attrazioni[]' value='".$attrazione['id']."'";
@@ -150,15 +150,15 @@
 			}
 			if($_SESSION['username']!='agenzia')
 			{
-				$html=$html."<tr><td colspan='2'>Vuoi prenotare?</td></tr>";
+				$html=$html."<tr style='height:40px'><tr><td colspan='2'><h4>Vuoi prenotare?</h4></td></tr></tr>";
 				$radio="<tr><td><input type='radio' name='prenotato' value='1'></td><td>Prenota</td></tr>
 							<tr><td><input type='radio' name='prenotato' value='0' checked></td><td>Aggiungi a wishlist</td></tr>";
 				$html=$html.$radio;
 			}
 			
-			$html=$html."</table><input type='hidden' name='id_pacchetto' value='".$id_pacchetto."'>
+			$html=$html."</table><br><input type='hidden' name='id_pacchetto' value='".$id_pacchetto."'>
 								<input type='hidden' name='id_destinazione' value='".$id_destinazione."'>	
-							<input class='btn_commenta' type='submit' value='modifica'> </form>";
+							<input class='btn_commenta' type='submit' value='modifica'> </form><br>";
 			echo $html;
 			
 			 

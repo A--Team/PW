@@ -81,19 +81,20 @@
 				}
 				$html =$html."
 					<form method='post'  name='reg_form' action='gestioneprofilo.php'>
-						<table>
-						<tr><td>Nome</td><td><input type='text' name='nome' value='".$utente['nome']."'></td><td style='color:red;font-weight:bold'>*</td></tr>
-						<tr><td>Cognome</td><td><input type='text' name='cognome'value='".$utente['cognome']."'></td><td style='color:red;font-weight:bold'>*</td></tr>
-						<tr><td>Codice Fiscale</td><td><input type='text' name='cf' value='".$utente['cf']."'></td><td style='color:red;font-weight:bold'>*</td></tr>
-						<tr><td>E-Mail</td><td><input type='text' name='mail' value='".$utente['mail']."'></td><td style='color:red;font-weight:bold'>*</td></tr>
-						<tr><td>Indirizzo</td><td><input type='text' name='indirizzo' value='".$utente['indirizzo']."'></td><td style='color:red;font-weight:bold'>*</td></tr>
-						<tr><td>Telefono</td><td><input type='text' name='tel' value='".$utente['tel']."'></td><td style='color:red;font-weight:bold'>*</td></tr>
-						<tr><td>Username</td><td><input type='text' name='username' value='".$utente['user']."'></td><td style='color:red;font-weight:bold'>*</td></tr>
-						<tr><td>Nuova password</td><td><input type='password' name='password'></td></tr>
-						<tr><td>Reinserici password</td><td><input type='password' name='conf_password'></td></tr>
+						<table cellpadding=0 cellspacing=0>
+						<tr><td><h4>Nome:</h4></td><td><input type='text' size=30 class='input' name='nome' value='".$utente['nome']."'></td><td style='color:red;font-weight:bold'>*</td></tr>
+						<tr><td><h4>Cognome:</h4></td><td><input type='text' size=30 class='input' name='cognome'value='".$utente['cognome']."'></td><td style='color:red;font-weight:bold'>*</td></tr>
+						<tr><td><h4>Codice Fiscale:</h4></td><td><input type='text' size=30 class='input' name='cf' value='".$utente['cf']."'></td><td style='color:red;font-weight:bold'>*</td></tr>
+						<tr><td><h4>E-Mail:</h4></td><td><input type='text' size=30 class='input' name='mail' value='".$utente['mail']."'></td><td style='color:red;font-weight:bold'>*</td></tr>
+						<tr><td><h4>Indirizzo:</h4></td><td><input type='text' size=30 class='input' name='indirizzo' value='".$utente['indirizzo']."'></td><td style='color:red;font-weight:bold'>*</td></tr>
+						<tr><td><h4>Telefono:</h4></td><td><input type='text' size=30 class='input' name='tel' value='".$utente['tel']."'></td><td style='color:red;font-weight:bold'>*</td></tr>
+						<tr><td><h4>Username:</h4></td><td><input type='text' size=30 class='input' name='username' value='".$utente['user']."'></td><td style='color:red;font-weight:bold'>*</td></tr>
+						<tr><td><h4>Nuova password:</h4></td><td><input type='password' size=30 class='input' name='password'></td></tr>
+						<tr><td><h4>Reinserici password:&nbsp;</h4></td><td><input type='password' size=30 class='input' name='conf_password'></td></tr>
 						</table>
-						<input class='btn_commenta' type='button' value='modifica' onclick='check_reg(\"m\")'>
+						<br><input class='btn_commenta' type='button' value='modifica' onclick='check_reg(\"m\")'>
 					</form>
+					<br>
 					</div>";
 				echo $html;
 	
