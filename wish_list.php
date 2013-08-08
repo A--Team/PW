@@ -11,6 +11,8 @@
     <title>Agenzia Viaggi</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="description" content="">
+    <script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="js/wish_list.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="style/style.css">
   </head>
   <body>
@@ -49,7 +51,7 @@
 			<?php
 				include 'pacchetto.php';
 				$pacchetti=new pacchetto('wish',[]);
-				$pacchetti->stampa();
+				$pacchetti->stampa("elimina");
 			?>
 		</div>
 		<div id="navigation">

@@ -106,7 +106,7 @@
 			return true;
 		 }
 		 
-		 function stampa()
+		 function stampa($tipo=null)
 		 {
 				$conn=database::dbConnect();
 				
@@ -129,6 +129,7 @@
 						$costo = $costo + $p;
 					}
 					$html = "
+							<div style='float:left'>
 							<a href='modifica.php?id_pacchetto=".$id."'>
 							<div class='div_viaggio'>
 								<p class='dest_viaggio'>
@@ -146,6 +147,13 @@
 								</p>
 							</div></a>";
 					echo $html;
+					if($tipo=="elimina"){
+						$html = "<br><input style='margin-left:30px; margin-bottom:15px;' type='button' class='btn_commenta' value='Elimina' onclick=elimina(this,".$id.")></div>";
+						echo $html;
+					}
+					else{
+						echo "</div>";
+					}
 				}
 				database::dbClose();
 		 }
