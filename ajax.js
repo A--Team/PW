@@ -21,6 +21,10 @@ function aggiorna_citta(){
   document.getElementById("city").disabled=false;
 }
 
+function recupera_destinazioni(){
+    ajax_request("#destinazione","recupera_destinazioni.php","");
+}
+
 function aggiorna_citta_pacchetto(){
   var continent=document.getElementById("continent").value;
   ajax_request("#city","aggiorna_citta.php","continent="+continent);
@@ -79,6 +83,8 @@ function controlla_form(){
   npersons=document.getElementById("npersons").value;
   duration=document.getElementById("duration").value;
   datepicker=document.getElementById("datepicker").value;
+  npersons=document.getElementById("npersons").value;
+  sconto=document.getElementById("sconto").value;
   pernottamento=document.getElementById("pernottamento").value;
   trasporto=document.getElementById("trasporto").value;
   id_attr=document.getElementById("attrazioni_pacchetto").value;
@@ -87,24 +93,34 @@ function controlla_form(){
       return opzioni.value;
   });
   vettore_attrazioni=vettore_attrazioni.join(',');
-  if(city.length>0 && datepicker.length>0 && pernottamento.length>0 && trasporto.length>0){
-    post_string="city="+city+"&"+"duration="+duration+"&"+"npersons="+npersons+"&"+"datepicker="+datepicker+"&"+"pernottamento="+pernottamento+"&"+"trasporto="+trasporto+"&"+"vettore_attrazioni="+vettore_attrazioni;
-    $("#err_content").html("");
-    ajax_request("#confirm_content","crea_pacchetto.php",post_string);
-    document.getElementById("city").innerHTML="";
-    document.getElementById("city").disabled=true;
-    document.getElementById("datepicker").value="";
-    document.getElementById("pernottamento").innerHTML="";
-    document.getElementById("trasporto").innerHTML="";
-    document.getElementById("attrazioni").innerHTML="";
-    document.getElementById("attrazioni_pacchetto").innerHTML="";
+  if(!isNaN(sconto) && sconto>=0 && sconto<=100){
+    if(city.length>0 && datepicker.length>0 && pernottamento.length>0 && trasporto.length>0){
+      post_string="city="+city+"&"+"duration="+duration+"&"+"npersons="+npersons+"&"+"datepicker="+datepicker+"&"+"sconto="+sconto+"&"+"pernottamento="+pernottamento+"&"+"trasporto="+trasporto+"&"+"vettore_attrazioni="+vettore_attrazioni;
+      $("#err_content").html("");
+      ajax_request("#confirm_content","crea_pacchetto.php",post_string);
+      document.getElementById("city").innerHTML="";
+      document.getElementById("city").disabled=true;
+      document.getElementById("datepicker").value="";
+      document.getElementById("sconto").value="";
+      document.getElementById("pernottamento").innerHTML="";
+      document.getElementById("trasporto").innerHTML="";
+      document.getElementById("attrazioni").innerHTML="";
+      document.getElementById("attrazioni_pacchetto").innerHTML="";
+   }
+   else{
+      $("#confirm_content").html("");
+      $("#err_content").html("Attenzione, riempire tutti i campi.");
+   }
   }
   else{
-    $("#confirm_content").html("");
-    $("#err_content").html("Attenzione, riempire tutti i campi.");
+     $("#err_sconto").html("Attenzione, sconto deve essere un numero compreso fra 0 e 100.");
   }
 }
 
+function aggiungi_destinazione(){
+  
+}
+  
 function search(){
   var xmlhttp;
   var continent=document.getElementById("continent").value;
