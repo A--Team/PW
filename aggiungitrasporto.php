@@ -44,27 +44,28 @@
 	<br>
 	<br>
 	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" class="title_space">
-	<table cellspacing="10px">
+	<table cellspacing="15px">
 	<tr>
 	  <td>Destinazione:</td>
 	  <td>
-	  <select id="destinazione" name="destinazione">
+	  <select id="destinazione" class="input" name="destinazione">
 	  </select>
 	  </td>
 	</tr>
 	<tr>
 	  <td>Tipologia:</td>
 	  <td>
-	    <input type="text" id="tipologia" name="tipologia">
+	    <input type="text" class="input" id="tipologia" name="tipologia">
 	  </td>
 	</tr>
 	<tr>
 	  <td>Prezzo:</td>
-	  <td><input type="text" class="duration_field" name="prezzo">€</td>
+	  <td><input type="text" class="input" style="width:60px; text-align:center;" name="prezzo">€</td>
+	</tr>
+	<tr>
+	<td><button type="submit" class="btn_commenta">Salva trasporto</button></td>
 	</tr>
 	</table>
-	<br>
-	  <button type="submit">Salva trasporto</button>
 	</form>
 	<?php
 	  include_once 'database.php';

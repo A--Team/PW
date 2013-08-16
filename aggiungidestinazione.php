@@ -44,11 +44,11 @@
 	<br>
 	<br>
 	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data" class="title_space">
-	<table cellspacing="10px">
+	<table cellspacing="15px">
 	<tr>
 	  <td>Continente:</td>
 	  <td>
-	  <select id="continente" name="continente">
+	  <select id="continente" class="input" name="continente">
 	    <option value="" disabled selected>Seleziona continente</option>
 	    <option value="africa">Africa</option>
 	    <option value="america">America</option>
@@ -60,12 +60,12 @@
 	</tr>
 	<tr>
 	  <td>Nome citt&agrave:</td>
-	  <td><input type="text" id="citta" name="citta"></td>
+	  <td><input type="text" class="input" id="citta" name="citta"></td>
 	</tr>
 	<tr>
 	  <td>Tipologia:</td>
 	  <td>
-	    <input type="text" id="tipologia" name="tipologia">
+	    <input type="text" class="input" id="tipologia" name="tipologia">
 	  </td>
 	</tr>
 	<tr>
@@ -74,11 +74,12 @@
 	</tr>
 	<tr>
 	  <td>Descrizione:</td>
-	  <td><textarea id="descrizione" name="descrizione"></textarea></td>
+	  <td><textarea id="descrizione" class="input" name="descrizione"></textarea></td>
+	</tr>
+	<tr>
+	<td><button type="submit" class="btn_commenta">Salva destinazione</button></td>
 	</tr>
 	</table>
-	<br>
-	  <button type="submit">Salva destinazione</button>
 	</form>
 	<?php
 	  include_once 'database.php';

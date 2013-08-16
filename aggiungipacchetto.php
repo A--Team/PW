@@ -61,86 +61,89 @@
 	<br>
 	<br>
 	<form action="" class="title_space">
-	Continente:	
-	<select id="continent" onchange='aggiorna_citta_pacchetto()'>
+	<table cellspacing="15px">
+	<tr>
+	<td>Continente:</td>
+	<td><select id="continent" class="input" onchange='aggiorna_citta_pacchetto()'>
 	  <option value="" disabled selected>Seleziona continente</option>
 	  <option value="africa">Africa</option>
 	  <option value="america">America</option>
 	  <option value="asia">Asia</option>
 	  <option value="europa">Europa</option>
 	  <option value="oceania">Oceania</option>
-	</select>
-	<br>
-	<br>
-	Città:
-	<select id="city" name="citta" onchange='update_packet_options()' disabled>
-	</select>
-	<br>
-	<br>
-	N. Persone:
-	<select id="npersons" name="npersone">
+	</select></td>
+	</tr>
+	<tr>
+	<td>Città:</td>
+	<td><select id="city" name="citta" class="input" onchange='update_packet_options()' disabled>
+	</select></td>
+	</tr>
+	<tr>
+	<td>N. Persone:</td>
+	<td><select id="npersons" class="input" name="npersone">
 	  <option value="1">1</option>
 	  <option value="2">2</option>
 	  <option value="3">3</option>
 	  <option value="4">4</option>
 	  <option value="6">6</option>
-	</select>
+	</select></td>
+	</tr>
+	<tr>
+	<td>Durata:</td>
+	<td><button type="button" class="input" style="width:20px; text-align:center;" onclick="minus()">-</button><input type="text" id="duration" class="input" name="durata" style="width:30px; text-align:center;" value="1" readonly><button type="button" class="input" style="width:20px; text-align:center;" onclick="plus()">+</button></td>
+	</tr>
+	<tr>
+	<td>Data di partenza:</td>
+	<td><input type="text" id="datepicker" name="data_partenza" class="date_input input" readonly></td>
+	</tr>
+	<tr>
+	<td>Sconto:</td>
+	<td><input type="text" id="sconto" name="sconto" class="input" style="width:30px; text-align:center;" >%<br>
+	<div id="err_sconto"></div></td>
+	</tr>
+	<tr>
+	<td>Pernottamento:
 	<br>
 	<br>
-	Durata:
-	<button type="button" onclick="minus()">-</button><input type="text" id="duration" name="durata" value="1" class="duration_field" readonly><button type="button" onclick="plus()">+</button>
+	<select id="pernottamento" name="pernottamento" class="packet_options_select input" size="6">
+	</select></td>
+	<td>
+	Trasporto:
 	<br>
 	<br>
-	Data di partenza:
-	<input type="text" id="datepicker" name="data_partenza" class="date_input" readonly>
-	<br>
-	<br>
-	Sconto:
-	<input type="text" class="duration_field" id="sconto" name="sconto">%
-	<div id="err_sconto"></div>
-	<br>
-	<br>
-	Seleziona pernottamento:
-	<br>
-	<br>
-	<select id="pernottamento" name="pernottamento" class="packet_options_select" size="6">
-	</select>
-	<br>
-	<br>
-	Seleziona trasporto:
-	<br>
-	<br>
-	<select id="trasporto" name="trasporto" class="packet_options_select" size="6">
-	</select>
-	<br>
-	<br>
-	Seleziona attrazioni:
-	<br>
-	<br>
-	<table>
+	<select id="trasporto" name="trasporto" class="packet_options_select input" size="6">
+	</select></td>
+	</tr>
+	</table>
+	<table cellspacing="15px">
+	<tr>
+	<td>Seleziona attrazioni:</td>
+	</tr>
 	<tr>
 	  <td>
 	    Disponibili:<br>
-	    <select id="attrazioni" class="packet_options_select" size="6">
+	    <select id="attrazioni" class="packet_options_select input" size="6">
 	    </select>
 	  </td>
 	  <td>
-	    <button type="button" onclick="aggiungi_attrazione()">Aggiungi</button>
+	    <button type="button" class="btn_commenta" style="width:90px;" onclick="aggiungi_attrazione()">Aggiungi &gt&gt</button>
 	    <br>
-	    <button type="button" onclick="rimuovi_attrazione()">Rimuovi</button>
+	    <button type="button" class="btn_commenta" style="width:90px;" onclick="rimuovi_attrazione()">&lt&lt Rimuovi</button>
 	  </td>
-	  <td>
+	  <td> 
 	    Pacchetto:<br>
-	    <select id="attrazioni_pacchetto" name="attrazioni" class="packet_options_select" size="6">
+	    <select id="attrazioni_pacchetto" name="attrazioni" class="packet_options_select input" size="6">
 	    </select>
 	  </td>
 	</tr>
 	</table>
-	<br>
-	<br>
-	<button type="button" onclick="controlla_form()">Crea pacchetto</button>
-	<div id="err_content"></div>
-	<div id="confirm_content"></div>
+	<table cellspacing="15px">
+	<tr><td>
+	  <button type="button" class="btn_commenta" onclick="controlla_form()">Crea pacchetto</button>
+	  <div id="err_content"></div>
+	  <div id="confirm_content"></div></td>
+	</tr>
+	</table>
 	</form>
 	</div>
 	<div id="navigation">
