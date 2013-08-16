@@ -18,12 +18,9 @@
     <div id="container">
     <div id="header_container">
 	<div id="logo">
-			<span id="menu">
-				<a href="index.php"><span class="btn_menu">Home</span></a>
-				<a href="#"><span class="btn_menu">Catalogo</span></a>
-				<a href="#"><span class="btn_menu">Pippo</span></a>
-				<a href="#"><span class="btn_menu">Pluto</span></a>
-			</span>			
+	  <?php
+	    include 'menu.php';
+	  ?>		
 	</div>
 	<div id="login">
 		<?php
@@ -111,7 +108,7 @@
 	</div>
 	<div id="navigation">
     			<br>
-				<div class="btn_navigation"><a href="#">Aggiungi</a></div>
+				<div class="btn_navigation"><a href="aggiungipacchetto.php">Aggiungi</a></div>
 				<div class="btn_navigation"><a href="gestioneprofilo.php">Profilo</a></div>		
   	</div>
       </div> 

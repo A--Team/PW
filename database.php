@@ -8,8 +8,8 @@
          * Parametri di connessione al database
          */
         public static $dbHost = "localhost";
-        public static $dbUser = "user";
-        public static $dbPassword = "password";
+        public static $dbUser = "root";
+        public static $dbPassword = "neoadmin230689";
         public static $dbName = "tourdb";
         
         /*
