@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
+-- version 3.5.8.1deb1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generato il: Ago 01, 2013 alle 11:26
--- Versione del server: 5.5.32
--- Versione PHP: 5.4.16
+-- Host: localhost
+-- Generato il: Ago 16, 2013 alle 12:29
+-- Versione del server: 5.5.32-0ubuntu0.13.04.1
+-- Versione PHP: 5.4.9-4ubuntu2.2
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `tourdb`
 --
-CREATE DATABASE IF NOT EXISTS `tourdb` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `tourdb`;
 
 -- --------------------------------------------------------
 
@@ -110,6 +108,7 @@ CREATE TABLE IF NOT EXISTS `pacchetto` (
   `id_trasporto` int(11) NOT NULL,
   `id_destinazione` int(11) NOT NULL,
   `prenotato` tinyint(1) NOT NULL DEFAULT '0',
+  `sconto` int(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `id_utente` (`id_utente`),
   KEY `id_pernottamento` (`id_pernottamento`),
@@ -121,12 +120,12 @@ CREATE TABLE IF NOT EXISTS `pacchetto` (
 -- Dump dei dati per la tabella `pacchetto`
 --
 
-INSERT INTO `pacchetto` (`id`, `persone`, `durata`, `data_partenza`, `id_utente`, `id_pernottamento`, `id_trasporto`, `id_destinazione`, `prenotato`) VALUES
-(2, 2, 3, '2013-07-17', 'agenzia', 1, 1, 1, 0),
-(3, 3, 6, '2013-08-28', 'agenzia', 1, 1, 2, 0),
-(4, 2, 6, '2013-10-10', 'agenzia', 3, 5, 2, 0),
-(5, 2, 4, '2013-12-18', 'agenzia', 6, 8, 4, 0),
-(7, 6, 4, '2013-09-18', 'agenzia', 5, 9, 3, 0);
+INSERT INTO `pacchetto` (`id`, `persone`, `durata`, `data_partenza`, `id_utente`, `id_pernottamento`, `id_trasporto`, `id_destinazione`, `prenotato`, `sconto`) VALUES
+(2, 2, 3, '2013-07-17', 'agenzia', 1, 1, 1, 0, 0),
+(3, 3, 6, '2013-08-28', 'agenzia', 1, 1, 2, 0, 0),
+(4, 2, 6, '2013-10-10', 'agenzia', 3, 5, 2, 0, 0),
+(5, 2, 4, '2013-12-18', 'agenzia', 6, 8, 4, 0, 0),
+(7, 6, 4, '2013-09-18', 'agenzia', 5, 9, 3, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -274,8 +273,8 @@ ALTER TABLE `pernottamento`
 -- Limiti per la tabella `rel_attrazioni`
 --
 ALTER TABLE `rel_attrazioni`
-  ADD CONSTRAINT `rel_attrazioni_ibfk_2` FOREIGN KEY (`id_attrazione`) REFERENCES `attrazioni` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `rel_attrazioni_ibfk_1` FOREIGN KEY (`id_pacchetto`) REFERENCES `pacchetto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `rel_attrazioni_ibfk_1` FOREIGN KEY (`id_pacchetto`) REFERENCES `pacchetto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `rel_attrazioni_ibfk_2` FOREIGN KEY (`id_attrazione`) REFERENCES `attrazioni` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `trasporto`
