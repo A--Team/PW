@@ -129,7 +129,12 @@ function search(){
   var duration=document.getElementById("duration").value;
   var npersons=document.getElementById("npersons").value;
   var data_partenza1=document.getElementById("datepicker1").value;
+  var data1=data_partenza1.split("/");
+  var data_partenza1= data1[2]+"-"+data1[1]+"-"+data1[0];	
   var data_partenza2=document.getElementById("datepicker2").value;
+  var data2=data_partenza2.split("/");
+  var data_partenza2= data2[2]+"-"+data2[1]+"-"+data2[0];	
+  
   if(city.length>0 && data_partenza1.length>0 && data_partenza2.length>0){
     post_string="continent="+continent+"&"+"city="+city+"&"+"type="+type+"&"+"duration="+duration+"&"+"npersons="+npersons+"&"+"data_partenza1="+data_partenza1+"&"+"data_partenza2="+data_partenza2;
     ajax_request("#content","search.php",post_string);
