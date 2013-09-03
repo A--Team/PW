@@ -58,8 +58,6 @@
 	  <button type="button" onclick="location.href='aggiungiattrazione.php'">Aggiungi attrazione</button>
 	</div>
 	<h2 class="title_space">Aggiungi pacchetto</h2>
-	<br>
-	<br>
 	<form action="" class="title_space">
 	<table cellspacing="15px">
 	<tr>
@@ -147,9 +145,11 @@
 	</form>
 	</div>
 	<div id="navigation">
-    			<br>
-				<div class="btn_navigation"><a href="aggiungipacchetto.php">Aggiungi</a></div>
-				<div class="btn_navigation"><a href="gestioneprofilo.php">Profilo</a></div>		
+    	<br>
+		<div id='vert_menu'>
+			<a href='aggiungipacchetto.php'><span>Aggiungi pacchetti</span></a>			
+			<a href='gestioneprofilo.php'><span>Il mio profilo</span></a>			
+		</div>	
   	</div>
       </div> 
       <div id="footer">

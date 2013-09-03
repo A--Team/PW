@@ -13,15 +13,21 @@
         public static $dbName = "tourdb";
         
         /*
-         * Connessione al database
+         * Connessione al database (charset: utf-8)
          */
         public static function dbConnect(){
             //creo una connessione al server
             $conn = mysql_connect(database::$dbHost, database::$dbUser, database::$dbPassword)
                 or die("Errore nella connessione al DB Server: " . mysql_error());
+			//Imposto charset utf-8
+			mysql_query("SET character_set_results=utf8", $conn);
+    		mb_language('uni'); 
+    		mb_internal_encoding('UTF-8');    		
             //seleziono il database
             mysql_select_db(database::$dbName)
                 or die("Errore nella selezione del database: " . mysql_error());
+			//Imposto charset utf-8
+			mysql_query("set names 'utf8'",$conn);
             return $conn;
         }
         

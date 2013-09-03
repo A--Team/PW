@@ -17,7 +17,7 @@
   	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script>
 	  $(function() {
-    		$( "#datepicker" ).datepicker({dateFormat:'yy-mm-dd'}).val;
+    		$( "#datepicker" ).datepicker({dateFormat:'dd/mm/yy'}).val;
   		});
   </script>
   </head>
@@ -36,7 +36,7 @@
 	</div>
 	</div>
       <div id="content_container">
-	<div id="content">
+	<div id="content">		
 		<?php
 			include 'database.php';
 			$conn=database::dbConnect();
@@ -44,6 +44,9 @@
 			{
 				$user=$_SESSION['username'];
 				extract($_POST);
+				//echo $data . "<br>";
+				//echo strftime('%Y-%d-%m',strtotime($data));
+				$data = strftime('%Y-%d-%m',strtotime($data));
 				if($user=='agenzia')
 				{
 					$query="UPDATE pacchetto SET persone='".$persone."',durata='".$durata."',
@@ -91,7 +94,6 @@
 		
 			if(isset($_GET['id_pacchetto']))
 				$id_pacchetto=$_GET['id_pacchetto'];
-			
 			$query="SELECT * FROM pacchetto WHERE id='".$id_pacchetto."'";
 			
 			$result=database::qSelect($conn,$query);
@@ -112,12 +114,21 @@
 			{
 				$id_attrazioni_pacchetto[]=$id['id_attrazione'];
 			}
+			$query = "SELECT * FROM destinazione JOIN pacchetto ON destinazione.id = pacchetto.id_destinazione WHERE pacchetto.id = $id_pacchetto GROUP BY destinazione.id";
+			$destinazione = mysql_fetch_array(database::qSelect($conn,$query));
+			echo "<div id='dest_intestazione'><br>";
+				echo "<div id='dest_commento'>".$destinazione['citta']."</div><br>";
+				echo "<div id='dest_foto'><img src=style/images/dest/".$destinazione['foto']." width=200 height=150></div>";				
+				echo "<div id='dest_descrizione'>".$destinazione['descrizione']."</div>";
+				echo "</div>";
+				echo "<input class='btn_commenta' type='button' value='vedi commenti' onclick=\"location.href='commenti.php?citta=".$destinazione['citta']."'\"><br>";
+		 
 			$html="
 				<form method='post' action='modifica.php'>
 					<table cellpadding=0 cellspacing=0>	
 						<tr style='height:20px'><td><h4>Numero persone:&nbsp;</h4></td><td><input type='text' class='input' name='persone' value='".$pacchetto['persone']."'></td></tr>
 						<tr style='height:20px'><td><h4>Durata viaggio:</h4></td><td><input type='text' class='input' name='durata' value='".$pacchetto['durata']."'></td></tr>
-						<tr style='height:20px'><td><h4>Data partenza:</h4></td><td><input type='text' class='input' id='datepicker' name='data' value='".$pacchetto['data_partenza']."'></td></tr>";
+						<tr style='height:20px'><td><h4>Data partenza:</h4></td><td><input type='text' class='input' id='datepicker' name='data' value='".strftime('%d/%m/%Y',strtotime($pacchetto['data_partenza']))."'></td></tr>";
 			$html=$html."<tr style='height:20px'><tr><td colspan='2'><h4>Pernottamenti possibili:</h4></td></tr></tr>";			
 			while($pernottamento=mysql_fetch_array($pernottamenti))
 			{
@@ -164,9 +175,22 @@
 	</div>
 	
 	<div id="navigation">
-    			<br>
-				<div class="btn_navigation"><a href="aggiungipacchetto.php">Aggiungi</a></div>
-				<div class="btn_navigation"><a href="gestioneprofilo.php">Profilo</a></div>		
+		<br>
+		<div id='vert_menu'>
+			<?php
+				if($_SESSION['username']=='agenzia'){
+					echo "<a href='aggiungipacchetto.php'><span>Aggiungi pacchetti</span></a>";			
+					echo "<a href='gestioneprofilo.php'><span>Il mio profilo</span></a>";
+				}
+				else {
+					echo "<a href='homepersonale.php' id=\"selected\"><span>La mia home</span></a>";
+			   		echo "<a href='ordini.php'><span>Le mie prenotazioni</span></a>";
+			   		echo "<a href='wish_list.php'><span>I miei desideri</span></a>";
+			   		echo "<a href='storico.php'><span>I miei viaggi</span></a>";
+			   		echo "<a href='gestioneprofilo.php'><span>Il mio profilo</span></a>";		
+				}	
+			?>		
+		</div>	
   	</div>
       </div> 
       <div id="footer">

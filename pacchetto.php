@@ -144,9 +144,18 @@
 					{
 						$costo = $costo + $p;
 					}
+					//Imposto il link da richiamare al click su un pacchetto
+					switch ($tipo) {
+						case 'storico':
+							$link = "commenti.php?citta=".$citta;
+							break;						
+						default:
+							$link = "modifica.php?id_pacchetto=$id";
+							break;
+					}
 					$html = "
 							<div style='float:left'>
-							<a href='modifica.php?id_pacchetto=".$id."'>
+							<a href=$link>
 							<div class='div_viaggio'>
 								<p class='dest_viaggio'>
 									".$citta."

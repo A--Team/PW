@@ -41,8 +41,6 @@
 	  <button type="button" class="bottone_sottomenu" onclick="location.href='aggiungiattrazione.php'">Aggiungi attrazione</button>
 	</div>
 	<h2 class="title_space">Aggiungi attrazione</h2>
-	<br>
-	<br>
 	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" class="title_space">
 	<table cellspacing="15px">
 	<tr>
@@ -60,7 +58,7 @@
 	</tr>
 	<tr>
 	  <td>Prezzo:</td>
-	  <td><input type="text" class="input" style="width:60px; text-align:center;" name="prezzo">€</td>
+	  <td><input type="text" class="input" style="width:60px; text-align:center;" name="prezzo">&nbsp;€</td>
 	</tr>
 	<tr>
 	  <td><button type="submit" class="btn_commenta">Salva attrazione</button></td>
@@ -86,9 +84,11 @@
 	?>
 	</div>
 	<div id="navigation">
-	  <br>
-	  <div class="btn_navigation"><a href="aggiungipacchetto.php">Aggiungi</a></div>
-	  <div class="btn_navigation"><a href="gestioneprofilo.php">Profilo</a></div>		
+		<br>
+		<div id='vert_menu'>
+			<a href='aggiungipacchetto.php'><span>Aggiungi pacchetti</span></a>			
+			<a href='gestioneprofilo.php'><span>Il mio profilo</span></a>			
+		</div>	
   	</div>
       </div> 
       <div id="footer">

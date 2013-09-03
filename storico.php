@@ -35,7 +35,7 @@
 			if($pacchetti->isEmpty())
 				echo "<h3>Non hai effettuato alcun viaggio!</h3>";
 			else
-			$pacchetti->stampa();
+			$pacchetti->stampa("storico");
 		?>
 	</div>
 	<div id="navigation">

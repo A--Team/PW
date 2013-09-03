@@ -108,7 +108,17 @@
 		</script>
 	</div>
 	<div id="navigation">
-	  	<div id="nav_content">
+	  	
+	  		<br>
+		<div id='vert_menu'>
+			<a href='homepersonale.php'><span>La mia home</span></a>				
+			<a href='ordini.php'><span>Le mie prenotazioni</span></a>
+			<a href='wish_list.php'><span>I miei desideri</span></a>
+			<a href='storico.php' id="selected"><span>I miei viaggi</span></a>
+			<a href='gestioneprofilo.php'><span>Il mio profilo</span></a>			
+		</div>	  
+	  		<!--
+	  		<div id="nav_content">
 	  		<br><br><br>
 	  		<h3>Scegli la destinazione:</h3>
 	  		<table>
@@ -132,8 +142,9 @@
 			  	</tr>
 		  	</table>
 		  	<br>
-		  	<input type="button" class="btn_commenta" style="margin: auto" value="Cerca" onclick="show_comments()"/>
+		  	<input type="button" class="btn_commenta" style="margin: auto" value="Cerca" onclick="show_comments()"/>		  	
 		</div>
+		-->
 	</div>
       </div> 
       <div id="footer">

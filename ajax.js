@@ -95,7 +95,7 @@ function controlla_form(){
   vettore_attrazioni=vettore_attrazioni.join(',');
   if(!isNaN(sconto) && sconto>=0 && sconto<=100){
     if(city.length>0 && datepicker.length>0 && pernottamento.length>0 && trasporto.length>0){
-      post_string="city="+city+"&"+"duration="+duration+"&"+"npersons="+npersons+"&"+"datepicker="+datepicker+"&"+"sconto="+sconto+"&"+"pernottamento="+pernottamento+"&"+"trasporto="+trasporto+"&"+"vettore_attrazioni="+vettore_attrazioni;
+      post_string="city="+city+"&"+"duration="+duration+"&"+"npersons="+npersons+"&"+"datepicker="+datepicker+"&"+"sconto="+(sconto/100)+"&"+"pernottamento="+pernottamento+"&"+"trasporto="+trasporto+"&"+"vettore_attrazioni="+vettore_attrazioni;
       $("#err_content").html("");
       ajax_request("#confirm_content","crea_pacchetto.php",post_string);
       document.getElementById("city").innerHTML="";
