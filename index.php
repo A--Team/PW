@@ -12,8 +12,8 @@
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script>
     $(function(){
-      $("#datepicker1").datepicker({ dateFormat: 'yy-mm-dd' }).val();
-      $("#datepicker2").datepicker({ dateFormat: 'yy-mm-dd' }).val();
+      $("#datepicker1").datepicker({ dateFormat: 'dd/mm/yy' }).val();
+      $("#datepicker2").datepicker({ dateFormat: 'dd/mm/yy' }).val();
     });
     </script>
     <script>
@@ -26,7 +26,7 @@
 	$('#duration').val(parseInt($('#duration').val())+1);
     }
     </script>
-  </head>
+    </head>
   <body>
     <div id="container">
     <div id="header_container">
@@ -105,7 +105,7 @@
 	  </td>
 	  </tr>
 	  </table>
-	  <h5>Quando vuoi viaggiare?</h5>
+	  <h5>Quando vuoi partire?</h5>
 	  <table>
 	  <tr>
 	    <td>
