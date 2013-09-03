@@ -17,7 +17,7 @@
 		 */
 
 		 function pacchetto($tipo_pacchetto,$parametri){
-		 	include 'database.php';
+		 	include_once 'database.php';
 			include 'config.php';
 			
 			$conn=database::dbConnect();
@@ -83,7 +83,7 @@
 					pernottamento.tipo AS tipo_pernottamento,trasporto.tipo AS tipo_trasporto, destinazione.citta,
 					destinazione.foto
 					FROM pacchetto,pernottamento,trasporto,destinazione 
-					WHERE pacchetto.id_utente='agenzia' AND pernottamento.id=pacchetto.id_pernottamento 
+					WHERE pacchetto.sconto>0 AND pacchetto.id_utente='agenzia' AND pernottamento.id=pacchetto.id_pernottamento 
 					AND trasporto.id=pacchetto.id_trasporto AND destinazione.id=pacchetto.id_destinazione";
 					break;
 					}
@@ -110,11 +110,18 @@
 					break;
 					}				
 		}
-			$this->pacchetti=database::qSelect($conn,$query);
-			database::dbClose();	
+			$this->pacchetti=database::qSelect($conn,$query);			
+			database::dbClose();
 			return true;
 		 }
 		 
+		 function isEmpty(){
+		 	if(mysql_num_rows($this->pacchetti)==0)
+		 		return true;
+			else 				
+				return false;
+		 }
+		 		 
 		 function stampa($tipo=null)
 		 {
 				$conn=database::dbConnect();
@@ -132,7 +139,7 @@
 					}
 					
 					//Calcolo il costo totale
-					$costo = $prezzo_pernottamento*$durata*$persone + $prezzo_trasporto*$persone;
+					$costo = ($prezzo_pernottamento*$durata*$persone + $prezzo_trasporto*$persone)*(1-$sconto);
 					foreach($prezzo_attr as $p)
 					{
 						$costo = $costo + $p;
@@ -152,7 +159,11 @@
 								<span class='carat_viaggio'>Partenza il:</span>&nbsp;".strftime("%d %B %Y",strtotime($data_partenza)).".<br>
 								<span class='carat_viaggio'>Trasporto:</span>&nbsp;". $tipo_trasporto."<br>
 								<span class='carat_viaggio'>Pernottamento:</span>&nbsp;". $tipo_pernottamento."<br>
-								<span class='costo_viaggio'>A soli:&nbsp;". $costo." €</span>
+								<span class='costo_viaggio'>A soli:&nbsp;". $costo." € ";
+					if($sconto!=0)
+						$html.="(".($sconto*100)."% di sconto!)";
+					$html .= "
+								</span>
 								</p>
 							</div></a>";
 					echo $html;
@@ -166,5 +177,7 @@
 				}
 				database::dbClose();
 		 }
+		 
+		 
     }
 ?>

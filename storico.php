@@ -32,6 +32,9 @@
 		<?php
 			include 'pacchetto.php';
 			$pacchetti=new pacchetto('storico',[]);
+			if($pacchetti->isEmpty())
+				echo "<h3>Non hai effettuato alcun viaggio!</h3>";
+			else
 			$pacchetti->stampa();
 		?>
 	</div>

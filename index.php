@@ -12,8 +12,9 @@
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script>
     $(function(){
-      $("#datepicker1").datepicker({ dateFormat: 'dd/mm/yy' }).val();
-      $("#datepicker2").datepicker({ dateFormat: 'dd/mm/yy' }).val();
+    	$.datepicker.setDefaults($.datepicker.regional['it']);
+    	$("#datepicker1").datepicker({ dateFormat: 'dd/mm/yy' }).val();
+    	$("#datepicker2").datepicker({ dateFormat: 'dd/mm/yy' }).val();
     });
     </script>
     <script>

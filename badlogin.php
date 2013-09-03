@@ -27,7 +27,6 @@
 		?>
 	</div>
 	<div id="navigation">
-	  	<div>colonna laterale</div>
 	</div>
       </div> 
       <div id="footer">

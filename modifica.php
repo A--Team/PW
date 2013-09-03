@@ -155,7 +155,7 @@
 			
 			$html=$html."</table><br><input type='hidden' name='id_pacchetto' value='".$id_pacchetto."'>
 								<input type='hidden' name='id_destinazione' value='".$id_destinazione."'>	
-							<input class='btn_commenta' type='submit' value='modifica'> </form><br>";
+							<input class='btn_commenta' type='submit' value='conferma'> </form><br>";
 			echo $html;
 			
 			 
