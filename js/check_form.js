@@ -82,3 +82,4 @@ function check_reg(tipo)
 	}
 
 }
+

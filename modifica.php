@@ -81,12 +81,11 @@
 							$query="INSERT INTO rel_attrazioni (id_attrazione,id_pacchetto) VALUE ('".$idattr."','".$idnuovo."')";
 							database::qInsertInto($conn,$query); 
 						}
-					}
-					echo "<h3>Pacchetto personalizzato!</h3>";
-					echo "<a href='homepersonale.php'> Torna alla home</a>";		
+					}	
 				}
-				echo "<h3>Modifiche apportate con successo</h3>";
-				
+				?>
+				<script>window.history.go(-2);</script>
+				<?php
 		}
 		
 		
