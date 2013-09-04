@@ -151,7 +151,7 @@
 					//Imposto il link da richiamare al click su un pacchetto
 					switch ($tipo) {
 						case 'storico':
-							$link = "commenti.php?citta=".$citta;
+							$link = "commenti.php?citta=".urlencode($citta);
 							break;						
 						default:
 							$link = "modifica.php?id_pacchetto=$id";

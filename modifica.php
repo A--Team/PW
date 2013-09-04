@@ -120,8 +120,8 @@
 				echo "<div id='dest_foto'><img src=style/images/dest/".$destinazione['foto']." width=200 height=150></div>";				
 				echo "<div id='dest_descrizione'>".$destinazione['descrizione']."</div>";
 				echo "</div>";
-				echo "<input class='btn_commenta' type='button' value='vedi commenti' onclick=\"location.href='commenti.php?citta=".$destinazione['citta']."'\"><br>";
-		 
+				echo "<input class='btn_commenta' type='button' value='vedi commenti' onclick=\"location.href='commenti.php?citta=".urlencode($destinazione['citta'])."'\"><br>";
+		 		
 			$html="
 				<form method='post' action='modifica.php'>
 					<table cellpadding=0 cellspacing=0>	
