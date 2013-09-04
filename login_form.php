@@ -4,11 +4,11 @@
 )	{
 		if($_SESSION['username']=='agenzia')
 		{
-			echo "<br><br><h2>Benvenuto<a href='agenzia.php'> agenzia!</a></h2><br>";
+			echo "<br><br><h2>Benvenuto <a href='agenzia.php'>agenzia!</a></h2><br>";
 		}
 		else
 		{
-			echo "<br><br><h2>Benvenuto<a href='homepersonale.php'> " . $_SESSION['username'] . "!</a></h2><br>";
+			echo "<br><br><h2>Benvenuto <a href='homepersonale.php'>" . $_SESSION['username'] . "!</a></h2><br>";
 		}
 ?>
         <form method='POST' action='logout.php'>
