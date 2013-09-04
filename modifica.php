@@ -44,9 +44,8 @@
 			{
 				$user=$_SESSION['username'];
 				extract($_POST);
-				//echo $data . "<br>";
-				//echo strftime('%Y-%d-%m',strtotime($data));
-				$data = strftime('%Y-%d-%m',strtotime($data));
+				
+				$data = strftime("%Y-%d-%m",strtotime($data));
 				if($user=='agenzia')
 				{
 					$query="UPDATE pacchetto SET persone='".$persone."',durata='".$durata."',
