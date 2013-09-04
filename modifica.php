@@ -65,22 +65,30 @@
 				}
 				else
 				{
-					$query="INSERT INTO pacchetto (persone,durata,data_partenza,id_utente,id_pernottamento,id_trasporto,id_destinazione,prenotato) 
-							VALUE ('".$persone."','".$durata."','".$data."','".$user."',
-							'".$pernottamento."','".$trasporto."','".$id_destinazione."','".$prenotato."')";
-					database::qInsertInto($conn,$query);
-					$query="SELECT MAX(id) AS id FROM pacchetto WHERE id_utente='".$user."'";
-					$result=database::qSelect($conn,$query);
-					$record=mysql_fetch_array($result);
-					$idnuovo=$record['id'];
-					if(isset($attrazioni))
+					if($user_attuale_pacchetto!="agenzia")
 					{
-						foreach($attrazioni as $idattr)
+						$query="UPDATE pacchetto SET prenotato='".$prenotato."' WHERE id='".$id_pacchetto."'";
+						database::qUpdate($conn,$query);
+					}
+					else
+					{
+						$query="INSERT INTO pacchetto (persone,durata,data_partenza,id_utente,id_pernottamento,id_trasporto,id_destinazione,prenotato) 
+								VALUE ('".$persone."','".$durata."','".$data."','".$user."',
+								'".$pernottamento."','".$trasporto."','".$id_destinazione."','".$prenotato."')";
+						database::qInsertInto($conn,$query);
+						$query="SELECT MAX(id) AS id FROM pacchetto WHERE id_utente='".$user."'";
+						$result=database::qSelect($conn,$query);
+						$record=mysql_fetch_array($result);
+						$idnuovo=$record['id'];
+						if(isset($attrazioni))
 						{
-							$query="INSERT INTO rel_attrazioni (id_attrazione,id_pacchetto) VALUE ('".$idattr."','".$idnuovo."')";
-							database::qInsertInto($conn,$query); 
+							foreach($attrazioni as $idattr)
+							{
+								$query="INSERT INTO rel_attrazioni (id_attrazione,id_pacchetto) VALUE ('".$idattr."','".$idnuovo."')";
+								database::qInsertInto($conn,$query); 
+							}
 						}
-					}	
+					}
 				}
 				?>
 				<script>window.history.go(-2);</script>
@@ -96,6 +104,7 @@
 			
 			$result=database::qSelect($conn,$query);
 			$pacchetto=mysql_fetch_array($result);
+			$user_attuale_pacchetto=$result['user'];
 			$id_destinazione=$pacchetto['id_destinazione'];
 			$query="SELECT * FROM pernottamento WHERE id_destinazione='".$id_destinazione."'";
 			$pernottamenti=database::qSelect($conn,$query);
@@ -163,6 +172,7 @@
 			}
 			
 			$html=$html."</table><br><input type='hidden' name='id_pacchetto' value='".$id_pacchetto."'>
+								<input type='hidden' name='user_attuale_pacchetto' value='".$user_attuale_pacchetto."'>
 								<input type='hidden' name='id_destinazione' value='".$id_destinazione."'>	
 							<input class='btn_commenta' type='submit' value='conferma'> </form><br>";
 			echo $html;
