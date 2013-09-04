@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.8.1deb1
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generato il: Ago 16, 2013 alle 12:29
--- Versione del server: 5.5.32-0ubuntu0.13.04.1
--- Versione PHP: 5.4.9-4ubuntu2.2
+-- Host: 127.0.0.1
+-- Generato il: Set 04, 2013 alle 14:48
+-- Versione del server: 5.5.27
+-- Versione PHP: 5.4.7
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `attrazioni` (
   `id_destinazione` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_destinazione` (`id_destinazione`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dump dei dati per la tabella `attrazioni`
@@ -45,7 +45,15 @@ INSERT INTO `attrazioni` (`id`, `prezzo`, `tipo`, `id_destinazione`) VALUES
 (3, 25, 'visita shibuya', 2),
 (4, 15, 'surf', 3),
 (5, 100, 'tour della città', 4),
-(6, 15, 'shopping a Akihabara', 2);
+(6, 15, 'shopping a Akihabara', 2),
+(7, 30, 'Visita alle piramidi', 6),
+(8, 80, 'Escursione nel deserto', 6),
+(9, 80, 'Escursione nel deserto', 8),
+(10, 25, 'Snorkeling', 8),
+(11, 25, 'Snorkeling', 9),
+(12, 80, 'Viaggio in barca', 9),
+(13, 10, 'Ciaspolata', 10),
+(14, 1, 'Messa commemorativa del Dogui', 10);
 
 -- --------------------------------------------------------
 
@@ -77,20 +85,25 @@ CREATE TABLE IF NOT EXISTS `destinazione` (
   `citta` varchar(50) NOT NULL,
   `tipo` varchar(50) NOT NULL,
   `foto` varchar(100) NOT NULL,
-  `descrizione` longtext NOT NULL,
+  `descrizione` longtext CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dump dei dati per la tabella `destinazione`
 --
 
 INSERT INTO `destinazione` (`id`, `continente`, `citta`, `tipo`, `foto`, `descrizione`) VALUES
-(1, 'europa', 'roma', 'culturale', 'roma.jpg', ''),
-(2, 'asia', 'tokyo', 'culturale', 'tokyo.jpg', ''),
-(3, 'america', 'miami', 'divertimento', 'miami.jpg', ''),
-(4, 'oceania', 'sydney', 'relax', 'sydney.jpg', ''),
-(5, 'europa', 'parigi', 'divertimento', 'parigi.jpg', '');
+(1, 'europa', 'roma', 'culturale', 'roma.jpg', 'Memorabile visita alla città eterna.'),
+(2, 'asia', 'tokyo', 'culturale', 'tokyo.jpg', 'Fatti ammaliare dalla più affascinante capitale asiatica.'),
+(3, 'america', 'miami', 'divertimento', 'miami.jpg', 'Rivivi i momenti memorabili di Miami Vice.'),
+(4, 'oceania', 'sydney', 'relax', 'sydney.jpg', 'La città migliore al mondo per la caccia al canguro.'),
+(5, 'europa', 'parigi', 'divertimento', 'parigi.jpg', 'Cosa c''è di meglio di una vacanza senza bidet?'),
+(6, 'africa', 'cairo', 'Divertimento', 'cairo.jpg', 'Entusiasmante viaggio nella capitale egiziana.'),
+(7, 'europa', 'formentera', 'Divertimento', 'formentera.jpg', 'Divertente vacanza alle isole Baleari.'),
+(8, 'africa', 'djerba', 'Divertimento', 'djerba.jpg', 'Fantastico viaggio in una delle principali mete tunisine.'),
+(9, 'america', 'cancun', 'Divertimento', 'cancun.jpg', 'Il mare turchese più bello del mondo.'),
+(10, 'europa', 'cortina d''ampezzo', 'Relax', 'cortina.jpg', 'Rilassante soggiorno a Cortina d''Ampezzo.');
 
 -- --------------------------------------------------------
 
@@ -108,24 +121,32 @@ CREATE TABLE IF NOT EXISTS `pacchetto` (
   `id_trasporto` int(11) NOT NULL,
   `id_destinazione` int(11) NOT NULL,
   `prenotato` tinyint(1) NOT NULL DEFAULT '0',
-  `sconto` int(3) NOT NULL DEFAULT '0',
+  `sconto` float NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `id_utente` (`id_utente`),
   KEY `id_pernottamento` (`id_pernottamento`),
   KEY `id_trasporto` (`id_trasporto`),
   KEY `id_destinazione` (`id_destinazione`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Dump dei dati per la tabella `pacchetto`
 --
 
 INSERT INTO `pacchetto` (`id`, `persone`, `durata`, `data_partenza`, `id_utente`, `id_pernottamento`, `id_trasporto`, `id_destinazione`, `prenotato`, `sconto`) VALUES
-(2, 2, 3, '2013-07-17', 'agenzia', 1, 1, 1, 0, 0),
+(2, 2, 3, '2013-07-17', 'agenzia', 1, 1, 1, 0, 0.2),
 (3, 3, 6, '2013-08-28', 'agenzia', 1, 1, 2, 0, 0),
 (4, 2, 6, '2013-10-10', 'agenzia', 3, 5, 2, 0, 0),
 (5, 2, 4, '2013-12-18', 'agenzia', 6, 8, 4, 0, 0),
-(7, 6, 4, '2013-09-18', 'agenzia', 5, 9, 3, 0, 0);
+(7, 6, 4, '2013-09-18', 'agenzia', 5, 9, 3, 0, 0),
+(8, 2, 5, '2013-09-21', 'agenzia', 7, 10, 6, 0, 0),
+(9, 1, 3, '2013-09-14', 'agenzia', 8, 12, 7, 0, 0.15),
+(10, 2, 7, '2013-10-05', 'agenzia', 9, 13, 8, 0, 0),
+(11, 2, 6, '2013-10-18', 'agenzia', 10, 15, 9, 0, 0.1),
+(12, 2, 2, '2013-12-13', 'agenzia', 11, 16, 10, 0, 0),
+(13, 2, 4, '2013-09-10', 'agenzia', 2, 7, 5, 0, 0.1),
+(16, 2, 4, '2013-09-10', 'johndrive', 2, 7, 5, 0, 0),
+(18, 2, 4, '2013-09-10', 'johndrive', 2, 7, 5, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -140,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `pernottamento` (
   `id_destinazione` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_destinazione` (`id_destinazione`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dump dei dati per la tabella `pernottamento`
@@ -148,11 +169,16 @@ CREATE TABLE IF NOT EXISTS `pernottamento` (
 
 INSERT INTO `pernottamento` (`id`, `prezzo`, `tipo`, `id_destinazione`) VALUES
 (1, 200, '4 stelle', 1),
-(2, 76, '3stelle', 5),
+(2, 76, '3 stelle', 5),
 (3, 20, 'ostello', 2),
-(4, 500, '5stelle', 2),
-(5, 400, '4stelle', 3),
-(6, 120, '2stelle', 4);
+(4, 500, '5 stelle', 2),
+(5, 400, '4 stelle', 3),
+(6, 120, '2 stelle', 4),
+(7, 200, '4 stelle', 6),
+(8, 35, '2 stelle', 7),
+(9, 70, '3 stelle', 8),
+(10, 150, '3 stelle', 9),
+(11, 350, '4 stelle', 10);
 
 -- --------------------------------------------------------
 
@@ -169,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `rel_attrazioni` (
   KEY `id_attrazione` (`id_attrazione`),
   KEY `id_pacchetto_2` (`id_pacchetto`),
   KEY `id_attrazione_2` (`id_attrazione`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=68 ;
 
 --
 -- Dump dei dati per la tabella `rel_attrazioni`
@@ -178,7 +204,15 @@ CREATE TABLE IF NOT EXISTS `rel_attrazioni` (
 INSERT INTO `rel_attrazioni` (`id`, `id_pacchetto`, `id_attrazione`) VALUES
 (1, 2, 1),
 (16, 4, 3),
-(17, 4, 6);
+(17, 4, 6),
+(18, 8, 7),
+(19, 8, 8),
+(21, 10, 10),
+(22, 11, 11),
+(23, 12, 14),
+(62, 13, 2),
+(65, 16, 2),
+(67, 18, 2);
 
 -- --------------------------------------------------------
 
@@ -193,7 +227,7 @@ CREATE TABLE IF NOT EXISTS `trasporto` (
   `id_destinazione` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_destinazione` (`id_destinazione`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dump dei dati per la tabella `trasporto`
@@ -207,7 +241,14 @@ INSERT INTO `trasporto` (`id`, `prezzo`, `tipo`, `id_destinazione`) VALUES
 (6, 990, 'aereo-medium', 2),
 (7, 99, 'aereo-medium', 5),
 (8, 890, 'aereo-business', 4),
-(9, 1200, 'aereo-medium', 3);
+(9, 1200, 'aereo-medium', 3),
+(10, 200, 'aereo-medium', 6),
+(11, 100, 'aereo-economy', 7),
+(12, 70, 'pullman', 7),
+(13, 250, 'aereo-medium', 8),
+(14, 1300, 'aereo-business', 9),
+(15, 750, 'aereo-economy', 9),
+(16, 50, 'pullman', 10);
 
 -- --------------------------------------------------------
 
@@ -233,9 +274,7 @@ CREATE TABLE IF NOT EXISTS `utente` (
 
 INSERT INTO `utente` (`cf`, `nome`, `cognome`, `mail`, `indirizzo`, `tel`, `user`, `password`) VALUES
 ('0', 'Agenzia', 'Agenzia', 'agenzia@agenzia.com', 'd', '3', 'agenzia', 'c38f879fbf14e4cec57deb7a92efbb65f3d2631ba0a2a9bc44cb445b4c7a55b1'),
-('DRVJHN45L23F205T', 'John', 'Drive', 'john.drive@jdcompany.com', 'Via Montenapoleone, Milano', '023478963', 'johndrive', '22e8fe2e720de91ac08adc53e6ef10ea9cf9a72aa08035e2bfd05e9f69b79b57'),
-('VRDLGI15F12C754Q', 'Luigi', 'Verdi', 'luigi@verdi.com', 'via verdi', '0156541640', 'luigi', 'aeca01371581fda90e31862e10405c4948567d1f74cd92aeac5fe8cd29b6ea96'),
-('RSSMRO73E24B157P', 'Mario', 'Rossi', 'mariorossi@rossis.com', 'via dei rossi', '0246876535', 'mario', '30cc6dd8ef8458e679e13ae3bf3f634cace9810e2eea03bb6487904595f41056');
+('DRVJHN45L23F205T', 'John', 'Drive', 'john.drive@jdcompany.com', 'Via Montenapoleone, Milano', '023478963', 'johndrive', '22e8fe2e720de91ac08adc53e6ef10ea9cf9a72aa08035e2bfd05e9f69b79b57');
 
 --
 -- Limiti per le tabelle scaricate
