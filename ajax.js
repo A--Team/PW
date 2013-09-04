@@ -88,6 +88,13 @@ function controlla_form(){
   pernottamento=document.getElementById("pernottamento").value;
   trasporto=document.getElementById("trasporto").value;
   id_attr=document.getElementById("attrazioni_pacchetto").value;
+  var d=new Date(datepicker);
+  var today=new Date();
+  if(d <= today)
+  {
+	  $("#err_content").html("La data di partenza è precedente alla data odierna");
+	  return;
+  }
   opzioni = $('#attrazioni_pacchetto option');
   vettore_attrazioni = $.map(opzioni ,function(opzioni) {
       return opzioni.value;

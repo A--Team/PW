@@ -23,6 +23,8 @@
 			$conn=database::dbConnect();
 			if(isset($_SESSION[$session_name]))
 				$user=$_SESSION['username'];
+			$today=getdate();
+			$data_corrente=$today['year']."-".$today['mon']."-".$today['mday'];
 			extract($parametri);
 			
 			switch($tipo_pacchetto)
@@ -41,7 +43,7 @@
 					pernottamento.tipo AS tipo_pernottamento,trasporto.tipo AS tipo_trasporto, destinazione.citta,
 					destinazione.foto 
 					FROM pacchetto,pernottamento,trasporto,destinazione 
-					WHERE pacchetto.id_utente='agenzia' AND pernottamento.id=pacchetto.id_pernottamento 
+					WHERE pacchetto.data_partenza>'".$data_corrente."' AND pacchetto.id_utente='agenzia' AND pernottamento.id=pacchetto.id_pernottamento 
 					AND trasporto.id=pacchetto.id_trasporto AND destinazione.id=pacchetto.id_destinazione AND pacchetto.id_destinazione 
 					IN	(SELECT destinazione.id FROM destinazione WHERE tipo=(SELECT destinazione.tipo 
 						FROM destinazione WHERE destinazione.id IN 
@@ -84,7 +86,8 @@
 					destinazione.foto
 					FROM pacchetto,pernottamento,trasporto,destinazione 
 					WHERE pacchetto.sconto>0 AND pacchetto.id_utente='agenzia' AND pernottamento.id=pacchetto.id_pernottamento 
-					AND trasporto.id=pacchetto.id_trasporto AND destinazione.id=pacchetto.id_destinazione";
+					AND trasporto.id=pacchetto.id_trasporto AND destinazione.id=pacchetto.id_destinazione 
+					AND pacchetto.data_partenza>'".$data_corrente."'";
 					break;
 					}
 				case 'catalogo':{
@@ -93,7 +96,8 @@
 					destinazione.foto
 					FROM pacchetto,pernottamento,trasporto,destinazione 
 					WHERE pacchetto.id_utente='agenzia' AND pernottamento.id=pacchetto.id_pernottamento 
-					AND trasporto.id=pacchetto.id_trasporto AND destinazione.id=pacchetto.id_destinazione";
+					AND trasporto.id=pacchetto.id_trasporto AND destinazione.id=pacchetto.id_destinazione
+					AND pacchetto.data_partenza>'".$data_corrente."'";
 					break;
 					}
 				case 'ricerca':
