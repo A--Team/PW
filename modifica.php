@@ -106,15 +106,15 @@
 			$pacchetto=mysql_fetch_array($result);
 			$user_attuale_pacchetto=$result['user'];
 			$id_destinazione=$pacchetto['id_destinazione'];
-			$query="SELECT * FROM pernottamento WHERE id_destinazione='".$id_destinazione."'";
+			$query="SELECT * FROM pernottamento WHERE visible='1' AND id_destinazione='".$id_destinazione."'";
 			$pernottamenti=database::qSelect($conn,$query);
 			$id_pernottamento_pacchetto=$pacchetto['id_pernottamento'];
-			$query="SELECT * FROM trasporto WHERE id_destinazione='".$id_destinazione."'";
+			$query="SELECT * FROM trasporto WHERE visible='1' AND id_destinazione='".$id_destinazione."'";
 			$trasporti=database::qSelect($conn,$query);
 			$id_trasporto_pacchetto=$pacchetto['id_trasporto'];
-			$query="SELECT * FROM attrazioni WHERE id_destinazione='".$id_destinazione."'";
+			$query="SELECT * FROM attrazioni WHERE visible='1' AND id_destinazione='".$id_destinazione."'";
 			$attrazioni=database::qSelect($conn,$query);
-			$query="SELECT id_attrazione FROM rel_attrazioni WHERE id_pacchetto='".$id_pacchetto."'";
+			$query="SELECT id_attrazione FROM rel_attrazioni WHERE  id_pacchetto='".$id_pacchetto."'";
 			$attrazioni_pacchetto=database::qSelect($conn,$query);
 			$id_attrazioni_pacchetto= array();
 			while($id=mysql_fetch_array($attrazioni_pacchetto))
