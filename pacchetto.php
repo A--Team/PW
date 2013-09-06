@@ -110,7 +110,8 @@
 					AND trasporto.id=pacchetto.id_trasporto AND destinazione.id=pacchetto.id_destinazione 
 					AND pacchetto.id IN (SELECT id FROM pacchetto 
 					WHERE id_utente='agenzia' AND persone='".$npersons."' AND durata<='".$duration."' 
-					AND data_partenza BETWEEN DATE('".$data_partenza1."')	AND DATE('".$data_partenza2."'))";
+					AND data_partenza BETWEEN DATE('".$data_partenza1."')	AND DATE('".$data_partenza2."')
+					AND id_destinazione='".$city."')";
 					break;
 					}				
 		}
