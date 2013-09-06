@@ -59,10 +59,28 @@ function aggiorna_trasporti(){
   var dest_id=document.getElementById("destinazione").value;
   ajax_request("#lista_trasporti","aggiorna_trasporto.php","dest_id="+dest_id,0);
 }
+function aggiorna_pernottamenti(){
+  var dest_id=document.getElementById("destinazione").value;
+  ajax_request("#lista_pernottamenti","aggiorna_pernottamento.php","dest_id="+dest_id,0);
+}
+function aggiorna_attrazioni2(){
+  var dest_id=document.getElementById("destinazione").value;
+  ajax_request("#lista_attrazioni","aggiorna_attrazioni.php","dest_id="+dest_id,0);
+}
 function aggiorna_opzioni_trasporto(){
   var trasp_id=document.getElementById("lista_trasporti").value;
   ajax_request("#tipologia_mod","aggiorna_tipologia_trasporto.php","trasp_id="+trasp_id,1);
   ajax_request("#prezzo_mod","aggiorna_prezzo_trasporto.php","trasp_id="+trasp_id,1);
+}
+function aggiorna_opzioni_pernottamento(){
+  var pern_id=document.getElementById("lista_pernottamenti").value;
+  ajax_request("#tipologia_mod","aggiorna_tipologia_pernottamento.php","pern_id="+pern_id,1);
+  ajax_request("#prezzo_mod","aggiorna_prezzo_pernottamento.php","pern_id="+pern_id,1);
+}
+function aggiorna_opzioni_attrazione(){
+  var attr_id=document.getElementById("lista_attrazioni").value;
+  ajax_request("#tipologia_mod","aggiorna_tipologia_attrazione.php","attr_id="+attr_id,1);
+  ajax_request("#prezzo_mod","aggiorna_prezzo_attrazione.php","attr_id="+attr_id,1);
 }
 function mod_trasporto(){
   trasp_id=document.getElementById("lista_trasporti").value;
@@ -77,7 +95,6 @@ function mod_trasporto(){
   else
     alert("Attenzione: opzioni di modifica non valide!");
 }
-
 
 function elimina_trasporto(){
   if(!confirm("Vuoi davvero eliminare questo trasporto?"))
@@ -94,9 +111,6 @@ function elimina_trasporto(){
     alert("Attenzione: opzioni di modifica non valide!");
 }
 
-
-
-
 function agg_trasporto(){
   dest_id=document.getElementById("destinazione").value;
   tipologia=document.getElementById("tipologia").value;
@@ -109,6 +123,91 @@ function agg_trasporto(){
   }
   else
     alert("Attenzione: opzioni di aggiunta trasporto non valide!");
+}
+function mod_pernottamento(){
+  pern_id=document.getElementById("lista_pernottamenti").value;
+  tipologia=document.getElementById("tipologia_mod").value;
+  prezzo=document.getElementById("prezzo_mod").value;
+  if(pern_id && !$.trim($('#tipologia_mod').val())=='' && tipologia.length>0 && prezzo.length>0 && !isNaN(parseFloat(prezzo).toFixed(2)) && prezzo>0){
+    ajax_request("","modifica_pernottamento.php","tipo="+tipologia+"&prezzo="+prezzo+"&pern_id="+pern_id,2);
+    document.getElementById("tipologia_mod").value="";
+    document.getElementById("prezzo_mod").value="";
+    aggiorna_pernottamenti();
+  }
+  else
+    alert("Attenzione: opzioni di modifica non valide!");
+}
+
+function elimina_pernottamento(){
+  if(!confirm("Vuoi davvero eliminare questo pernottamento?"))
+  	return;
+  pern_id=document.getElementById("lista_pernottamenti").value;
+  if(pern_id)
+  {
+    ajax_request("","elimina_pernottamento.php","pern_id="+pern_id,2);
+    document.getElementById("tipologia_mod").value="";
+    document.getElementById("prezzo_mod").value="";
+    aggiorna_pernottamenti();
+  }
+  else
+    alert("Attenzione: opzioni di modifica non valide!");
+}
+
+function agg_pernottamento(){
+  dest_id=document.getElementById("destinazione").value;
+  tipologia=document.getElementById("tipologia").value;
+  prezzo=document.getElementById("prezzo").value;
+  if(!$.trim($('#tipologia').val())=='' && tipologia.length>0 && prezzo.length>0 && !isNaN(parseFloat(prezzo).toFixed(2)) && prezzo>0){
+    ajax_request("","aggiungi_pernottamento.php","tipologia="+tipologia+"&prezzo="+prezzo+"&dest_id="+dest_id,2);
+    document.getElementById("tipologia").value="";
+    document.getElementById("prezzo").value="";
+    aggiorna_pernottamenti();
+  }
+  else
+    alert("Attenzione: opzioni di aggiunta pernottamento non valide!");
+}
+
+function mod_attrazione(){
+  attr_id=document.getElementById("lista_attrazioni").value;
+  tipologia=document.getElementById("tipologia_mod").value;
+  prezzo=document.getElementById("prezzo_mod").value;
+  if(attr_id && !$.trim($('#tipologia_mod').val())=='' && tipologia.length>0 && prezzo.length>0 && !isNaN(parseFloat(prezzo).toFixed(2)) && prezzo>0){
+    ajax_request("","modifica_attr.php","tipo="+tipologia+"&prezzo="+prezzo+"&attr_id="+attr_id,2);
+    document.getElementById("tipologia_mod").value="";
+    document.getElementById("prezzo_mod").value="";
+    aggiorna_attrazioni2();
+  }
+  else
+    alert("Attenzione: opzioni di modifica non valide!");
+}
+
+function elimina_attrazione(){
+  if(!confirm("Vuoi davvero eliminare questa attrazione?"))
+  	return;
+  attr_id=document.getElementById("lista_attrazioni").value;
+  if(attr_id)
+  {
+    ajax_request("","elimina_attrazione.php","attr_id="+attr_id,2);
+    document.getElementById("tipologia_mod").value="";
+    document.getElementById("prezzo_mod").value="";
+    aggiorna_attrazioni2();
+  }
+  else
+    alert("Attenzione: opzioni di modifica non valide!");
+}
+
+function agg_attrazione(){
+  dest_id=document.getElementById("destinazione").value;
+  tipologia=document.getElementById("tipologia").value;
+  prezzo=document.getElementById("prezzo").value;
+  if(!$.trim($('#tipologia').val())=='' && tipologia.length>0 && prezzo.length>0 && !isNaN(parseFloat(prezzo).toFixed(2)) && prezzo>0){
+    ajax_request("","aggiungi_attr.php","tipologia="+tipologia+"&prezzo="+prezzo+"&dest_id="+dest_id,2);
+    document.getElementById("tipologia").value="";
+    document.getElementById("prezzo").value="";
+    aggiorna_attrazioni2();
+  }
+  else
+    alert("Attenzione: opzioni di aggiunta attrazione non valide!");
 }
 
 function aggiungi_attrazione(){
