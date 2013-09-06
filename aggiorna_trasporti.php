@@ -3,7 +3,7 @@
   error_reporting(E_ALL);
   ini_set('display_errors', 1);  
   $conn = database::dbConnect();
-  $sql="SELECT id,tipo,prezzo FROM trasporto";
+  $sql="SELECT id,tipo,prezzo FROM trasporto WHERE visible='1'";
   $risposta=database::qSelect($conn,$sql);
   $output="";
   while($el=mysql_fetch_array($risposta)){

@@ -40,13 +40,10 @@
 	  ?>	
 	</div>
 	<div id="login">
-		<?php
-				echo "<br><br><h2>Benvenuto " . $_SESSION['username'] . "!</h2><br>";
+				<?php
+			include 'login_form.php';
 		?>
-        <form method='POST' action='logout.php'>
-					<input type='submit' value='logout'>
-	</form>
-	</div>
+        </div>
     </div>
       <div id="content_container">
 	<div id="content">

@@ -77,6 +77,26 @@ function mod_trasporto(){
   else
     alert("Attenzione: opzioni di modifica non valide!");
 }
+
+
+function elimina_trasporto(){
+  if(!confirm("Vuoi davvero eliminare questo trasporto?"))
+  	return;
+  trasp_id=document.getElementById("lista_trasporti").value;
+  if(trasp_id)
+  {
+    ajax_request("","elimina_trasporto.php","trasp_id="+trasp_id,2);
+    document.getElementById("tipologia_mod").value="";
+    document.getElementById("prezzo_mod").value="";
+    aggiorna_trasporti();
+  }
+  else
+    alert("Attenzione: opzioni di modifica non valide!");
+}
+
+
+
+
 function agg_trasporto(){
   dest_id=document.getElementById("destinazione").value;
   tipologia=document.getElementById("tipologia").value;
@@ -182,3 +202,6 @@ function search(){
   else
     $("#err_content").html("Attenzione, non hai selezionato la città o il range della data di partenza.");
 }
+
+
+

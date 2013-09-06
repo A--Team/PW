@@ -29,12 +29,10 @@
 	  ?>	
 	</div>
 	<div id="login">
-	  <?php
-	    echo "<br><br><h2>Benvenuto " . $_SESSION['username'] . "!</h2><br>";
-	  ?>
-        <form method='POST' action='logout.php'>
-	  <input type='submit' value='logout'>
-	</form>
+	  		<?php
+			include 'login_form.php';
+		?>
+        
 	</div>
     </div>
       <div id="content_container">
@@ -52,43 +50,33 @@
 	</select>
 	<br>
 	<br>
-	<table>
-	<tr>
+	
+	
 	<!--modifica trasporto-->
-	<td>
+    	<h3 style="height:5px;">Modifica/Elimina</h3>
 	  <table>
 	  <tr>
-	    <td><h3>Modifica</h3></td>
-	  </tr>
+	    <td><h4>Seleziona</h4></td>
+    	
+        <td style="padding-left: 50px;"><h4>Opzioni</h4></td>
+      </tr>
 	  <tr>
 	    <td><select class="packet_options_select" id="lista_trasporti" onchange="aggiorna_opzioni_trasporto()" size="8">
 	    </select></td>
+	    <td style="padding-left: 50px;">
+        	<table>
+           	<tr><td>Tipologia:</td><td><input type="text" class="input" id="tipologia_mod" name="tipologia_mod"></td></tr>
+            <tr><td>Prezzo:</td><td><input type="text" class="input" style="width:60px; text-align:center;" id="prezzo_mod" name="prezzo">€</td></tr>
+       		</table>
+       </td>
 	  </tr>
+	  <tr>
+	   	<td><button type="button" id="btn_modifica" class="btn_commenta" onclick="elimina_trasporto()">Elimina trasporto</button></td>
+		<td style="padding-left: 50px;"><button type="button" id="btn_modifica" class="btn_commenta" onclick="mod_trasporto()">Modifica trasporto</button></td>
+      </tr>
 	  </table>
-	</td>
-	<td valign="top" class="separatore">
-	  <table>
-	  <tr>
-	    <td><h3>Opzioni</h3></td>
-	  </tr>
-	  <tr>
-	    <td>Tipologia:</td>
-	  </tr>
-	  <tr>
-	    <td><input type="text" class="input" id="tipologia_mod" name="tipologia_mod"></td>
-	  </tr>
-	  <tr>
-	    <td>Prezzo:</td>
-	  </tr>
-	  <tr>
-	    <td><input type="text" class="input" style="width:60px; text-align:center;" id="prezzo_mod" name="prezzo">€</td>
-	  </tr>
-	  <tr>
-	    <td><button type="button" id="btn_modifica" class="btn_commenta" onclick="mod_trasporto()">Modifica trasporto</button></td>
-	  </tr>
-	  </table>
-	</td>
-	<td valign="top">
+	
+	
 	<table>
 	<tr>
 	<td><h3>Aggiungi</h3></td>
@@ -109,10 +97,8 @@
 	<td><button type="button" class="btn_commenta" onclick="agg_trasporto()">Salva trasporto</button></td>
 	</tr>
 	</table>
-	</td>
-	</tr>
-	</table>
-	<br>
+	
+    <br>
 	</div>
 	<div id="navigation">
 	  <br>
