@@ -94,9 +94,6 @@ a:hover{
 	font-style: oblique;
 	color: #ECF0F1; /*#FFFFFF;*/
 }
-#login a:hover{
-	text-decoration: underline;
-}
 #content_container{
 	overflow:hidden;
 	width: 990px;
@@ -110,9 +107,9 @@ a:hover{
 	padding-bottom: 10000px;
 	margin-bottom: -10000px;
 }
-#content form{
+/*#content form{
 	padding-left:160px;
-}
+}*/
 #content h3{
 	color: #4766B5; 
 }
@@ -493,4 +490,11 @@ a:hover{
 	border-style: solid;
 	border-width: 2px;
 	border-color: #4766b5;
+}
+.separatore{
+	border-style:solid;
+	border-right:thick double #4766B5;
+	border-top: 0;	
+	border-bottom: 0;
+	border-left: 0;
 }
