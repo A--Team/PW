@@ -66,15 +66,15 @@
 				else
 				{
 					if($user_attuale_pacchetto!="agenzia")
-					{
+					{	
 						$query="UPDATE pacchetto SET prenotato='".$prenotato."' WHERE id='".$id_pacchetto."'";
 						database::qUpdate($conn,$query);
 					}
 					else
-					{
+					{	
 						$query="INSERT INTO pacchetto (persone,durata,data_partenza,id_utente,id_pernottamento,id_trasporto,id_destinazione,prenotato) 
 								VALUE ('".$persone."','".$durata."','".$data."','".$user."',
-								'".$pernottamento."','".$trasporto."','".$id_destinazione."','".$prenotato."')";
+								'".$pernottamento."','".$trasporto."','".$id_destinazione."','".$prenotato."')";						
 						database::qInsertInto($conn,$query);
 						$query="SELECT MAX(id) AS id FROM pacchetto WHERE id_utente='".$user."'";
 						$result=database::qSelect($conn,$query);
@@ -104,7 +104,7 @@
 			
 			$result=database::qSelect($conn,$query);
 			$pacchetto=mysql_fetch_array($result);
-			$user_attuale_pacchetto=$result['user'];
+			$user_attuale_pacchetto=$pacchetto['id_utente'];
 			$id_destinazione=$pacchetto['id_destinazione'];
 			$query="SELECT * FROM pernottamento WHERE visible='1' AND id_destinazione='".$id_destinazione."'";
 			$pernottamenti=database::qSelect($conn,$query);
@@ -177,7 +177,7 @@
 							<input class='btn_commenta' type='submit' value='conferma'> </form><br>";
 			echo $html;
 			
-			 
+			
 		?>
 
 	</div>
