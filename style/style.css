@@ -94,6 +94,9 @@ a:hover{
 	font-style: oblique;
 	color: #ECF0F1; /*#FFFFFF;*/
 }
+#login a:hover{
+	text-decoration:underline;
+}
 #content_container{
 	overflow:hidden;
 	width: 990px;

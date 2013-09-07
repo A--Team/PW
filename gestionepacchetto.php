@@ -40,7 +40,7 @@
 	  ?>	
 	</div>
 	<div id="login">
-				<?php
+		<?php
 			include 'login_form.php';
 		?>
         </div>
@@ -48,14 +48,76 @@
       <div id="content_container">
 	<div id="content">
 	<div class="sottomenu_modifica">
-	  <button type="button" class="bottone_sottomenu" onclick="location.href='aggiungipacchetto.php'">Aggiungi pacchetto</button>
+	  <button type="button" class="bottone_sottomenu" onclick="location.href='gestionepacchetto.php'">Gestione pacchetto</button>
 	  <button type="button" onclick="location.href='gestionedestinazione.php'">Gestione destinazione</button>
 	  <button type="button" onclick="location.href='gestionetrasporto.php'">Gestione trasporto</button>
 	  <button type="button" onclick="location.href='gestionepernottamento.php'">Gestione pernottamento</button>
 	  <button type="button" onclick="location.href='gestioneattrazione.php'">Gestione attrazione</button>
 	</div>
-	<h2 class="title_space">Aggiungi pacchetto</h2>
+	<h2>Gestione pacchetto</h2>
+	<h3>Elimina pacchetto</h3>
 	<form action="" class="title_space">
+	<table cellspacing="15px">
+		<tr>
+			<td>Pacchetto: </td>
+			<td>
+				<select id="pacchetto" class="input" onchange="dettagli_pacchetto()">
+					<option value="" disabled selected>Seleziona pacchetto</option>
+					<?php
+						include 'database.php';
+						include 'config.php';$y="ciao";
+						$conn = database::dbConnect();
+						$sql = 	"SELECT pacchetto.*, destinazione.id AS id_dest, destinazione.continente, destinazione.citta, pernottamento.tipo AS tipo_pernottamento, pernottamento.prezzo AS prezzo_pernottamento, trasporto.tipo AS tipo_trasporto, trasporto.prezzo AS prezzo_trasporto\n"
+   						 		. "FROM pacchetto \n"
+    							. "JOIN destinazione ON pacchetto.id_destinazione = destinazione.id\n"
+    							. "JOIN pernottamento ON pacchetto.id_pernottamento = pernottamento.id\n"
+								. "JOIN trasporto ON pacchetto.id_trasporto = trasporto.id\n"
+    							. "WHERE pacchetto.id_utente='agenzia'";
+						$pacchetti=database::qSelect($conn,$sql);
+						$pkg = array();
+						while($pacchetto=mysql_fetch_array($pacchetti)){
+							extract($pacchetto);
+							$data = date("d/m/Y", strtotime($data_partenza));
+							$html = "<option value=$id>$citta - $data</option>";
+							echo $html;
+							$pkg[]=$pacchetto;
+						}
+						database::dbClose();
+					?>
+					<script>
+						function dettagli_pacchetto(){
+							var id = document.getElementById("pacchetto").value;
+							var x = <?php echo json_encode($pkg) ?>;
+							for(var i=0; i<x.length; i++){
+								if(x[i].id == id){
+									document.getElementById("form_pkg").reset();
+									var data = new Date(x[i].data_partenza);
+									document.getElementById("continent").value = x[i].continente;
+									document.getElementById("city").options[0] = new Option(x[i].citta,x[i].id_dest);
+									document.getElementById("city").disabled = false;
+									document.getElementById("npersons").value = x[i].persone;
+									document.getElementById("duration").value = x[i].durata;
+									document.getElementById("datepicker").value = data.getDate()+"/"+(data.getMonth()+1)+"/"+data.getFullYear();
+									document.getElementById("sconto").value = x[i].sconto*100;
+									document.getElementById("pernottamento").options[0] = new Option(x[i].tipo_pernottamento+"-"+x[i].prezzo_pernottamento,"");
+									document.getElementById("trasporto").options[0] = new Option(x[i].tipo_trasporto+"-"+x[i].prezzo_trasporto,"");								
+									update_packet_options(x[i].id_dest);
+									
+								}
+							}
+							
+						}
+					</script>
+				</select>				
+			</td>
+		</tr>
+		<tr>
+			<td><button type="button" class="btn_commenta" onclick='elimina_pacchetto()'>Rimuovi pacchetto</button></td>
+		</tr>		
+	</table>
+	</form>
+	<h3>Aggiungi/Visualizza pacchetto</h2>
+	<form id="form_pkg" action="" class="title_space">
 	<table cellspacing="15px">
 	<tr>
 	<td>Continente:</td>
@@ -74,7 +136,6 @@
 	</select></td>
 	</tr>
 	<tr>
-	<!--DA SISTEMARE:controlli sul numero di persone, vedi come è fatto in ajax.js, funzione  search-->
 	<td>N. Persone:</td>
 	<td><input type="text" id="npersons" class="input" style="width:25px; text-align:center;"></td>
 	</tr>
@@ -129,24 +190,25 @@
 	</table>
 	<table cellspacing="15px">
 	<tr><td>
-	  <button type="button" class="btn_commenta" onclick="controlla_form()">Crea pacchetto</button>
-	  <button type="button" class="btn_commenta" onclick="">Rimuovi pacchetto</button>
+	  <button type="button" class="btn_commenta" onclick="controlla_form()">Crea nuovo pacchetto</button>	  
 	  <div id="err_content"></div>
 	  <div id="confirm_content"></div></td>
 	</tr>
 	</table>
-	</form>
+	</form>	
 	</div>
 	<div id="navigation">
     	<br>
 		<div id='vert_menu'>
-			<a href='aggiungipacchetto.php'><span>Aggiungi pacchetti</span></a>			
+			<a href='gestionepacchetto.php'><span>Gestione pacchetti</span></a>			
 			<a href='gestioneprofilo.php'><span>Il mio profilo</span></a>			
 		</div>	
   	</div>
       </div> 
       <div id="footer">
-		<div>footer</div>
+		<?php
+	    	include 'footer.php';
+	  	?>
       </div>
     </div>
   </body>

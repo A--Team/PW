@@ -39,11 +39,17 @@ function aggiorna_citta_pacchetto(){
   document.getElementById("attrazioni").innerHTML="";
   document.getElementById("attrazioni_pacchetto").innerHTML="";
 }
-function update_packet_options(){
-  var dest_id=document.getElementById("city").value;
-  aggiorna_pernottamento(dest_id);
-  aggiorna_trasporto(dest_id);
-  aggiorna_attrazioni(dest_id);
+function update_packet_options(city){
+  if(city==""){
+  	var dest_id=document.getElementById("city").value;
+  	aggiorna_pernottamento(dest_id);
+  	aggiorna_trasporto(dest_id);
+  	aggiorna_attrazioni(dest_id);
+  }
+  else{
+  	var dest_id=city;  
+  	aggiorna_attrazioni(dest_id);
+  }
 }
 
 function aggiorna_pernottamento(dest_id){
@@ -296,6 +302,19 @@ function rimuovi_attrazione(){
     ajax_request("#attrazioni_pacchetto","rimuovi_attrazione.php","id_attr="+id_attr+"&"+"vettore_attrazioni="+vettore_attrazioni,0);
 }
 
+function elimina_pacchetto(){
+  id=document.getElementById("pacchetto").value; 
+  if(id!=""){
+  	if(confirm("Vuoi davvero eliminare questo pacchetto?")){
+  		post_string="id="+id;
+    	ajax_request("","elimina_pacchetto.php",post_string,0);
+    	location.reload;
+	}
+  }
+  else 
+    alert("Seleziona il pacchetto da eliminare.");
+}
+
 function controlla_form(){
   city=document.getElementById("city").value;
   npersons=document.getElementById("npersons").value;
@@ -306,8 +325,13 @@ function controlla_form(){
   pernottamento=document.getElementById("pernottamento").value;
   trasporto=document.getElementById("trasporto").value;
   id_attr=document.getElementById("attrazioni_pacchetto").value;
+  var er = /^[0-9]+$/;
   var d=new Date(datepicker);
   var today=new Date();
+  if(!er.test(npersons)){
+  	$("#err_content").html("Inserire un numero intero positivo per il numero di persone");
+	  return;
+  }
   if(d <= today)
   {
 	  $("#err_content").html("La data di partenza è precedente alla data odierna");
@@ -365,6 +389,4 @@ function search(){
   else
     $("#err_content").html("Attenzione, non hai selezionato la città o il range della data di partenza o il n. persone non è un numero valido");
 }
-
-
 

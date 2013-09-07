@@ -38,7 +38,7 @@
       <div id="content_container">
 	<div id="content">
 	<div class="sottomenu_modifica">
-	  <button type="button" onclick="location.href='aggiungipacchetto.php'">Aggiungi pacchetto</button>
+	  <button type="button" onclick="location.href='gestionepacchetto.php'">Gestione pacchetto</button>
 	  <button type="button" onclick="location.href='gestionedestinazione.php'">Gestione destinazione</button>
 	  <button type="button" onclick="location.href='gestionetrasporto.php'">Gestione trasporto</button>
 	  <button type="button" class="bottone_sottomenu" onclick="location.href='gestionepernottamento.php'">Gestione pernottamento</button>
@@ -102,13 +102,15 @@
 	<div id="navigation">
 	  <br>
 	  <div id='vert_menu'>
-	    <a href='aggiungipacchetto.php'><span>Aggiungi pacchetti</span></a>			
+	    <a href='gestionepacchetto.php'><span>Gestione pacchetti</span></a>			
 	    <a href='gestioneprofilo.php'><span>Il mio profilo</span></a>			
 	  </div>	
   	</div>
       </div> 
       <div id="footer">
-      <div>footer</div>
+      	<?php
+	    	include 'footer.php';
+	  	?>
       </div>
     </div>
   </body>
