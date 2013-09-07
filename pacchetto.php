@@ -57,7 +57,7 @@
 					destinazione.foto
 					FROM pacchetto,pernottamento,trasporto,destinazione 
 					WHERE pacchetto.id_utente='".$user."' AND pernottamento.id=pacchetto.id_pernottamento 
-					AND trasporto.id=pacchetto.id_trasporto AND destinazione.id=pacchetto.id_destinazione AND pacchetto.prenotato=FALSE";
+					AND trasporto.id=pacchetto.id_trasporto AND destinazione.id=pacchetto.id_destinazione AND pacchetto.prenotato=FALSE AND destinazione.visible=TRUE";
 					break;
 					}
 				case 'storico':{
