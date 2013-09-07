@@ -12,7 +12,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="./style/style.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="./js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="./js/ajax.js"></script>
     <script>
       $(document).ready(function(){
@@ -40,9 +40,9 @@
 	<div class="sottomenu_modifica">
 	  <button type="button" onclick="location.href='aggiungipacchetto.php'">Aggiungi pacchetto</button>
 	  <button type="button" onclick="location.href='gestionedestinazione.php'">Gestione destinazione</button>
-	  <button type="button" onclick="location.href='gestionetrasporto.php'">Gestione trasporti</button>
-	  <button type="button" onclick="location.href='gestionepernottamento.php'">Gestione pernottamenti</button>
-	  <button type="button" class="bottone_sottomenu" onclick="location.href='gestioneattrazione.php'">Gestione attrazioni</button>
+	  <button type="button" onclick="location.href='gestionetrasporto.php'">Gestione trasporto</button>
+	  <button type="button" onclick="location.href='gestionepernottamento.php'">Gestione pernottamento</button>
+	  <button type="button" class="bottone_sottomenu" onclick="location.href='gestioneattrazione.php'">Gestione attrazione</button>
 	</div>
 	<h2>Gestione attrazioni</h2>
 	<h3>Seleziona destinazione</h3>

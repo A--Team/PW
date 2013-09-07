@@ -12,7 +12,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="./style/style.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="./js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="./js/ajax.js"></script>
     <script>
       $(document).ready(function(){
@@ -97,7 +97,6 @@
 	<td><button type="button" class="btn_commenta" onclick="agg_pernottamento()">Salva pernottamento</button></td>
 	</tr>
 	</table>
-	
     <br>
 	</div>
 	<div id="navigation">

@@ -6,10 +6,10 @@
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="style/style.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript" src="js/ajax.js"></script>
+    <script type="text/javascript" src="./js/ajax.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-    <script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
-    <script src="js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="./js/jquery-1.10.2.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script>
     $(function(){
     	$.datepicker.setDefaults($.datepicker.regional['it']);
@@ -47,7 +47,7 @@
 	<div id="content">
 		<?php
 			include 'pacchetto.php';
-			$pacchetti=new pacchetto('home', array());
+			$pacchetti=new pacchetto('home',[]);
 			$pacchetti->stampa();
 		?>
 	</div>
@@ -96,13 +96,7 @@
 	  <tr>
 	  <td>N. persone:</td>
 	  <td>
-	    <select id="npersons" class="input">
-	    <option value="1">1</option>
-	    <option value="2">2</option>
-	    <option value="3">3</option>
-	    <option value="4">4</option>
-	    <option value="6">6</option>
-	  </select>
+	    <input type="text" id="npersons" class="input" style="width:25px; text-align:center;"><br>
 	  </td>
 	  </tr>
 	  </table>
@@ -130,10 +124,8 @@
 	  <div id="err_content"></div></div>
 	</div>
       </div> 
-      <div id="footer">	  	
-  		<?php
-	    	include 'footer.php';
-	  	?>  	
+      <div id="footer">
+	<div>footer</div>
       </div>
     </div>
   </body>

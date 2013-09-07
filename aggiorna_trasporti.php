@@ -1,7 +1,5 @@
 <?php
-  include_once 'database.php';
-  error_reporting(E_ALL);
-  ini_set('display_errors', 1);  
+  include_once 'database.php'; 
   $conn = database::dbConnect();
   $sql="SELECT id,tipo,prezzo FROM trasporto WHERE visible='1'";
   $risposta=database::qSelect($conn,$sql);

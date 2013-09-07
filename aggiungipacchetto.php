@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <script type="text/javascript" src="js/ajax.js"></script>
+    <script type="text/javascript" src="./js/ajax.js"></script>
     <script>
       $(function(){
 	$("#datepicker").datepicker({ dateFormat: 'yy-mm-dd' }).val();
@@ -49,10 +49,10 @@
 	<div id="content">
 	<div class="sottomenu_modifica">
 	  <button type="button" class="bottone_sottomenu" onclick="location.href='aggiungipacchetto.php'">Aggiungi pacchetto</button>
-	  <button type="button" onclick="location.href='aggiungidestinazione.php'">Aggiungi destinazione</button>
-	  <button type="button" onclick="location.href='aggiungitrasporto.php'">Aggiungi trasporto</button>
-	  <button type="button" onclick="location.href='aggiungipernottamento.php'">Aggiungi pernottamento</button>
-	  <button type="button" onclick="location.href='aggiungiattrazione.php'">Aggiungi attrazione</button>
+	  <button type="button" onclick="location.href='gestionedestinazione.php'">Gestione destinazione</button>
+	  <button type="button" onclick="location.href='gestionetrasporto.php'">Gestione trasporto</button>
+	  <button type="button" onclick="location.href='gestionepernottamento.php'">Gestione pernottamento</button>
+	  <button type="button" onclick="location.href='gestioneattrazione.php'">Gestione attrazione</button>
 	</div>
 	<h2 class="title_space">Aggiungi pacchetto</h2>
 	<form action="" class="title_space">
@@ -74,14 +74,9 @@
 	</select></td>
 	</tr>
 	<tr>
+	<!--DA SISTEMARE:controlli sul numero di persone, vedi come è fatto in ajax.js, funzione  search-->
 	<td>N. Persone:</td>
-	<td><select id="npersons" class="input" name="npersone">
-	  <option value="1">1</option>
-	  <option value="2">2</option>
-	  <option value="3">3</option>
-	  <option value="4">4</option>
-	  <option value="6">6</option>
-	</select></td>
+	<td><input type="text" id="npersons" class="input" style="width:25px; text-align:center;"></td>
 	</tr>
 	<tr>
 	<td>Durata:</td>
@@ -135,6 +130,7 @@
 	<table cellspacing="15px">
 	<tr><td>
 	  <button type="button" class="btn_commenta" onclick="controlla_form()">Crea pacchetto</button>
+	  <button type="button" class="btn_commenta" onclick="">Rimuovi pacchetto</button>
 	  <div id="err_content"></div>
 	  <div id="confirm_content"></div></td>
 	</tr>

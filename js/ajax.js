@@ -1,4 +1,4 @@
-//type=0 aggiorna update_target,type=1 aggiorna update_target con val,type=2 chiama solo la pagina php 
+//type=0 aggiorna update_target,type=1 aggiorna update_target con val,type=2 chiama solo la pagina php ,type=3 per src immagini
 function ajax_request(update_target,page_to_open,post_parameters,type){
   if (window.XMLHttpRequest)
     xmlhttp=new XMLHttpRequest();
@@ -12,6 +12,8 @@ function ajax_request(update_target,page_to_open,post_parameters,type){
 	  $(update_target).html(xmlhttp.responseText);
 	else if(type==1)
 	  $(update_target).val(xmlhttp.responseText);
+	else if(type==3)
+	  document.getElementById(update_target).src='./style/images/dest/'+xmlhttp.responseText;
       }
     } 
   xmlhttp.open("POST",page_to_open,false);
@@ -59,6 +61,11 @@ function aggiorna_trasporti(){
   var dest_id=document.getElementById("destinazione").value;
   ajax_request("#lista_trasporti","aggiorna_trasporto.php","dest_id="+dest_id,0);
 }
+function aggiorna_destinazioni(){
+  var cont=document.getElementById("continente").value;
+  document.getElementById('cont_copia').value=cont;
+  ajax_request("#lista_destinazioni","aggiorna_destinazione.php","cont="+cont,0);
+}
 function aggiorna_pernottamenti(){
   var dest_id=document.getElementById("destinazione").value;
   ajax_request("#lista_pernottamenti","aggiorna_pernottamento.php","dest_id="+dest_id,0);
@@ -66,6 +73,13 @@ function aggiorna_pernottamenti(){
 function aggiorna_attrazioni2(){
   var dest_id=document.getElementById("destinazione").value;
   ajax_request("#lista_attrazioni","aggiorna_attrazioni.php","dest_id="+dest_id,0);
+}
+function aggiorna_opzioni_destinazione(){
+  var dest_id=document.getElementById("lista_destinazioni").value;
+  ajax_request("#citta_mod","aggiorna_citta_destinazione.php","dest_id="+dest_id,1);
+  ajax_request("#tipologia_mod","aggiorna_tipologia_destinazione.php","dest_id="+dest_id,1);
+  ajax_request("immagine_mod","aggiorna_immagine_destinazione.php","dest_id="+dest_id,3);
+  ajax_request("#descrizione_mod","aggiorna_descrizione_destinazione.php","dest_id="+dest_id,1);
 }
 function aggiorna_opzioni_trasporto(){
   var trasp_id=document.getElementById("lista_trasporti").value;
@@ -82,6 +96,55 @@ function aggiorna_opzioni_attrazione(){
   ajax_request("#tipologia_mod","aggiorna_tipologia_attrazione.php","attr_id="+attr_id,1);
   ajax_request("#prezzo_mod","aggiorna_prezzo_attrazione.php","attr_id="+attr_id,1);
 }
+function mod_destinazione(){
+  dest_id=document.getElementById("lista_destinazioni").value;
+  citta=document.getElementById("citta_mod").value;
+  tipologia=document.getElementById("tipologia_mod").value;
+  file=document.getElementById("file_mod").value;
+  descrizione=document.getElementById("descrizione_mod").value;
+  if(dest_id && !$.trim($('#tipologia_mod').val())=='' && tipologia.length>0 && !$.trim($('#citta_mod').val())=='' && citta.length>0 && file){
+    $("#mod_form").ajaxForm(function(){aggiorna_destinazioni()}).submit();
+    document.getElementById("citta_mod").value="";
+    document.getElementById("tipologia_mod").value="";
+    document.getElementById("immagine_mod").src='./style/images/noimage.png';
+    document.getElementById("descrizione_mod").value="";
+  }
+  else
+    alert("Attenzione: opzioni di modifica non valide!");
+}
+function elimina_destinazione(){
+  if(!confirm("Vuoi davvero eliminare quesa destinazione?"))
+  	return;
+  dest_id=document.getElementById("lista_destinazioni").value;
+  if(dest_id)
+  {
+    ajax_request("","elimina_destinazione.php","dest_id="+dest_id,2);
+    document.getElementById("citta_mod").value="";
+    document.getElementById("tipologia_mod").value="";
+    document.getElementById("descrizione_mod").value="";
+    document.getElementById("immagine_mod").src='./style/images/noimage.png';
+    aggiorna_destinazioni();
+  }
+  else
+    alert("Attenzione: opzioni di modifica non valide!");
+}
+function agg_destinazione(){
+  cont=document.getElementById("continente").value;
+  citta=document.getElementById("citta").value;
+  tipologia=document.getElementById("tipologia").value;
+  file=document.getElementById("file").value;
+  descrizione=document.getElementById("descrizione").value;
+  if(cont && !$.trim($('#tipologia').val())=='' && tipologia.length>0 && !$.trim($('#citta').val())=='' && citta.length>0 && file){
+    $("#agg_form").ajaxForm(function(){aggiorna_destinazioni()}).submit();
+    document.getElementById("citta").value="";
+    document.getElementById("tipologia").value="";
+    document.getElementById("file").value="";
+    document.getElementById("descrizione").value="";
+  }
+  else
+    alert("Attenzione: opzioni di aggiunta destinazione non valide!");
+}
+
 function mod_trasporto(){
   trasp_id=document.getElementById("lista_trasporti").value;
   tipologia=document.getElementById("tipologia_mod").value;
@@ -291,15 +354,16 @@ function search(){
   var data_partenza1= data1[2]+"-"+data1[1]+"-"+data1[0];	
   var data_partenza2=document.getElementById("datepicker2").value;
   var data2=data_partenza2.split("/");
-  var data_partenza2= data2[2]+"-"+data2[1]+"-"+data2[0];	
+  var data_partenza2= data2[2]+"-"+data2[1]+"-"+data2[0];
+  var er = /^[0-9]+$/;
   
-  if(city.length>0 && data_partenza1.length>0 && data_partenza2.length>0){
+  if(city.length>0 && data_partenza1.length>0 && data_partenza2.length>0 && er.test(npersons) && npersons>0){
     post_string="continent="+continent+"&"+"city="+city+"&"+"type="+type+"&"+"duration="+duration+"&"+"npersons="+npersons+"&"+"data_partenza1="+data_partenza1+"&"+"data_partenza2="+data_partenza2;
     ajax_request("#content","search.php",post_string,0);
     $("#err_content").html("");
   }
   else
-    $("#err_content").html("Attenzione, non hai selezionato la città o il range della data di partenza.");
+    $("#err_content").html("Attenzione, non hai selezionato la città o il range della data di partenza o il n. persone non è un numero valido");
 }
 
 
