@@ -50,7 +50,9 @@
 	</div>
       </div> 
       <div id="footer">
-		<div>footer</div>
+		<?php
+	    	include 'footer.php';
+	  	?>
       </div>
     </div>
   </body>

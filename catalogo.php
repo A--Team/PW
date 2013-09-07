@@ -25,7 +25,7 @@
 	<div id="content">
 		<?php
 			include 'pacchetto.php';
-			$pacchetti=new pacchetto('catalogo',[]);
+			$pacchetti=new pacchetto('catalogo',array());
 			$pacchetti->stampa();
 		?>
 	</div>
@@ -49,7 +49,9 @@
 	</div>
       </div> 
       <div id="footer">
-	<div>footer</div>
+		<?php
+	    	include 'footer.php';
+	  	?>
       </div>
     </div>
   </body>
