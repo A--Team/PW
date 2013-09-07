@@ -31,7 +31,7 @@
 	<div id="content">
 		<?php
 			include 'pacchetto.php';
-			$pacchetti=new pacchetto('ordini',[]);
+			$pacchetti=new pacchetto('ordini',array());
 			if($pacchetti->isEmpty())
 				echo "<h3>Non hai prenotato alcun viaggio!</h3>";
 			else

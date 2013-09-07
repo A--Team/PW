@@ -32,7 +32,7 @@
 		<?php
 
 			include 'pacchetto.php';
-			$pacchetti=new pacchetto('tutti',[]);
+			$pacchetti=new pacchetto('tutti',array());
 			$pacchetti->stampa();
 						
 		?>

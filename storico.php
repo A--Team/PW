@@ -31,7 +31,7 @@
 	<div id="content">
 		<?php
 			include 'pacchetto.php';
-			$pacchetti=new pacchetto('storico',[]);
+			$pacchetti=new pacchetto('storico',array());
 			if($pacchetti->isEmpty())
 				echo "<h3>Non hai effettuato alcun viaggio!</h3>";
 			else

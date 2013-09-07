@@ -31,9 +31,9 @@
 	<div id="content">
 		<?php
 			include 'pacchetto.php';
-			$pacchetti=new pacchetto('mirata',[]);	
+			$pacchetti=new pacchetto('mirata',array());	
 			if($pacchetti->isEmpty()){
-				$p=new pacchetto('home',[]);
+				$p=new pacchetto('home',array());
 				$p->stampa();				
 			}
 			else

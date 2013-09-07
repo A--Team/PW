@@ -47,7 +47,7 @@
 		<div id="content">
 			<?php
 				include 'pacchetto.php';
-				$pacchetti=new pacchetto('wish',[]);
+				$pacchetti=new pacchetto('wish',array());
 				if($pacchetti->isEmpty())
 					echo "<h3>Non hai salvato alcun viaggio nella lista dei desideri!</h3>";
 				else
