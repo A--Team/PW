@@ -46,7 +46,9 @@
 				$user=$_SESSION['username'];
 				extract($_POST);
 				
-				$data = strftime("%Y-%d-%m",strtotime($data));
+				list($day, $month, $year) = explode("/", $data);
+				$data = $year."-".$month."-".$day;
+				
 				if($user=='agenzia')
 				{
 					$query="UPDATE pacchetto SET persone='".$persone."',durata='".$durata."',
@@ -67,7 +69,7 @@
 				else
 				{
 					if($user_attuale_pacchetto!="agenzia")
-					{						
+					{		
 						$query="UPDATE pacchetto SET persone='".$persone."',durata='".$durata."',
 						data_partenza= '".$data."',id_trasporto='".$trasporto."',id_pernottamento='".$pernottamento."',
 						prenotato='".$prenotato."'
