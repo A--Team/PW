@@ -8,6 +8,8 @@
 	*/
 	//Imposto localizzazione italiana per la visualizzazione delle date
 	setlocale(LC_TIME, 'ita', 'it_IT.utf8');
+	//Aggiungo directory con le pagine di utilità all'include path
+	ini_set('include_path', '/php');
 		
     class pacchetto{    	
 		
@@ -17,9 +19,9 @@
 		 */
 
 		 function pacchetto($tipo_pacchetto,$parametri){
-		 	include_once './php/database.php';
-			include './php/config.php';
-			
+		 	include_once 'database.php';
+			include 'config.php';
+		
 			$conn=database::dbConnect();
 			if(isset($_SESSION[$session_name]))
 				$user=$_SESSION['username'];
