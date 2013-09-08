@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include_once '/php/config.php';
+	include_once './php/config.php';
 	if(!isset($_SESSION[$session_name]))
 		header("Refresh: 0;url=badlogin.php");  
 ?>
