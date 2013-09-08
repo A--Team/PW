@@ -1,7 +1,7 @@
 <?php
   include_once 'database.php';
   $conn = database::dbConnect();
-  $sql="SELECT id,citta,tipo FROM destinazione";
+  $sql="SELECT id,citta,tipo FROM destinazione WHERE visible=1";
   $risposta=database::qSelect($conn,$sql);
   $output='<option value="" disabled selected>Seleziona destinazione</option>';
   while($el=mysql_fetch_array($risposta)){
