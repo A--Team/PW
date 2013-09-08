@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include_once dirname(__FILE__).'/php/config.php';
+	include_once '/php/config.php';
 	if(!isset($_SESSION[$session_name]))
 		header("Refresh: 0;url=badlogin.php");  
 ?>
@@ -19,7 +19,7 @@
     <div id="header_container">
 	<div id="logo">
 	  <?php
-	    include dirname(__FILE__).'/php/menu.php';
+	    include '/php/menu.php';
 	  ?>		
 	</div>
 	<div id="login">
@@ -31,7 +31,7 @@
       <div id="content_container">
 	<div id="content">
 		<?php
-			include_once dirname(__FILE__).'/php/database.php';
+			include_once '/php/database.php';
 			$conn=database::dbConnect();
 			
 			
@@ -110,7 +110,7 @@
       </div> 
       <div id="footer">
 		<?php
-	    	include dirname(__FILE__).'/php/footer.php';
+	    	include '/php/footer.php';
 	  	?>
       </div>
     </div>

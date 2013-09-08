@@ -40,13 +40,13 @@ function aggiorna_citta_pacchetto(){
   document.getElementById("attrazioni_pacchetto").innerHTML="";
 }
 function update_packet_options(city){
-  if(city==""){
+  if(city!=""){
   	var dest_id=document.getElementById("city").value;
   	aggiorna_pernottamento(dest_id);
   	aggiorna_trasporto(dest_id);
   	aggiorna_attrazioni(dest_id);
   }
-  else{
+  else{  	
   	var dest_id=city;  
   	aggiorna_attrazioni(dest_id);
   }

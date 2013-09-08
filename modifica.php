@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include_once dirname(__FILE__).'./php/config.php';
+	include_once '/php/config.php';
 	if(!isset($_SESSION[$session_name]))
 		header("Refresh: 0;url=badlogin.php");  
 ?>
@@ -38,7 +38,8 @@
       <div id="content_container">
 	<div id="content">		
 		<?php
-			include dirname(__FILE__).'/php/database.php';
+		
+			include '/php/database.php';
 			$conn=database::dbConnect();
 			if(isset($_POST['id_pacchetto']))
 			{
@@ -190,7 +191,7 @@
 		<div id='vert_menu'>
 			<?php
 				if($_SESSION['username']=='agenzia'){
-					echo "<a href='gestionepacchetto.php'><span>Aggiungi pacchetti</span></a>";			
+					echo "<a href='gestionepacchetto.php'><span>Gestione pacchetti</span></a>";			
 					echo "<a href='gestioneprofilo.php'><span>Il mio profilo</span></a>";
 				}
 				else {
