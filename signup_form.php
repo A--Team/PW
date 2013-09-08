@@ -36,7 +36,7 @@
 					echo "<h4>Il nome utente inserito esiste già</h4>";
 				}
 		?>
-		<form method="POST" name="reg_form" action="./php/signup.php">
+		<form method="POST" name="reg_form" action="signup.php">
 			<table>
 				<tr>
 					<td colspan='2'><h3>Compilare il seguente modulo con i propri dati:</h3></td>
