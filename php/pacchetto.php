@@ -8,8 +8,6 @@
 	*/
 	//Imposto localizzazione italiana per la visualizzazione delle date
 	setlocale(LC_TIME, 'ita', 'it_IT.utf8');
-	//Imposto l'url root per gli include
-	ini_set('include_path', '/php');
 		
     class pacchetto{    	
 		
@@ -19,8 +17,8 @@
 		 */
 
 		 function pacchetto($tipo_pacchetto,$parametri){
-		 	include_once 'database.php';
-			include 'config.php';
+		 	include_once './php/database.php';
+			include './php/config.php';
 			
 			$conn=database::dbConnect();
 			if(isset($_SESSION[$session_name]))
