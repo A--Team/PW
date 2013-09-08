@@ -30,22 +30,25 @@
 		?>
 	</div>
 	<div id="navigation">
-    	<?php
-	  		include_once './php/config.php';
-			if(isset($_SESSION[$session_name]))
-			{
-		?> 
-                <br>
-                <div id='vert_menu'>		
-                       <a href='homepersonale.php' id="selected"><span>La mia home</span></a>	
-                       <a href='ordini.php'><span>Le mie prenotazioni</span></a>
-                       <a href='wish_list.php'><span>I miei desideri</span></a>
-                       <a href='storico.php'><span>I miei viaggi</span></a>
-                       <a href='gestioneprofilo.php'><span>Il mio profilo</span></a>			
-                </div>
-       <?php
-			}
-		?>
+		<div id='vert_menu'>
+	    	<?php
+		  		include_once './php/config.php';
+				if(isset($_SESSION[$session_name]))
+				{
+					if($_SESSION['username']=='agenzia'){
+						echo "<a href='gestionepacchetto.php'><span>Gestione pacchetti</span></a>";			
+						echo "<a href='gestioneprofilo.php'><span>Il mio profilo</span></a>";
+					}
+					else {
+						echo "<a href='homepersonale.php' id=\"selected\"><span>La mia home</span></a>";
+				   		echo "<a href='ordini.php'><span>Le mie prenotazioni</span></a>";
+				   		echo "<a href='wish_list.php'><span>I miei desideri</span></a>";
+				   		echo "<a href='storico.php'><span>I miei viaggi</span></a>";
+				   		echo "<a href='gestioneprofilo.php'><span>Il mio profilo</span></a>";		
+					}	
+				}
+			?>
+		</div>
 	</div>
       </div> 
       <div id="footer">
