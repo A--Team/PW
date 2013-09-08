@@ -64,7 +64,7 @@
 					<option value="" disabled selected>Seleziona pacchetto</option>
 					<?php
 						include './php/database.php';
-						include './php/config.php';$y="ciao";
+						include './php/config.php';
 						$conn = database::dbConnect();
 						$sql = 	"SELECT pacchetto.*, destinazione.id AS id_dest, destinazione.continente, destinazione.citta, pernottamento.tipo AS tipo_pernottamento, pernottamento.prezzo AS prezzo_pernottamento, trasporto.tipo AS tipo_trasporto, trasporto.prezzo AS prezzo_trasporto\n"
    						 		. "FROM pacchetto \n"

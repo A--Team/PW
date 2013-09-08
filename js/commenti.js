@@ -72,6 +72,7 @@ function deleteStateChange(){
 /*
  * Funzione per aggiornare il campo select delle città quando l'utente seleziona un continente
  */
+/*
 function update_cities(){
   var continent=document.getElementById("continent").value;
   if (window.XMLHttpRequest)
@@ -90,6 +91,7 @@ function update_cities(){
   xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xmlhttp.send("continent="+continent);
 }
+*/
 
 /*
  * Funzione per caricare i commenti relativi alla destinazione selezionata

@@ -381,7 +381,7 @@ function search(){
   var data_partenza2= data2[2]+"-"+data2[1]+"-"+data2[0];
   var er = /^[0-9]+$/;
   
-  if(city.length>0 && data_partenza1.length>0 && data_partenza2.length>0 && er.test(npersons) && npersons>0){
+  if(city.length>0 && data1.length==3 && data2.length==3 && er.test(npersons) && npersons>0){
     post_string="continent="+continent+"&"+"city="+city+"&"+"type="+type+"&"+"duration="+duration+"&"+"npersons="+npersons+"&"+"data_partenza1="+data_partenza1+"&"+"data_partenza2="+data_partenza2;
     ajax_request("#content","./php/search.php",post_string,0);
     $("#err_content").html("");
