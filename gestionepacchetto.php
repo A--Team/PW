@@ -1,6 +1,6 @@
 <?php
  	session_start();
- 	include_once '/php/config.php';
+ 	include_once './php/config.php';
  	if(!isset($_SESSION[$session_name])|| $_SESSION['username']!='agenzia')
  	header("Refresh: 0;url=badlogin.php");  
 ?>
