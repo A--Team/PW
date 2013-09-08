@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include_once './php/config.php';
+	include_once dirname(__FILE__).'./php/config.php';
 	if(!isset($_SESSION[$session_name]))
 		header("Refresh: 0;url=badlogin.php");  
 ?>
@@ -38,7 +38,7 @@
       <div id="content_container">
 	<div id="content">		
 		<?php
-			include './php/database.php';
+			include dirname(__FILE__).'/php/database.php';
 			$conn=database::dbConnect();
 			if(isset($_POST['id_pacchetto']))
 			{
@@ -66,8 +66,11 @@
 				else
 				{
 					if($user_attuale_pacchetto!="agenzia")
-					{	
-						$query="UPDATE pacchetto SET prenotato='".$prenotato."' WHERE id='".$id_pacchetto."'";
+					{						
+						$query="UPDATE pacchetto SET persone='".$persone."',durata='".$durata."',
+						data_partenza= '".$data."',id_trasporto='".$trasporto."',id_pernottamento='".$pernottamento."',
+						prenotato='".$prenotato."'
+						WHERE id='".$id_pacchetto."'";
 						database::qUpdate($conn,$query);
 					}
 					else
