@@ -1,6 +1,6 @@
 <?php	
 	//carico script di interfaccia al database
-    include_once '/php/database.php';
+    include_once './php/database.php';
 	
 	//Creo una connessione al database
 	 $conn = database::dbConnect();

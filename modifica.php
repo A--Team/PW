@@ -39,7 +39,7 @@
 	<div id="content">		
 		<?php
 		
-			include '/php/database.php';
+			include './php/database.php';
 			$conn=database::dbConnect();
 			if(isset($_POST['id_pacchetto']))
 			{
