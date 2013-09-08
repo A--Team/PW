@@ -48,7 +48,7 @@ function check_reg(tipo)
 		else
 		{
 			//Se tutti i controlli sono stati superati, invio il modulo
-			document.reg_form.action = "./php/signup.php";
+			document.reg_form.action = "./signup.php";
 			document.reg_form.submit();
 		}
 	}
