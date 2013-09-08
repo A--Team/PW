@@ -42,7 +42,7 @@
 	<div id="navigation">
 		<br>
 		<div id='vert_menu'>
-			<a href='gestionepacchetto.php'><span>Aggiungi pacchetti</span></a>			
+			<a href='gestionepacchetto.php'><span>Gestione pacchetti</span></a>			
 			<a href='gestioneprofilo.php'><span>Il mio profilo</span></a>			
 		</div>	
   	</div>
