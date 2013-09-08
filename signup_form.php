@@ -11,12 +11,9 @@
     <div id="container">
     <div id="header_container">
 	<div id="logo">
-			<span class="ribbon">
-				<a href="index.php"><span>Home</span></a>
-				<a href="#"><span>Catalogo</span></a>
-				<a href="#"><span>Pippo</span></a>
-				<a href="#"><span>Pluto</span></a>
-			</span>				
+	  <?php
+	    include './php/menu.php';
+	  ?>			
 	</div>
 	<div id="login">
 		<?php
@@ -39,7 +36,7 @@
 					echo "<h4>Il nome utente inserito esiste già</h4>";
 				}
 		?>
-		<form method="POST" name="reg_form" action="signup.php">
+		<form method="POST" name="reg_form" action="./php/signup.php">
 			<table>
 				<tr>
 					<td colspan='2'><h3>Compilare il seguente modulo con i propri dati:</h3></td>
@@ -82,7 +79,9 @@
 	</div>
       </div> 
       <div id="footer">
-		<div>footer</div>
+	<?php
+	include './php/footer.php';
+	?>
       </div>
     </div>
   </body>

@@ -1,6 +1,6 @@
 <?php
  	session_start();
- 	include_once 'config.php';
+ 	include_once './php/config.php';
  	if(!isset($_SESSION[$session_name])|| $_SESSION['username']!='agenzia')
  	header("Refresh: 0;url=badlogin.php");  
 ?>
@@ -12,10 +12,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="./style/style.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="./js/jquery-1.10.2.min.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="./js/ajax.js"></script>
     <script>
       $(function(){
@@ -36,7 +35,7 @@
     <div id="header_container">
 	<div id="logo">
 	  <?php
-	    include 'menu.php';
+	    include './php/menu.php';
 	  ?>	
 	</div>
 	<div id="login">
@@ -64,8 +63,8 @@
 				<select id="pacchetto" class="input" onchange="dettagli_pacchetto()">
 					<option value="" disabled selected>Seleziona pacchetto</option>
 					<?php
-						include 'database.php';
-						include 'config.php';$y="ciao";
+						include './php/database.php';
+						include './php/config.php';$y="ciao";
 						$conn = database::dbConnect();
 						$sql = 	"SELECT pacchetto.*, destinazione.id AS id_dest, destinazione.continente, destinazione.citta, pernottamento.tipo AS tipo_pernottamento, pernottamento.prezzo AS prezzo_pernottamento, trasporto.tipo AS tipo_trasporto, trasporto.prezzo AS prezzo_trasporto\n"
    						 		. "FROM pacchetto \n"
@@ -207,7 +206,7 @@
       </div> 
       <div id="footer">
 		<?php
-	    	include 'footer.php';
+	    	include './php/footer.php';
 	  	?>
       </div>
     </div>

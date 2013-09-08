@@ -11,7 +11,7 @@
     <div id="header_container">
 	<div id="logo">
 	  <?php
-	    include 'menu.php';
+	    include './php/menu.php';
 	  ?>		
 	</div>
 	<div id="login">
@@ -24,14 +24,14 @@
       <div id="content_container">
 	<div id="content">
 		<?php
-			include 'pacchetto.php';
+			include './php/pacchetto.php';
 			$pacchetti=new pacchetto('catalogo',array());
 			$pacchetti->stampa();
 		?>
 	</div>
 	<div id="navigation">
     	<?php
-	  		include_once 'config.php';
+	  		include_once './php/config.php';
 			if(isset($_SESSION[$session_name]))
 			{
 		?> 
@@ -50,7 +50,7 @@
       </div> 
       <div id="footer">
 		<?php
-	    	include 'footer.php';
+	    	include './php/footer.php';
 	  	?>
       </div>
     </div>

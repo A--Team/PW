@@ -23,16 +23,16 @@ function ajax_request(update_target,page_to_open,post_parameters,type){
 
 function aggiorna_citta(){
   var continent=document.getElementById("continent").value;
-  ajax_request("#city","aggiorna_citta.php","continent="+continent,0);
+  ajax_request("#city","./php/aggiorna_citta.php","continent="+continent,0);
   document.getElementById("city").disabled=false;
 }
 
 function recupera_destinazioni(){
-    ajax_request("#destinazione","recupera_destinazioni.php","",0);
+    ajax_request("#destinazione","./php/recupera_destinazioni.php","",0);
 }
 function aggiorna_citta_pacchetto(){
   var continent=document.getElementById("continent").value;
-  ajax_request("#city","aggiorna_citta.php","continent="+continent,0);
+  ajax_request("#city","./php/aggiorna_citta.php","continent="+continent,0);
   document.getElementById("city").disabled=false;
   document.getElementById("pernottamento").innerHTML="";
   document.getElementById("trasporto").innerHTML="";
@@ -53,54 +53,54 @@ function update_packet_options(city){
 }
 
 function aggiorna_pernottamento(dest_id){
-  ajax_request("#pernottamento","aggiorna_pernottamento.php","dest_id="+dest_id,0);
+  ajax_request("#pernottamento","./php/aggiorna_pernottamento.php","dest_id="+dest_id,0);
 }
 
 function aggiorna_trasporto(dest_id){
-  ajax_request("#trasporto","aggiorna_trasporto.php","dest_id="+dest_id,0);
+  ajax_request("#trasporto","./php/aggiorna_trasporto.php","dest_id="+dest_id,0);
 }
 
 function aggiorna_attrazioni(dest_id){
-  ajax_request("#attrazioni","aggiorna_attrazioni.php","dest_id="+dest_id,0);
+  ajax_request("#attrazioni","./php/aggiorna_attrazioni.php","dest_id="+dest_id,0);
 }
 function aggiorna_trasporti(){
   var dest_id=document.getElementById("destinazione").value;
-  ajax_request("#lista_trasporti","aggiorna_trasporto.php","dest_id="+dest_id,0);
+  ajax_request("#lista_trasporti","./php/aggiorna_trasporto.php","dest_id="+dest_id,0);
 }
 function aggiorna_destinazioni(){
   var cont=document.getElementById("continente").value;
   document.getElementById('cont_copia').value=cont;
-  ajax_request("#lista_destinazioni","aggiorna_destinazione.php","cont="+cont,0);
+  ajax_request("#lista_destinazioni","./php/aggiorna_destinazione.php","cont="+cont,0);
 }
 function aggiorna_pernottamenti(){
   var dest_id=document.getElementById("destinazione").value;
-  ajax_request("#lista_pernottamenti","aggiorna_pernottamento.php","dest_id="+dest_id,0);
+  ajax_request("#lista_pernottamenti","./php/aggiorna_pernottamento.php","dest_id="+dest_id,0);
 }
 function aggiorna_attrazioni2(){
   var dest_id=document.getElementById("destinazione").value;
-  ajax_request("#lista_attrazioni","aggiorna_attrazioni.php","dest_id="+dest_id,0);
+  ajax_request("#lista_attrazioni","./php/aggiorna_attrazioni.php","dest_id="+dest_id,0);
 }
 function aggiorna_opzioni_destinazione(){
   var dest_id=document.getElementById("lista_destinazioni").value;
-  ajax_request("#citta_mod","aggiorna_citta_destinazione.php","dest_id="+dest_id,1);
-  ajax_request("#tipologia_mod","aggiorna_tipologia_destinazione.php","dest_id="+dest_id,1);
-  ajax_request("immagine_mod","aggiorna_immagine_destinazione.php","dest_id="+dest_id,3);
-  ajax_request("#descrizione_mod","aggiorna_descrizione_destinazione.php","dest_id="+dest_id,1);
+  ajax_request("#citta_mod","./php/aggiorna_citta_destinazione.php","dest_id="+dest_id,1);
+  ajax_request("#tipologia_mod","./php/aggiorna_tipologia_destinazione.php","dest_id="+dest_id,1);
+  ajax_request("immagine_mod","./php/aggiorna_immagine_destinazione.php","dest_id="+dest_id,3);
+  ajax_request("#descrizione_mod","./php/aggiorna_descrizione_destinazione.php","dest_id="+dest_id,1);
 }
 function aggiorna_opzioni_trasporto(){
   var trasp_id=document.getElementById("lista_trasporti").value;
-  ajax_request("#tipologia_mod","aggiorna_tipologia_trasporto.php","trasp_id="+trasp_id,1);
-  ajax_request("#prezzo_mod","aggiorna_prezzo_trasporto.php","trasp_id="+trasp_id,1);
+  ajax_request("#tipologia_mod","./php/aggiorna_tipologia_trasporto.php","trasp_id="+trasp_id,1);
+  ajax_request("#prezzo_mod","./php/aggiorna_prezzo_trasporto.php","trasp_id="+trasp_id,1);
 }
 function aggiorna_opzioni_pernottamento(){
   var pern_id=document.getElementById("lista_pernottamenti").value;
-  ajax_request("#tipologia_mod","aggiorna_tipologia_pernottamento.php","pern_id="+pern_id,1);
-  ajax_request("#prezzo_mod","aggiorna_prezzo_pernottamento.php","pern_id="+pern_id,1);
+  ajax_request("#tipologia_mod","./php/aggiorna_tipologia_pernottamento.php","pern_id="+pern_id,1);
+  ajax_request("#prezzo_mod","./php/aggiorna_prezzo_pernottamento.php","pern_id="+pern_id,1);
 }
 function aggiorna_opzioni_attrazione(){
   var attr_id=document.getElementById("lista_attrazioni").value;
-  ajax_request("#tipologia_mod","aggiorna_tipologia_attrazione.php","attr_id="+attr_id,1);
-  ajax_request("#prezzo_mod","aggiorna_prezzo_attrazione.php","attr_id="+attr_id,1);
+  ajax_request("#tipologia_mod","./php/aggiorna_tipologia_attrazione.php","attr_id="+attr_id,1);
+  ajax_request("#prezzo_mod","./php/aggiorna_prezzo_attrazione.php","attr_id="+attr_id,1);
 }
 function mod_destinazione(){
   dest_id=document.getElementById("lista_destinazioni").value;
@@ -124,7 +124,7 @@ function elimina_destinazione(){
   dest_id=document.getElementById("lista_destinazioni").value;
   if(dest_id)
   {
-    ajax_request("","elimina_destinazione.php","dest_id="+dest_id,2);
+    ajax_request("","./php/elimina_destinazione.php","dest_id="+dest_id,2);
     document.getElementById("citta_mod").value="";
     document.getElementById("tipologia_mod").value="";
     document.getElementById("descrizione_mod").value="";
@@ -156,7 +156,7 @@ function mod_trasporto(){
   tipologia=document.getElementById("tipologia_mod").value;
   prezzo=document.getElementById("prezzo_mod").value;
   if(trasp_id && !$.trim($('#tipologia_mod').val())=='' && tipologia.length>0 && prezzo.length>0 && !isNaN(parseFloat(prezzo).toFixed(2)) && prezzo>0){
-    ajax_request("","modifica_trasporto.php","tipo="+tipologia+"&prezzo="+prezzo+"&trasp_id="+trasp_id,2);
+    ajax_request("","./php/modifica_trasporto.php","tipo="+tipologia+"&prezzo="+prezzo+"&trasp_id="+trasp_id,2);
     document.getElementById("tipologia_mod").value="";
     document.getElementById("prezzo_mod").value="";
     aggiorna_trasporti();
@@ -171,7 +171,7 @@ function elimina_trasporto(){
   trasp_id=document.getElementById("lista_trasporti").value;
   if(trasp_id)
   {
-    ajax_request("","elimina_trasporto.php","trasp_id="+trasp_id,2);
+    ajax_request("","./php/elimina_trasporto.php","trasp_id="+trasp_id,2);
     document.getElementById("tipologia_mod").value="";
     document.getElementById("prezzo_mod").value="";
     aggiorna_trasporti();
@@ -185,7 +185,7 @@ function agg_trasporto(){
   tipologia=document.getElementById("tipologia").value;
   prezzo=document.getElementById("prezzo").value;
   if(!$.trim($('#tipologia').val())=='' && tipologia.length>0 && prezzo.length>0 && !isNaN(parseFloat(prezzo).toFixed(2)) && prezzo>0){
-    ajax_request("","aggiungi_trasporto.php","tipologia="+tipologia+"&prezzo="+prezzo+"&dest_id="+dest_id,2);
+    ajax_request("","./php/aggiungi_trasporto.php","tipologia="+tipologia+"&prezzo="+prezzo+"&dest_id="+dest_id,2);
     document.getElementById("tipologia").value="";
     document.getElementById("prezzo").value="";
     aggiorna_trasporti();
@@ -198,7 +198,7 @@ function mod_pernottamento(){
   tipologia=document.getElementById("tipologia_mod").value;
   prezzo=document.getElementById("prezzo_mod").value;
   if(pern_id && !$.trim($('#tipologia_mod').val())=='' && tipologia.length>0 && prezzo.length>0 && !isNaN(parseFloat(prezzo).toFixed(2)) && prezzo>0){
-    ajax_request("","modifica_pernottamento.php","tipo="+tipologia+"&prezzo="+prezzo+"&pern_id="+pern_id,2);
+    ajax_request("","./php/modifica_pernottamento.php","tipo="+tipologia+"&prezzo="+prezzo+"&pern_id="+pern_id,2);
     document.getElementById("tipologia_mod").value="";
     document.getElementById("prezzo_mod").value="";
     aggiorna_pernottamenti();
@@ -213,7 +213,7 @@ function elimina_pernottamento(){
   pern_id=document.getElementById("lista_pernottamenti").value;
   if(pern_id)
   {
-    ajax_request("","elimina_pernottamento.php","pern_id="+pern_id,2);
+    ajax_request("","./php/elimina_pernottamento.php","pern_id="+pern_id,2);
     document.getElementById("tipologia_mod").value="";
     document.getElementById("prezzo_mod").value="";
     aggiorna_pernottamenti();
@@ -227,7 +227,7 @@ function agg_pernottamento(){
   tipologia=document.getElementById("tipologia").value;
   prezzo=document.getElementById("prezzo").value;
   if(!$.trim($('#tipologia').val())=='' && tipologia.length>0 && prezzo.length>0 && !isNaN(parseFloat(prezzo).toFixed(2)) && prezzo>0){
-    ajax_request("","aggiungi_pernottamento.php","tipologia="+tipologia+"&prezzo="+prezzo+"&dest_id="+dest_id,2);
+    ajax_request("","./php/aggiungi_pernottamento.php","tipologia="+tipologia+"&prezzo="+prezzo+"&dest_id="+dest_id,2);
     document.getElementById("tipologia").value="";
     document.getElementById("prezzo").value="";
     aggiorna_pernottamenti();
@@ -241,7 +241,7 @@ function mod_attrazione(){
   tipologia=document.getElementById("tipologia_mod").value;
   prezzo=document.getElementById("prezzo_mod").value;
   if(attr_id && !$.trim($('#tipologia_mod').val())=='' && tipologia.length>0 && prezzo.length>0 && !isNaN(parseFloat(prezzo).toFixed(2)) && prezzo>0){
-    ajax_request("","modifica_attr.php","tipo="+tipologia+"&prezzo="+prezzo+"&attr_id="+attr_id,2);
+    ajax_request("","./php/modifica_attr.php","tipo="+tipologia+"&prezzo="+prezzo+"&attr_id="+attr_id,2);
     document.getElementById("tipologia_mod").value="";
     document.getElementById("prezzo_mod").value="";
     aggiorna_attrazioni2();
@@ -256,7 +256,7 @@ function elimina_attrazione(){
   attr_id=document.getElementById("lista_attrazioni").value;
   if(attr_id)
   {
-    ajax_request("","elimina_attrazione.php","attr_id="+attr_id,2);
+    ajax_request("","./php/elimina_attrazione.php","attr_id="+attr_id,2);
     document.getElementById("tipologia_mod").value="";
     document.getElementById("prezzo_mod").value="";
     aggiorna_attrazioni2();
@@ -270,7 +270,7 @@ function agg_attrazione(){
   tipologia=document.getElementById("tipologia").value;
   prezzo=document.getElementById("prezzo").value;
   if(!$.trim($('#tipologia').val())=='' && tipologia.length>0 && prezzo.length>0 && !isNaN(parseFloat(prezzo).toFixed(2)) && prezzo>0){
-    ajax_request("","aggiungi_attr.php","tipologia="+tipologia+"&prezzo="+prezzo+"&dest_id="+dest_id,2);
+    ajax_request("","./php/aggiungi_attr.php","tipologia="+tipologia+"&prezzo="+prezzo+"&dest_id="+dest_id,2);
     document.getElementById("tipologia").value="";
     document.getElementById("prezzo").value="";
     aggiorna_attrazioni2();
@@ -287,7 +287,7 @@ function aggiungi_attrazione(){
   });
   vettore_attrazioni=vettore_attrazioni.join(',');
   if(jQuery.inArray(id_attr, vettore_attrazioni)===-1){
-    ajax_request("#attrazioni_pacchetto","aggiungi_attrazione.php","id_attr="+id_attr+"&"+"vettore_attrazioni="+vettore_attrazioni,0);
+    ajax_request("#attrazioni_pacchetto","./php/aggiungi_attrazione.php","id_attr="+id_attr+"&"+"vettore_attrazioni="+vettore_attrazioni,0);
   }
 }
 
@@ -299,7 +299,7 @@ function rimuovi_attrazione(){
   });
   vettore_attrazioni=vettore_attrazioni.join(',');
   if(id_attr.length>0)
-    ajax_request("#attrazioni_pacchetto","rimuovi_attrazione.php","id_attr="+id_attr+"&"+"vettore_attrazioni="+vettore_attrazioni,0);
+    ajax_request("#attrazioni_pacchetto","./php/rimuovi_attrazione.php","id_attr="+id_attr+"&"+"vettore_attrazioni="+vettore_attrazioni,0);
 }
 
 function elimina_pacchetto(){
@@ -307,7 +307,7 @@ function elimina_pacchetto(){
   if(id!=""){
   	if(confirm("Vuoi davvero eliminare questo pacchetto?")){
   		post_string="id="+id;
-    	ajax_request("","elimina_pacchetto.php",post_string,0);
+    	ajax_request("","./php/elimina_pacchetto.php",post_string,0);
     	location.reload;
 	}
   }
@@ -346,7 +346,7 @@ function controlla_form(){
     if(city.length>0 && datepicker.length>0 && pernottamento.length>0 && trasporto.length>0){
       post_string="city="+city+"&"+"duration="+duration+"&"+"npersons="+npersons+"&"+"datepicker="+datepicker+"&"+"sconto="+(sconto/100)+"&"+"pernottamento="+pernottamento+"&"+"trasporto="+trasporto+"&"+"vettore_attrazioni="+vettore_attrazioni;
       $("#err_content").html("");
-      ajax_request("#confirm_content","crea_pacchetto.php",post_string,0);
+      ajax_request("#confirm_content","./php/crea_pacchetto.php",post_string,0);
       document.getElementById("city").innerHTML="";
       document.getElementById("city").disabled=true;
       document.getElementById("datepicker").value="";
@@ -383,7 +383,7 @@ function search(){
   
   if(city.length>0 && data_partenza1.length>0 && data_partenza2.length>0 && er.test(npersons) && npersons>0){
     post_string="continent="+continent+"&"+"city="+city+"&"+"type="+type+"&"+"duration="+duration+"&"+"npersons="+npersons+"&"+"data_partenza1="+data_partenza1+"&"+"data_partenza2="+data_partenza2;
-    ajax_request("#content","search.php",post_string,0);
+    ajax_request("#content","./php/search.php",post_string,0);
     $("#err_content").html("");
   }
   else

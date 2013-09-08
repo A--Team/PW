@@ -1,11 +1,11 @@
 <?php
-	//carico script contenente i parametri di configurazione
-	include_once 'config.php';
-	//carico script di interfaccia al database
-    include_once 'database.php';
+    //carico script contenente i parametri di configurazione
+    include_once './php/config.php';
+    //carico script di interfaccia al database
+    include_once './php/database.php';
 	
-	//recupero username e password inseriti nella form
-	$username = nl2br(htmlentities($_POST['username']));
+    //recupero username e password inseriti nella form
+    $username = nl2br(htmlentities($_POST['username']));
     $password = nl2br(htmlentities($_POST['password']));
 	//calcolo hash SHA256 della password inserita
     $hashPsw = hash('sha256', $password);

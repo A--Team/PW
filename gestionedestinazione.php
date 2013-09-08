@@ -1,6 +1,6 @@
 <?php
  	session_start();
- 	include_once 'config.php';
+ 	include_once './php/config.php';
  	if(!isset($_SESSION[$session_name])|| $_SESSION['username']!='agenzia')
  	header("Refresh: 0;url=badlogin.php");  
 ?>
@@ -20,17 +20,14 @@
     <div id="header_container">
 	<div id="logo">
 	  <?php
-	    include 'menu.php';
+	    include './php/menu.php';
 	  ?>		
 	</div>
 	<div id="login">
 		<?php
-		  echo "<br><br><h2>Benvenuto " . $_SESSION['username'] . "!</h2><br>";
+			include 'login_form.php';
 		?>
-        <form method='POST' action='logout.php'>
-					<input type='submit' value='logout'>
-	</form>
-	</div>
+        </div>
     </div>
       <div id="content_container">
 	<div id="content">
@@ -53,7 +50,7 @@
 	</select>
 	<br>
 	<br>
-	<form id="mod_form" method="post" enctype="multipart/form-data" action='modifica_destinazione.php'>
+	<form id="mod_form" method="post" enctype="multipart/form-data" action='./php/modifica_destinazione.php'>
     	<h3 style="height:5px;">Modifica/Elimina</h3>
 	  <table>
 	  <tr>
@@ -80,7 +77,7 @@
 	</form>
 	<table>
 	<tr>
-	<form id="agg_form" method="post" enctype="multipart/form-data" action='aggiungi_destinazione.php'>
+	<form id="agg_form" method="post" enctype="multipart/form-data" action='./php/aggiungi_destinazione.php'>
 	<td><h3>Aggiungi</h3></td>
 	</tr>
 	<tr>
@@ -125,7 +122,7 @@
       </div> 
       <div id="footer">
       	<?php
-	    	include 'footer.php';
+	    	include './php/footer.php';
 	  	?>
       </div>
     </div>

@@ -8,8 +8,8 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="ajax.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="./js/jquery-1.10.2.min.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyALJFXOqMUIY1-0Ghc8BFjXSe0vo746jzc&sensor=false"></script>
     <script type="text/javascript" src="js/maps.js"></script>
     <script type="text/javascript">google.maps.event.addDomListener(window, 'load', initialize);</script>    
@@ -19,7 +19,7 @@
     <div id="header_container">
 	<div id="logo">
 	  <?php
-	    include 'menu.php';
+	    include './php/menu.php';
 	  ?>
 	</div>
 	<div id="login">
@@ -48,7 +48,7 @@
       </div> 
       <div id="footer">
 		<?php
-	    	include 'footer.php';
+	    	include './php/footer.php';
 	  	?>
       </div>
     </div>

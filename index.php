@@ -5,11 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="style/style.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="./js/ajax.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <script src="./js/jquery-1.10.2.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
     <script>
     $(function(){
     	$.datepicker.setDefaults($.datepicker.regional['it']);
@@ -33,7 +32,7 @@
     <div id="header_container">
 	<div id="logo">
 	  <?php
-	    include 'menu.php';
+	    include './php/menu.php';
 	  ?>
 	</div>
 	<div id="login">
@@ -46,7 +45,7 @@
       <div id="content_container">
 	<div id="content">
 		<?php
-			include 'pacchetto.php';
+			include './php/pacchetto.php';
 			$pacchetti=new pacchetto('home',[]);
 			$pacchetti->stampa();
 		?>
@@ -125,7 +124,9 @@
 	</div>
       </div> 
       <div id="footer">
-	<div>footer</div>
+	<?php
+	include './php/footer.php';
+	?>
       </div>
     </div>
   </body>

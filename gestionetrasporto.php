@@ -1,6 +1,6 @@
 <?php
  	session_start();
- 	include_once 'config.php';
+ 	include_once './php/config.php';
  	if(!isset($_SESSION[$session_name])|| $_SESSION['username']!='agenzia')
  	header("Refresh: 0;url=badlogin.php");  
 ?>
@@ -12,7 +12,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="./style/style.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="./js/jquery-1.10.2.min.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="./js/ajax.js"></script>
     <script>
       $(document).ready(function(){
@@ -25,7 +26,7 @@
     <div id="header_container">
 	<div id="logo">
 	  <?php
-	    include 'menu.php';
+	    include './php/menu.php';
 	  ?>	
 	</div>
 	<div id="login">
@@ -110,7 +111,7 @@
       </div> 
       <div id="footer">
       	<?php
-	    	include 'footer.php';
+	    	include './php/footer.php';
 	  	?>
       </div>
     </div>

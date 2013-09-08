@@ -9,7 +9,7 @@ function elimina(e,id){
 	var risposta = confirm("Vuoi davvero eliminare questo pacchetto dalla tua wish list?");
 	if(risposta==true){
 		xmlHttp = new XMLHttpRequest();
-		var url = "del_wish.php";
+		var url = "./php/del_wish.php";
 		xmlHttp.onreadystatechange = eliminaStateChange;	
 		xmlHttp.open("POST",url,true);
 		xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');

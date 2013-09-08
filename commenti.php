@@ -16,7 +16,7 @@
     <div id="header_container">
 	<div id="logo">
 		<?php
-	    	include 'menu.php';
+	    	include './php/menu.php';
 	  	?>			
 	</div>
 	<div id="login">
@@ -31,7 +31,7 @@
 		<?php
 			//Imposto localizzazione italiana per la visualizzazione delle date
 			setlocale(LC_TIME, 'ita', 'it_IT.utf8');
-			include_once "database.php";
+			include_once "./php/database.php";
 			//Il caricamento della destinazione corretta sfrutta il nome della citta' passato nel GET
 			if(!isset($_GET['citta'])){
 				//echo "<h2>Seleziona una destinazione.<h2>";				
@@ -146,7 +146,7 @@
       </div> 
       <div id="footer">
 		<?php
-	    	include 'footer.php';
+	    	include './php/footer.php';
 	  	?>
       </div>
     </div>

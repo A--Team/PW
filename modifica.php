@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include_once 'config.php';
+	include_once './php/config.php';
 	if(!isset($_SESSION[$session_name]))
 		header("Refresh: 0;url=badlogin.php");  
 ?>
@@ -13,8 +13,8 @@
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="./style/style.css">
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
- 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-  	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="./js/jquery-1.10.2.min.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
     <script>
 	  $(function() {
     		$( "#datepicker" ).datepicker({dateFormat:'dd/mm/yy'}).val;
@@ -26,7 +26,7 @@
     <div id="header_container">
 	<div id="logo">
 	  <?php
-	    include 'menu.php';
+	    include './php/menu.php';
 	  ?>			
 	</div>
 	<div id="login">
@@ -38,7 +38,7 @@
       <div id="content_container">
 	<div id="content">		
 		<?php
-			include 'database.php';
+			include './php/database.php';
 			$conn=database::dbConnect();
 			if(isset($_POST['id_pacchetto']))
 			{
@@ -187,7 +187,7 @@
 		<div id='vert_menu'>
 			<?php
 				if($_SESSION['username']=='agenzia'){
-					echo "<a href='aggiungipacchetto.php'><span>Aggiungi pacchetti</span></a>";			
+					echo "<a href='gestionepacchetto.php'><span>Aggiungi pacchetti</span></a>";			
 					echo "<a href='gestioneprofilo.php'><span>Il mio profilo</span></a>";
 				}
 				else {
@@ -203,7 +203,7 @@
       </div> 
       <div id="footer">
 		<?php
-	    	include 'footer.php';
+	    	include './php/footer.php';
 	  	?>
       </div>
     </div>

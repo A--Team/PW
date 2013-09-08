@@ -1,6 +1,6 @@
 <?php
  	session_start();
- 	include_once 'config.php';
+ 	include_once './php/config.php';
  	if(!isset($_SESSION[$session_name])|| $_SESSION['username']!='agenzia')
  	header("Refresh: 0;url=badlogin.php");  
 ?>
@@ -25,7 +25,7 @@
     <div id="header_container">
 	<div id="logo">
 	  <?php
-	    include 'menu.php';
+	    include './php/menu.php';
 	  ?>	
 	</div>
 	<div id="login">
@@ -50,8 +50,6 @@
 	</select>
 	<br>
 	<br>
-	
-	
 	<!--modifica trasporto-->
     	<h3 style="height:5px;">Modifica/Elimina</h3>
 	  <table>
@@ -109,7 +107,7 @@
       </div> 
       <div id="footer">
       	<?php
-	    	include 'footer.php';
+	    	include './php/footer.php';
 	  	?>
       </div>
     </div>

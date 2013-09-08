@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include_once 'config.php';
+	include_once './php/config.php';
 	if(!isset($_SESSION[$session_name])|| $_SESSION['username']!='agenzia')
 		header("Refresh: 0;url=badlogin.php");  
 ?>
@@ -18,7 +18,7 @@
     <div id="header_container">
 	<div id="logo">
 	  <?php
-	    include 'menu.php';
+	    include './php/menu.php';
 	  ?>			
 	</div>
 	<div id="login">
@@ -31,7 +31,7 @@
 	<div id="content">
 		<?php
 
-			include 'pacchetto.php';
+			include './php/pacchetto.php';
 			$pacchetti=new pacchetto('tutti',array());
 			$pacchetti->stampa();
 						
@@ -42,14 +42,14 @@
 	<div id="navigation">
 		<br>
 		<div id='vert_menu'>
-			<a href='aggiungipacchetto.php'><span>Aggiungi pacchetti</span></a>			
+			<a href='gestionepacchetto.php'><span>Aggiungi pacchetti</span></a>			
 			<a href='gestioneprofilo.php'><span>Il mio profilo</span></a>			
 		</div>	
   	</div>
       </div> 
       <div id="footer">
 		<?php
-	    	include 'footer.php';
+	    	include './php/footer.php';
 	  	?>
       </div>
     </div>

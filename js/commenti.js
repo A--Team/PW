@@ -20,7 +20,7 @@ function sendComment(dest,user){
 	glob_commento = document.form_commento.commento.value;
 	glob_voto = document.form_commento.voto.value;
 	xmlHttp = new XMLHttpRequest();
-	var url = "send_commento.php";
+	var url = "./php/send_commento.php";
 	xmlHttp.onreadystatechange = sendStateChange;	
 	xmlHttp.open("POST",url,true);
 	xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -48,7 +48,7 @@ function sendDelete(e,id){
 	var risposta = confirm("Vuoi davvero eliminare questo commento?");
 	if(risposta==true){
 		xmlHttp = new XMLHttpRequest();
-		var url = "del_commento.php";
+		var url = "./php/del_commento.php";
 		xmlHttp.onreadystatechange = deleteStateChange;	
 		xmlHttp.open("POST",url,true);
 		xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -96,5 +96,5 @@ function update_cities(){
  */
 function show_comments(){
 	var citta = document.getElementById("city").value;
-	window.open("commenti.php?citta="+citta,'_self','',false);
+	window.open("./commenti.php?citta="+citta,'_self','',false);
 }
