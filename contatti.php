@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="style/style.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript" src="ajax.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <script src="./js/jquery-1.10.2.min.js"></script>
     <script src="./js/jquery-ui.min.js"></script>
