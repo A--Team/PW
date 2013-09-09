@@ -308,7 +308,7 @@ function elimina_pacchetto(){
   	if(confirm("Vuoi davvero eliminare questo pacchetto?")){
   		post_string="id="+id;
     	ajax_request("","./php/elimina_pacchetto.php",post_string,0);
-    	location.reload;
+    	location.reload();
 	}
   }
   else 
