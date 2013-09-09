@@ -12,7 +12,7 @@
     $sql="UPDATE destinazione SET citta='".$citta."',tipo='".$tipologia."',descrizione='".$descrizione."',foto='".$nome_file."' WHERE id='".$destinazione."'";;
     database::qUpdate($conn,$sql);
     mysql_close($conn);
-    move_uploaded_file($file["tmp_name"],"./style/images/dest/".$nome_file);
+    move_uploaded_file($file["tmp_name"],"../style/images/dest/".$nome_file);
   }
   else
     echo "Errore. File non valido.";
