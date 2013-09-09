@@ -12,7 +12,7 @@
       "','".$nome_file."','".$descrizione."','1')";
       database::qInsertInto($conn,$sql);
       mysql_close($conn);
-      move_uploaded_file($file["tmp_name"],"./style/images/dest/".$nome_file);
+      move_uploaded_file($file["tmp_name"],"../style/images/dest/".$nome_file);
     }
     else
       echo "Errore. File non valido.";
